@@ -1,0 +1,28 @@
+{
+  "verdict": "approve",
+  "summary": "The five findings from the prior review are fixed. The syllabification bug (F1) is resolved — all 13 tested words now match CMUdict vowel counts, with a post-condition assertion enforcing the invariant. Punctuation-only tokens (F2) are filtered in the parser. Config resolution (F3/F4) uses importlib.resources and accepts --config. Syllable text derivation (F5) no longer produces empty strings. Two low-severity residual issues remain but neither warrants blocking: config file duplication that can drift, and override YAML edge cases. No material risk to downstream phases.",
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "low",
+      "title": "configs/ and src/rapmap/data/ are independent copies that can silently drift",
+      "file": "pyproject.toml",
+      "line_start": 33,
+      "line_end": 36,
+      "confidence": 0.90,
+      "body": "The F3 fix duplicated config files into src/rapmap/data/ for bundled packaging, while the originals remain in configs/. The CLI now reads from src/rapmap/data/ (via importlib.resources) during development. Edits to configs/pronunciation_overrides.yaml are invisible to the running CLI. The pyproject.toml force-include directive copies configs/ into the wheel at build time, but during development the two copies are independent.\n\nImpact: A developer adding a new slang override to configs/ will see no effect when running `uv run rapmap syllabify` — confusing but not a crash. The discrepancy is caught at wheel-build time (the wheel gets the configs/ version), creating a scenario where behavior differs between dev and installed package.\n\nNote: This is an architectural wart introduced by the F3 fix, not a regression in correctness.",
+      "recommendation": "Eliminate the duplication. Either (a) make configs/ the single source and ensure the editable install resolves there (e.g., symlink or configure hatch to include configs/ as package data without copying), or (b) remove configs/ and keep only src/rapmap/data/ as the canonical location. Option (b) is simpler."
+    },
+    {
+      "id": "R2",
+      "severity": "low",
+      "title": "Malformed override YAML entries crash or silently drop words instead of validating",
+      "file": "src/rapmap/lyrics/syllabify.py",
+      "line_start": 78,
+      "line_end": 100,
+      "confidence": 0.85,
+      "body": "Three override YAML edge cases produce bad behavior: (1) syllables key present but value is null (YAML 'syllables:' with no value) → TypeError on enumerate(None). (2) syllables is an empty list → word silently produces zero syllables and disappears from canonical output. (3) syllable item is null (YAML list with bare dash) → TypeError on dict subscript.\n\nThese require a malformed YAML file, not malformed user lyrics. The bundled pronunciation_overrides.yaml is correct, so this only fires if a user writes a custom override file with YAML syntax mistakes. The impact is a confusing crash (TypeError) rather than a clear validation error.\n\nThis is pre-existing behavior, not introduced by the recent fixes.",
+      "recommendation": "Add a validation pass in load_overrides (or at the top of build_canonical_syllables) that checks each override entry has a non-empty 'phones' list, and if 'syllables' is present it must be a non-empty list of dicts each with 'text' and 'phones' keys. Raise a clear ValueError naming the bad entry."
+    }
+  ]
+}

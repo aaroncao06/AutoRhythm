@@ -1,0 +1,61 @@
+{
+  "verdict": "needs-attention",
+  "summary": "Phase 0+2 implementation has a critical syllabification bug (44% error rate on common English words) that will propagate wrong anchor counts through every downstream phase, plus a crash-on-punctuation bug that will hit most real rap lyrics. Do not ship until syllabify_phones correctly handles consecutive vowel phones.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "critical",
+      "title": "syllabify_phones systematically undercounts syllables — 44% error rate on common words",
+      "file": "src/rapmap/lyrics/syllabify.py",
+      "line_start": 11,
+      "line_end": 30,
+      "confidence": 0.99,
+      "body": "The onset-maximization algorithm never splits two adjacent vowel phones into separate syllables. When a vowel phone is encountered and the current accumulator already contains a vowel, the new vowel is simply appended without creating a syllable boundary. Tested 25 common English words against CMUdict's own vowel count: 11 produced fewer syllables than CMUdict says they have.\n\nConcrete failures: 'going' (G OW1 IH0 NG) → 1 syllable instead of 2. 'fire' (F AY1 ER0) → 1 instead of 2. 'power' (P AW1 ER0) → 1 instead of 2. 'idea' (AY0 D IY1 AH0) → 2 instead of 3. 'radio' (R EY1 D IY0 OW2) → 2 instead of 3. 'creating' (K R IY0 EY1 T IH0 NG) → 2 instead of 3.\n\nImpact: The canonical syllable count is the foundation of the entire pipeline — it determines the number of timing anchors in the anchor map, the number of segments in the edit plan, and the number of clips in the render. Undercounting syllables means fewer anchors, coarser timing correction, and a direct violation of the project's own Claim C4 ('automated syllable detection via CMUdict + G2P handles standard rap lyrics'). Words like 'going', 'fire', 'power', 'higher' are extremely common in rap lyrics.",
+      "recommendation": "Add a vowel-adjacency check: when the current phone is a vowel and the accumulator already contains a vowel, split before appending. The correct syllable count for any CMUdict pronunciation equals its vowel count — use that as a post-condition assertion. Specifically, after syllabification, assert len(syllables) == sum(1 for p in phones if is_vowel(p))."
+    },
+    {
+      "id": "F2",
+      "severity": "high",
+      "title": "Punctuation-only tokens crash the syllabification pipeline with ValueError",
+      "file": "src/rapmap/lyrics/parser.py",
+      "line_start": 8,
+      "line_end": 34,
+      "confidence": 0.99,
+      "body": "parse_lyrics splits lines on whitespace and creates word entries for every token. normalize_word strips leading/trailing punctuation. When a token is ALL punctuation (e.g., '--', '...', '-', '***'), normalize_word returns ''. This empty string flows into build_canonical_syllables → lookup_pronunciation('') → ValueError('Word \\\"\\\" not in CMUdict and G2P produced no phones').\n\nConfirmed crashes on: 'Real -- talk', '- I got money', 'I got money -', 'I -- got -- money', '*** verse 2 ***'. These are common patterns in rap lyrics (em dashes, section markers, standalone ellipses, leading/trailing dashes).\n\nThe crash path: parser.py:17 creates the word entry → normalize.py:7 returns '' → syllabify.py:88 calls lookup_pronunciation('') → pronunciations.py:54 raises ValueError.",
+      "recommendation": "Filter out tokens where normalize_word returns '' in parse_lyrics — skip them during word list construction. Alternatively, add a guard in build_canonical_syllables to skip words with empty normalized text. The parser should not emit word entries that cannot possibly resolve to a pronunciation."
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "title": "CONFIGS_DIR resolves via __file__ — breaks on non-editable install",
+      "file": "src/rapmap/cli.py",
+      "line_start": 14,
+      "line_end": 14,
+      "confidence": 0.85,
+      "body": "CONFIGS_DIR = Path(__file__).resolve().parent.parent.parent / 'configs' navigates from cli.py → rapmap/ → src/ → project_root/configs/. This only works during development (editable install or running from the repo root). If the package is installed normally, __file__ resolves to site-packages/rapmap/cli.py, so CONFIGS_DIR points to site-packages/configs/ which does not exist.\n\nThe init command passes CONFIGS_DIR / 'default.yaml' to load_config, which silently returns RapMapConfig() defaults when the file doesn't exist. The syllabify command passes CONFIGS_DIR / 'pronunciation_overrides.yaml' to load_overrides, which returns None. This means pronunciation overrides are silently ignored on a normal install — no crash, but slang words like 'tryna', 'finna', 'ion' fall through to G2P which may produce wrong phone counts.\n\nInference-dependent: I have not tested an actual non-editable install, but the path arithmetic is clear.",
+      "recommendation": "Use importlib.resources (or pkg_resources) to locate bundled data files, or include configs/ as package data in pyproject.toml and resolve via the package rather than __file__ path traversal."
+    },
+    {
+      "id": "F4",
+      "severity": "medium",
+      "title": "syllabify CLI command ignores project config, always uses built-in defaults",
+      "file": "src/rapmap/cli.py",
+      "line_start": 89,
+      "line_end": 89,
+      "confidence": 0.95,
+      "body": "The syllabify command at line 89 calls load_config(None), which returns a default RapMapConfig(). The init command at line 31 loads config from --config or default.yaml. If a user passed --config custom.yaml to init (e.g., setting a different sample_rate or g2p_fallback=false), the syllabify command ignores that config entirely.\n\nMore concretely: build_canonical_syllables receives config.syllable_detection from the default config, not from the project. The SyllableDetectionConfig has g2p_fallback=True by default — a user who disabled G2P fallback in their config would still get G2P results.\n\nThe project workdir doesn't store which config was used for init, so there's no way to recover the user's intent in syllabify.",
+      "recommendation": "Either (a) store the active config in project.json during init and reload it in syllabify, or (b) accept a --config option on the syllabify command like init does."
+    },
+    {
+      "id": "F5",
+      "severity": "low",
+      "title": "_derive_syllable_texts produces empty strings when word is shorter than syllable count",
+      "file": "src/rapmap/lyrics/syllabify.py",
+      "line_start": 33,
+      "line_end": 42,
+      "confidence": 0.90,
+      "body": "When a word has fewer characters than syllables (e.g., 'I' with 2 syllables from a G2P over-split), _derive_syllable_texts returns entries with empty strings: _derive_syllable_texts('I', 2) → ['I', '']. This is a consequence of integer division producing chunk=0 (clamped to 1) and the last slice being word_text[1:1] = ''.\n\nEmpty syllable_text values would produce blank Audacity labels and broken clip IDs (e.g., 'clip_0003_' with no label). This is less likely to trigger than F1 or F2 since CMUdict words rarely have character count < syllable count, but G2P fallback can produce unexpected syllable counts.\n\nNote: due to F1 (undercounting), this currently fires less often than it would with correct syllabification, since the undercount means fewer syllables per word.",
+      "recommendation": "When syllable_count > len(word_text), fall back to repeating the word text for each syllable or use the phone representation as the display text."
+    }
+  ]
+}

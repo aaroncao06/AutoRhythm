@@ -1,0 +1,17 @@
+{
+  "verdict": "needs-attention",
+  "summary": "The R1 config-duplication concern from last round has materialized as a real bug: configs/pronunciation_overrides.yaml was updated (aint → ain't) but the bundled copy in src/rapmap/data/ was not. The CLI reads the stale bundled copy, so the ain't override silently fails. The test that covers this (test_bundled_override_matches_apostrophized_input) passes only because it reads from configs/ — not the path the CLI uses. This is the exact drift scenario R1 warned about, now confirmed. The ain't case is harmless today (CMUdict matches), but the pattern guarantees future overrides with apostrophes will silently fail.",
+  "findings": [
+    {
+      "id": "D1",
+      "severity": "high",
+      "title": "Bundled override file is stale — ain't override silently ignored at runtime; test masks the gap",
+      "file": "src/rapmap/data/pronunciation_overrides.yaml",
+      "line_start": 65,
+      "line_end": 69,
+      "confidence": 0.99,
+      "body": "configs/pronunciation_overrides.yaml has the key 'ain't' (with apostrophe). src/rapmap/data/pronunciation_overrides.yaml still has the key 'aint' (without apostrophe). The CLI loads overrides via _bundled_config() which resolves to src/rapmap/data/ during development. normalize_word(\"ain't\") returns \"ain't\" (preserving the internal apostrophe). The override key 'aint' does not match 'ain't', so the override is silently skipped and the word falls through to CMUdict.\n\nThe test test_bundled_override_matches_apostrophized_input loads from configs/pronunciation_overrides.yaml (via a hardcoded path), where the key IS 'ain't'. So the test passes despite the CLI path being broken. This is a false-green test — it validates the wrong file.\n\nToday this is benign because CMUdict returns the same phones ['EY1', 'N', 'T'] for ain't. But the pattern is dangerous: any future override for a word containing an apostrophe (don't, y'all, 'bout) will silently fail via the CLI while appearing to work in tests.",
+      "recommendation": "Eliminate the duplication entirely: remove src/rapmap/data/ as a separate copy. Either (a) point _bundled_config at configs/ directly for development and only use force-include for wheel builds, or (b) delete configs/ and move everything to src/rapmap/data/ as the single source of truth. Then fix the test to load from the same path the CLI uses (_bundled_config or importlib.resources) so it cannot diverge."
+    }
+  ]
+}

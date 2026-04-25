@@ -11,6 +11,7 @@ dependencies = [
     "scipy>=1.11",
     "pyyaml>=6.0",
     "nltk>=3.8",
+    "g2p_en>=2.1",
 ]
 
 [project.optional-dependencies]

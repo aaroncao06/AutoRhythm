@@ -1,0 +1,61 @@
+{
+  "verdict": "needs-attention",
+  "summary": "The project's stated hard invariant — zero-sample anchor error — is unenforced. The render validation (1) reports false positives for 4 of 5 anchor strategies, (2) is optional (only runs when anchor_map is passed), and (3) never halts the pipeline on failure. ValidationConfig.require_zero_sample_anchor_error is defined but dead — never read by any module. Separately, derive_syllables.py silently fabricates boundaries when MFA disagrees with the canonical syllable count, violating the project's fail-loudly principle and feeding wrong data into every downstream phase. Ship the onset-only happy path today if needed, but the anchor validation and syllable derivation fallbacks need fixes before this can be trusted.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "title": "Anchor validation produces false errors for non-onset strategies and never blocks the pipeline",
+      "file": "src/rapmap/audio/render.py",
+      "line_start": 78,
+      "line_end": 94,
+      "confidence": 0.95,
+      "body": "render_clips() validates anchors by comparing every segment's target_start_sample against guide_anchor_sample for its syllable_index (lines 82-86). For onset strategy, the anchor IS at the clip/segment start, so this works. For vowel_nucleus, end, onset_and_end (end component), and hybrid (end component), the anchor is mid-syllable, not at the clip edge. The planner correctly places a segment boundary at the anchor (planner.py:37-40), creating two segments for one syllable — segment 0 starts at the clip edge, segment 1 starts at the anchor. Both segments share the same syllable_index. The validation checks segment 0's target_start (clip edge) against guide_anchor (mid-syllable) → mismatch → false error. Segment 1 passes, but the error is already recorded. Result: validation_passed=False even when anchors are correctly placed, for 4 of 5 strategies. Furthermore, the CLI never acts on the failure — it logs 'Validation: FAILED' and continues to Phase 8 (cli.py:349, 522-523). ValidationConfig.require_zero_sample_anchor_error is defined in config.py but never imported or read by any module — it is dead config. The project's stated hard invariant ('if this cannot be proven, the render must fail') is unenforced.",
+      "recommendation": "Fix validation to only check the segment whose target_start_sample matches the anchor (the segment created at the anchor boundary, not the pre-anchor segment). Make the pipeline halt on validation failure when require_zero_sample_anchor_error is True. Wire ValidationConfig into render_clips or the CLI."
+    },
+    {
+      "id": "F2",
+      "severity": "high",
+      "title": "derive_syllables.py silently fabricates syllable boundaries when MFA vowel count mismatches",
+      "file": "src/rapmap/align/derive_syllables.py",
+      "line_start": 134,
+      "line_end": 171,
+      "confidence": 0.9,
+      "body": "When MFA detects a different number of vowels than the canonical syllable count (a common scenario: schwas dropped, diphthongs miscounted, rap slang), the code falls through to lines 134-171 which divide the word duration equally into fabricated syllable boundaries. Confidence is set to 0.1 or 0.3, but: (a) no warning is logged or emitted, (b) validate_alignment() flags low-confidence syllables but never raises on them — it only returns a count, (c) the CLI logs the count but does not stop. These fabricated boundaries flow into anchor mapping (wrong anchor positions), grouping (wrong clip boundaries), and rendering (stretching to wrong targets). The pipeline's CLAUDE.md states 'If a syllable confidence < threshold → report it, don't guess' — but the code guesses first and reports second. MFA vowel/syllable mismatch is the norm for rap lyrics with slang, elision, and fast delivery, so this fallback will fire frequently on real input.",
+      "recommendation": "When vowel_count != canonical_syl_count, log a warning at minimum. Better: raise an error when config.fail_on_missing_syllables is True (it defaults to True). At minimum, downstream code should check confidence and refuse to anchor-map syllables below threshold instead of treating fabricated boundaries as real."
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "title": "onset_and_end and hybrid anchor strategies silently degrade to onset — extract_anchor_pair is dead code",
+      "file": "src/rapmap/timing/anchors.py",
+      "line_start": 20,
+      "line_end": 28,
+      "confidence": 1.0,
+      "body": "extract_anchor_pair() (anchors.py:20-28) computes both primary and secondary anchor points for onset_and_end and hybrid strategies. However, build_anchor_map() (anchor_map.py:25-26) only calls extract_anchor(), never extract_anchor_pair(). grep confirms extract_anchor_pair is not called anywhere in the codebase. The result: onset_and_end and hybrid are silently identical to onset. The user can select these strategies via CLI (--anchor onset_and_end), get no error, and see output that only enforces onset alignment. The end-of-syllable constraint — the entire point of these strategies — is silently dropped.",
+      "recommendation": "Either wire extract_anchor_pair into build_anchor_map and planner (creating dual-point segments that enforce both onset and end), or remove onset_and_end/hybrid from the CLI choices and document them as not-yet-implemented."
+    },
+    {
+      "id": "F4",
+      "severity": "medium",
+      "title": "_assemble_flattened crashes with ValueError when all clips have zero-length audio",
+      "file": "src/rapmap/audio/render.py",
+      "line_start": 133,
+      "line_end": 133,
+      "confidence": 0.95,
+      "body": "Line 133: max(start + len(audio) for _, start, audio in rendered_clips if len(audio) > 0). If rendered_clips is non-empty but every clip has len(audio) == 0 (possible when all segments have source_duration == 0 or target_duration == 0), the generator passed to max() is empty, causing ValueError: max() arg is an empty sequence. The empty-list guard on line 128 only handles when rendered_clips itself is empty, not when all clips produce zero-length audio. This would crash the pipeline instead of producing an empty output file.",
+      "recommendation": "Add a guard: filter to non-empty clips first, and if none remain, write an empty WAV and return 0 (same as the rendered_clips-empty case)."
+    },
+    {
+      "id": "F5",
+      "severity": "low",
+      "title": "_assemble_flattened silently overwrites existing audio past the crossfade zone",
+      "file": "src/rapmap/audio/render.py",
+      "line_start": 147,
+      "line_end": 153,
+      "confidence": 0.8,
+      "body": "When clips overlap and crossfade_samples > 0, lines 151-153 apply a crossfade for the first xf samples, then directly overwrite the remaining overlap (line 153: output[start + xf : end] = audio[xf:]). If the previous clip's audio extends beyond start + xf, it is silently destroyed without any fade transition. This only affects the flattened preview file (individual clips are unaffected), and clip placement should normally be monotonic with minimal overlap, but there is no assertion enforcing that overlap <= crossfade_samples. Under unexpected input (e.g., clips placed at the same target position), the result is silently corrupt audio.",
+      "recommendation": "Assert that overlap between consecutive clips does not exceed crossfade_samples, or sum/mix the overlapping region instead of overwriting."
+    }
+  ]
+}

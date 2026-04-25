@@ -1,0 +1,69 @@
+tryna:
+  phones: ["T", "R", "AY1", "N", "AH0"]
+  syllables:
+    - text: "try"
+      phones: ["T", "R", "AY1"]
+    - text: "na"
+      phones: ["N", "AH0"]
+
+finna:
+  phones: ["F", "IH1", "N", "AH0"]
+  syllables:
+    - text: "fin"
+      phones: ["F", "IH1"]
+    - text: "na"
+      phones: ["N", "AH0"]
+
+ion:
+  phones: ["AY1", "OW0", "N"]
+  syllables:
+    - text: "i"
+      phones: ["AY1"]
+    - text: "on"
+      phones: ["OW0", "N"]
+
+gotta:
+  phones: ["G", "AA1", "T", "AH0"]
+  syllables:
+    - text: "got"
+      phones: ["G", "AA1", "T"]
+    - text: "ta"
+      phones: ["AH0"]
+
+wanna:
+  phones: ["W", "AA1", "N", "AH0"]
+  syllables:
+    - text: "wan"
+      phones: ["W", "AA1"]
+    - text: "na"
+      phones: ["N", "AH0"]
+
+gonna:
+  phones: ["G", "AH1", "N", "AH0"]
+  syllables:
+    - text: "gon"
+      phones: ["G", "AH1"]
+    - text: "na"
+      phones: ["N", "AH0"]
+
+lemme:
+  phones: ["L", "EH1", "M", "IY0"]
+  syllables:
+    - text: "lem"
+      phones: ["L", "EH1", "M"]
+    - text: "me"
+      phones: ["IY0"]
+
+boutta:
+  phones: ["B", "AW1", "T", "AH0"]
+  syllables:
+    - text: "bout"
+      phones: ["B", "AW1", "T"]
+    - text: "ta"
+      phones: ["AH0"]
+
+ain't:
+  phones: ["EY1", "N", "T"]
+  syllables:
+    - text: "ain't"
+      phones: ["EY1", "N", "T"]

@@ -40,6 +40,8 @@ class AlignmentConfig:
     require_exact_syllable_count: bool = True
     min_syllable_confidence: float = 0.70
     fail_on_missing_syllables: bool = True
+    fail_on_alignment_error: bool = True
+    max_low_confidence_fraction: float = 0.2
 
 
 @dataclass

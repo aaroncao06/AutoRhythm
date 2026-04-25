@@ -13,6 +13,13 @@ data/
 *.pth
 *.ckpt
 
+# Workdir outputs (generated per-project)
+workdir/
+
+# Audio files (large)
+inputs/*.wav
+inputs/*.mp3
+
 # OS
 .DS_Store
 

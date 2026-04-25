@@ -1,0 +1,46 @@
+[project]
+name = "rapmap"
+version = "0.1.0"
+description = "Rap vocal rhythm mapping — syllable-level timing correction with Audacity integration"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "soundfile>=0.12",
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "pyyaml>=6.0",
+    "nltk>=3.8",
+]
+
+[project.optional-dependencies]
+align = [
+    "montreal-forced-aligner>=3.0",
+]
+guide = [
+    "demucs>=4.0",
+]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+rapmap = "rapmap.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rapmap"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

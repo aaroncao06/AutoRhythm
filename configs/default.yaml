@@ -1,0 +1,68 @@
+project:
+  sample_rate: 48000
+  internal_audio_format: wav
+  vocal_analysis_mono: true
+
+guide_generation:
+  mode: manual
+  model: songgeneration
+  allow_full_mix: true
+  source_separate_if_needed: true
+  fallback_manual_guide: true
+
+syllable_detection:
+  mode: auto
+  manual_overrides: optional
+  pronunciation_dictionary: cmudict
+  g2p_fallback: true
+  preserve_bars_from_newlines: true
+
+alignment:
+  primary_backend: mfa
+  fallback_backend: whisperx
+  require_exact_syllable_count: true
+  min_syllable_confidence: 0.70
+  fail_on_missing_syllables: true
+
+anchor_strategy:
+  default: onset
+
+clip_grouping:
+  default: safe_boundary
+  safe_boundary:
+    min_silence_ms: 20
+    low_energy_window_ms: 12
+    zero_crossing_search_ms: 4
+    min_clip_duration_ms: 80
+    max_clip_duration_ms: 2500
+    max_syllables_per_clip: 8
+    prefer_word_boundaries: true
+    prefer_line_boundaries: true
+    avoid_inside_words: true
+    avoid_vowel_cuts: true
+    allow_cut_before_plosives: true
+
+rendering:
+  backend: rubberband
+  preserve_pitch: true
+  deterministic: true
+  crossfade_ms: 8
+  pre_handle_ms: 20
+  post_handle_ms: 20
+  output_flattened_preview: true
+  output_individual_clips: true
+  min_stretch_ratio: 0.50
+  max_stretch_ratio: 2.00
+  fail_on_extreme_stretch: false
+
+audacity:
+  integration: mod_script_pipe
+  create_label_tracks: true
+  import_grouped_clips: true
+  import_flattened_preview: true
+  open_after_render: true
+
+validation:
+  require_zero_sample_anchor_error: true
+  fail_on_alignment_error: true
+  fail_on_render_mismatch: true

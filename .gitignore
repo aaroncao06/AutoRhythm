@@ -14,7 +14,7 @@ data/
 *.ckpt
 
 # Workdir outputs (generated per-project)
-# workdir/
+workdir*/
 
 # Audio files (large)
 inputs/*.wav

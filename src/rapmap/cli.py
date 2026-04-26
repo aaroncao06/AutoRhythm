@@ -209,7 +209,56 @@ def align(project: Path, audio: Path | None, role: str, config_path: Path | None
     overrides = load_overrides(overrides_path)
 
     click.echo(f"Aligning {role} vocal: {audio}")
-    textgrid_path = align_with_mfa(audio, canonical, project, role, config.alignment, overrides)
+
+    stt_transcript = None
+    canonical_word_indices = None
+    alignment_dir = project / "alignment"
+    alignment_dir.mkdir(parents=True, exist_ok=True)
+
+    if role == "guide" and config.alignment.guide_preprocess:
+        from rapmap.guide.preprocess import preprocess_guide
+
+        click.echo("  Preprocessing guide vocal (STT transcription)...")
+        preprocess_result = preprocess_guide(
+            audio,
+            canonical,
+            config.alignment.whisper_model,
+            config.alignment.word_match_threshold,
+        )
+        if preprocess_result is not None:
+            stt_transcript = preprocess_result.stt_words
+            canonical_word_indices = [
+                preprocess_result.canonical_word_to_stt[i]
+                for i in range(len(preprocess_result.canonical_words))
+            ]
+            click.echo(
+                f"  STT: {len(preprocess_result.stt_words)} words, "
+                f"{len(preprocess_result.extra_indices)} extras filtered"
+            )
+            preprocess_out = alignment_dir / f"{role}_preprocess.json"
+            with open(preprocess_out, "w") as f:
+                json.dump(
+                    {
+                        "stt_words": preprocess_result.stt_words,
+                        "extras": preprocess_result.extra_indices,
+                        "matches": [
+                            {
+                                "stt": m.stt_index,
+                                "canonical": m.canonical_index,
+                                "stt_text": m.stt_text,
+                                "canonical_text": m.canonical_text,
+                            }
+                            for m in preprocess_result.matches
+                        ],
+                    },
+                    f,
+                    indent=2,
+                )
+
+    textgrid_path = align_with_mfa(
+        audio, canonical, project, role, config.alignment, overrides,
+        stt_transcript=stt_transcript,
+    )
     click.echo(f"  TextGrid: {textgrid_path}")
 
     audio_for_fallback, _ = read_audio(audio, mono=True)
@@ -217,13 +266,12 @@ def align(project: Path, audio: Path | None, role: str, config_path: Path | None
         textgrid_path, canonical, sr, role, str(audio), config.anchor_strategy.default,
         smoothing_min_ms=config.alignment.phoneme_smoothing_min_ms,
         audio_data=audio_for_fallback,
+        canonical_word_indices=canonical_word_indices,
     )
 
     validation = validate_alignment(alignment, canonical, config.alignment)
     low_conf = validation.get("low_confidence_count", 0)
 
-    alignment_dir = project / "alignment"
-    alignment_dir.mkdir(parents=True, exist_ok=True)
     out_path = out or (alignment_dir / f"{role}_alignment.json")
     with open(out_path, "w") as f:
         json.dump(alignment_to_dict(alignment), f, indent=2)
@@ -232,6 +280,130 @@ def align(project: Path, audio: Path | None, role: str, config_path: Path | None
     click.echo(f"  Low confidence: {low_conf}")
     click.echo(f"  Wrote {out_path}")
     click.echo("Phase 3 complete.")
+
+
+@main.command("dump-syllables")
+@click.option("--project", type=click.Path(exists=True, path_type=Path), required=True)
+@click.option("--role", type=click.Choice(["guide", "human"]), default="human")
+@click.option(
+    "--audio",
+    type=click.Path(exists=True, path_type=Path),
+    default=None,
+    help="Override audio source; defaults to the role's analysis audio",
+)
+@click.option(
+    "--out",
+    type=click.Path(path_type=Path),
+    default=None,
+    help="Output dir; defaults to {project}/debug/syllables_{role}",
+)
+@click.option(
+    "--padding-ms",
+    type=float,
+    default=0.0,
+    help="Pad each clip by this many ms on both sides",
+)
+def dump_syllables(
+    project: Path,
+    role: str,
+    audio: Path | None,
+    out: Path | None,
+    padding_ms: float,
+):
+    """Dump one WAV per detected syllable from a role's alignment (debug)."""
+    import re
+
+    from rapmap.align.base import alignment_from_dict
+    from rapmap.audio.io import read_audio, write_audio
+
+    alignment_path = project / "alignment" / f"{role}_alignment.json"
+    assert alignment_path.exists(), f"Missing {alignment_path} — run align first"
+    with open(alignment_path) as f:
+        alignment = alignment_from_dict(json.load(f))
+
+    canonical_path = project / "lyrics" / "canonical_syllables.json"
+    canonical_lookup: dict[int, dict] = {}
+    if canonical_path.exists():
+        with open(canonical_path) as f:
+            for syl in json.load(f).get("syllables", []):
+                canonical_lookup[syl["syllable_index"]] = syl
+
+    if audio is None:
+        with open(project / "project.json") as f:
+            proj_meta = json.load(f)
+        if role == "guide":
+            audio = project / proj_meta["guide_path"]
+        else:
+            audio = project / proj_meta.get("human_analysis_path", proj_meta["human_path"])
+    assert audio.exists(), f"Audio file not found: {audio}"
+
+    audio_data, sr = read_audio(audio, mono=True)
+    assert sr == alignment.sample_rate, (
+        f"Sample-rate mismatch: audio={sr}, alignment={alignment.sample_rate}"
+    )
+    total = len(audio_data)
+
+    out_dir = out or (project / "debug" / f"syllables_{role}")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    pad_samples = int(round(padding_ms * sr / 1000.0))
+
+    def slug(s: str) -> str:
+        s = re.sub(r"[^A-Za-z0-9]+", "-", s).strip("-").lower()
+        return s or "x"
+
+    click.echo(f"Dumping {len(alignment.syllables)} syllables from {audio} → {out_dir}")
+    index_entries: list[dict] = []
+    for syl in alignment.syllables:
+        meta = canonical_lookup.get(syl.syllable_index, {})
+        syl_text = meta.get("syllable_text") or syl.word_text
+        word_slug = slug(syl.word_text)
+        syl_slug = slug(syl_text)
+        if syl_slug == word_slug:
+            label = word_slug
+        else:
+            label = f"{word_slug}-{syl_slug}"
+
+        start = max(0, syl.start_sample - pad_samples)
+        end = min(total, syl.end_sample + pad_samples)
+        if end <= start:
+            continue
+        clip = audio_data[start:end].astype("float32")
+
+        filename = f"{syl.syllable_index:04d}_{label}.wav"
+        write_audio(out_dir / filename, clip, sr)
+
+        index_entries.append(
+            {
+                "syllable_index": syl.syllable_index,
+                "word_index": syl.word_index,
+                "word_text": syl.word_text,
+                "syllable_text": syl_text,
+                "start_sample": syl.start_sample,
+                "end_sample": syl.end_sample,
+                "anchor_sample": syl.anchor_sample,
+                "duration_seconds": (syl.end_sample - syl.start_sample) / sr,
+                "confidence": syl.confidence,
+                "phones": [p.phone for p in syl.phones],
+                "filename": filename,
+            }
+        )
+
+    with open(out_dir / "index.json", "w") as f:
+        json.dump(
+            {
+                "role": role,
+                "audio_path": str(audio),
+                "sample_rate": sr,
+                "padding_ms": padding_ms,
+                "syllable_count": len(index_entries),
+                "syllables": index_entries,
+            },
+            f,
+            indent=2,
+        )
+
+    click.echo(f"  Wrote {len(index_entries)} clips + index.json")
 
 
 @main.command()
@@ -658,16 +830,70 @@ def run(
     else:
         roles = [("human", "human_analysis_path")]
 
+    guide_preprocess_result = None
+
     for role_name, audio_key in roles:
         audio_path = out / proj_meta.get(audio_key, proj_meta.get("human_path", ""))
         if not audio_path.exists() and role_name == "human":
             audio_path = out / proj_meta["human_path"]
-        tg = align_with_mfa(audio_path, canonical, out, role_name, config.alignment, overrides)
+
+        stt_transcript = None
+        canonical_word_indices = None
+
+        if role_name == "guide" and config.alignment.guide_preprocess:
+            from rapmap.guide.preprocess import preprocess_guide
+
+            click.echo("  Preprocessing guide vocal (STT)...")
+            preprocess_result = preprocess_guide(
+                audio_path,
+                canonical,
+                config.alignment.whisper_model,
+                config.alignment.word_match_threshold,
+            )
+            if preprocess_result is not None:
+                guide_preprocess_result = preprocess_result
+                stt_transcript = preprocess_result.stt_words
+                canonical_word_indices = [
+                    preprocess_result.canonical_word_to_stt[i]
+                    for i in range(len(preprocess_result.canonical_words))
+                ]
+                click.echo(
+                    f"  STT: {len(preprocess_result.stt_words)} words, "
+                    f"{len(preprocess_result.extra_indices)} extras filtered, "
+                    f"{len(preprocess_result.missing_canonical_indices)} missing canonicals"
+                )
+                preprocess_out = alignment_dir / f"{role_name}_preprocess.json"
+                with open(preprocess_out, "w") as f:
+                    json.dump(
+                        {
+                            "stt_words": preprocess_result.stt_words,
+                            "extras": preprocess_result.extra_indices,
+                            "missing_canonicals": preprocess_result.missing_canonical_indices,
+                            "mistrans_canonicals": preprocess_result.mistrans_canonical_indices,
+                            "matches": [
+                                {
+                                    "stt": m.stt_index,
+                                    "canonical": m.canonical_index,
+                                    "stt_text": m.stt_text,
+                                    "canonical_text": m.canonical_text,
+                                }
+                                for m in preprocess_result.matches
+                            ],
+                        },
+                        f,
+                        indent=2,
+                    )
+
+        tg = align_with_mfa(
+            audio_path, canonical, out, role_name, config.alignment, overrides,
+            stt_transcript=stt_transcript,
+        )
         audio_for_fallback, _ = read_audio(audio_path, mono=True)
         al = derive_syllable_timestamps(
             tg, canonical, sr, role_name, str(audio_path), anchor,
             smoothing_min_ms=config.alignment.phoneme_smoothing_min_ms,
             audio_data=audio_for_fallback,
+            canonical_word_indices=canonical_word_indices,
         )
         validate_alignment(al, canonical, config.alignment)
         with open(alignment_dir / f"{role_name}_alignment.json", "w") as f:
@@ -688,7 +914,23 @@ def run(
         with open(alignment_dir / "human_alignment.json") as f:
             human_al = alignment_from_dict(json.load(f))
         strategy_config = AnchorStrategyConfig(default=anchor)
-        anchor_map = build_anchor_map(guide_al, human_al, strategy_config)
+        untrusted_syllable_indices: set[int] | None = None
+        if guide_preprocess_result is not None:
+            untrusted_word_idxs = set(guide_preprocess_result.missing_canonical_indices)
+            untrusted_syllable_indices = {
+                s["syllable_index"]
+                for s in canonical["syllables"]
+                if s["word_index"] in untrusted_word_idxs
+            }
+        anchor_map = build_anchor_map(
+            guide_al, human_al, strategy_config,
+            untrusted_syllable_indices=untrusted_syllable_indices,
+        )
+        if anchor_map.get("repaired_syllable_count"):
+            click.echo(
+                f"  Repaired {anchor_map['repaired_syllable_count']} untrusted "
+                f"guide timestamps via proportional time-warp"
+            )
     else:
         from rapmap.beat.detect import detect_beats
         from rapmap.beat.grid import build_beat_grid

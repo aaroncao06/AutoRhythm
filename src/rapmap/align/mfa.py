@@ -9,14 +9,22 @@ from rapmap.config import AlignmentConfig
 from rapmap.lyrics.pronunciations import lookup_pronunciation
 
 
-def _check_mfa_available() -> None:
-    try:
-        subprocess.run(["mfa", "version"], capture_output=True, check=True)
-    except FileNotFoundError:
-        raise RuntimeError(
-            "MFA not found on PATH. Install: conda install -c conda-forge montreal-forced-aligner\n"
-            "Then download models: mfa model download acoustic english_us_arpa"
-        )
+def _find_mfa_binary() -> str:
+    if shutil.which("mfa"):
+        return "mfa"
+    conda_mfa = Path.home() / "miniconda3" / "envs" / "aligner" / "bin" / "mfa"
+    if conda_mfa.exists():
+        return str(conda_mfa)
+    raise RuntimeError(
+        "MFA not found on PATH. Install: conda install -c conda-forge montreal-forced-aligner\n"
+        "Then download models: mfa model download acoustic english_us_arpa"
+    )
+
+
+def _check_mfa_available() -> str:
+    mfa = _find_mfa_binary()
+    subprocess.run([mfa, "version"], capture_output=True, check=True)
+    return mfa
 
 
 def _generate_dictionary(canonical_syllables: dict, overrides: dict | None) -> str:
@@ -52,7 +60,7 @@ def align_with_mfa(
     config: AlignmentConfig,
     overrides: dict | None = None,
 ) -> Path:
-    _check_mfa_available()
+    mfa_bin = _check_mfa_available()
 
     alignment_dir = project_dir / "alignment"
     alignment_dir.mkdir(parents=True, exist_ok=True)
@@ -71,7 +79,7 @@ def align_with_mfa(
         dict_path.write_text(_generate_dictionary(canonical_syllables, overrides))
 
         cmd = [
-            "mfa",
+            mfa_bin,
             "align",
             str(corpus_dir),
             str(dict_path),
@@ -79,6 +87,8 @@ def align_with_mfa(
             str(output_dir),
             "--clean",
             "--single_speaker",
+            "--beam", "400",
+            "--retry_beam", "1000",
         ]
         result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode != 0:

@@ -1,0 +1,20 @@
+project:
+  sample_rate: 48000
+  internal_audio_format: wav
+  vocal_analysis_mono: true
+
+alignment:
+  primary_backend: mfa
+  require_exact_syllable_count: true
+  min_syllable_confidence: 0.10
+  fail_on_missing_syllables: true
+  fail_on_alignment_error: false
+  max_low_confidence_fraction: 1.0
+
+audacity:
+  open_after_render: false
+
+validation:
+  require_zero_sample_anchor_error: false
+  fail_on_alignment_error: false
+  fail_on_render_mismatch: false

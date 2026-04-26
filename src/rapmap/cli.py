@@ -71,10 +71,54 @@ def set_guide(project: Path, guide: Path, config_path: Path | None):
     default="songgeneration",
 )
 @click.option("--out", type=click.Path(path_type=Path), default=None)
-def generate_guide(project: Path, model: str, out: Path | None):
+@click.option("--caption", default="rap, hip-hop, aggressive flow, male rapper, trap beat")
+@click.option("--seed", type=int, default=42)
+@click.option("--duration", type=float, default=None, help="Target duration in seconds (default: auto from backing)")
+@click.option("--bpm", type=int, default=None)
+@click.option("--time-signature", default="", help="Time signature: 2 (2/4), 3 (3/4), 4 (4/4), 6 (6/8)")
+def generate_guide(project: Path, model: str, out: Path | None, caption: str, seed: int, duration: float | None, bpm: int | None, time_signature: str):
     """Generate an AI guide vocal (Phase 1: Mode A/B)."""
-    click.echo(f"Generating guide with model={model}")
-    raise NotImplementedError("Phase 1 (AI guide generation) not yet implemented")
+    project_json = project / "project.json"
+    assert project_json.exists(), f"No project.json found in {project}"
+
+    with open(project_json) as f:
+        proj_meta = json.load(f)
+
+    lyrics_path = project / "lyrics" / "lyrics.raw.txt"
+    assert lyrics_path.exists(), f"No lyrics found in {project / 'lyrics'}"
+    lyrics_text = lyrics_path.read_text()
+
+    if duration is None:
+        duration = proj_meta.get("backing_duration_seconds", 30.0)
+
+    config = load_config()
+
+    if model == "acestep":
+        from rapmap.guide.acestep import generate_guide_vocal
+
+        click.echo(f"Generating guide with ACE-Step (duration={duration:.1f}s, bpm={bpm}, time_sig={time_signature or 'auto'}, seed={seed})")
+        result = generate_guide_vocal(
+            lyrics_text=lyrics_text,
+            project_dir=project,
+            config=config.project,
+            duration=duration,
+            bpm=bpm,
+            time_signature=time_signature,
+            caption=caption,
+            seed=seed,
+        )
+    else:
+        raise NotImplementedError(f"Model '{model}' not yet implemented. Use --model acestep.")
+
+    proj_meta["guide_path"] = f"audio/{result.path.name}"
+    proj_meta["guide_duration_samples"] = result.duration_samples
+    proj_meta["guide_source"] = result.source
+    with open(project_json, "w") as f:
+        json.dump(proj_meta, f, indent=2)
+
+    click.echo(f"  Guide vocal: {result.path}")
+    click.echo(f"  Duration: {result.duration_samples / result.sample_rate:.2f}s")
+    click.echo("Phase 1 complete.")
 
 
 @main.command()
@@ -543,7 +587,7 @@ def run(
     Use --mode beat-only to snap syllables to the beat grid without a guide vocal.
     """
     if mode == "guide" and guide is None:
-        raise click.UsageError("--guide is required when --mode is 'guide'")
+        raise click.UsageError("--guide is required when --mode is 'guide'. Use --guide /path/to/guide.wav or --mode beat-only")
 
     from rapmap.align.base import alignment_from_dict, alignment_to_dict
     from rapmap.align.derive_syllables import derive_syllable_timestamps

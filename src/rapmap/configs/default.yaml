@@ -28,9 +28,15 @@ alignment:
   phoneme_smoothing_min_ms: 15.0
   energy_fallback: true
   multi_pronunciation: true
+  guide_preprocess: true
+  whisper_model: base
+  word_match_threshold: 0.75
 
 anchor_strategy:
   default: onset
+  min_target_gap_ms: 50.0
+  min_human_gap_ms: 30.0
+  min_syllable_target_ms: 60.0
 
 clip_grouping:
   default: safe_boundary

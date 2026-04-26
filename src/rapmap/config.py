@@ -46,11 +46,20 @@ class AlignmentConfig:
     phoneme_smoothing_min_ms: float = 15.0
     energy_fallback: bool = True
     multi_pronunciation: bool = True
+    guide_preprocess: bool = True
+    whisper_model: str = "base"
+    word_match_threshold: float = 0.75
 
 
 @dataclass
 class AnchorStrategyConfig:
     default: str = "onset"
+    # Synthetic gap-preservation: when guide has near-zero gap between two syllables
+    # but human has audio there, expand the guide-side gap by pulling back the
+    # previous syllable's end so the human audio isn't compressed into nothing.
+    min_target_gap_ms: float = 50.0
+    min_human_gap_ms: float = 30.0
+    min_syllable_target_ms: float = 60.0
 
 
 @dataclass

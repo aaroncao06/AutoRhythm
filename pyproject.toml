@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 align = [
     "montreal-forced-aligner>=3.0",
+    "faster-whisper>=1.0",
 ]
 guide = [
     "demucs>=4.0",

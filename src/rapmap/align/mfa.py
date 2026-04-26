@@ -88,6 +88,28 @@ def _generate_transcript(canonical_syllables: dict) -> str:
     return " ".join(words)
 
 
+def _generate_dictionary_for_words(
+    words: list[str],
+    overrides: dict | None,
+    multi_pronunciation: bool = True,
+) -> str:
+    seen: set[str] = set()
+    lines: list[str] = []
+    for raw_word in words:
+        word = _clean_word_for_mfa(raw_word)
+        if not word or word in seen:
+            continue
+        seen.add(word)
+        if multi_pronunciation:
+            variants = lookup_all_pronunciations(word, overrides)
+            for phones, _ in variants:
+                lines.append(f"{word}\t{' '.join(phones)}")
+        else:
+            phones, _ = lookup_pronunciation(word, overrides)
+            lines.append(f"{word}\t{' '.join(phones)}")
+    return "\n".join(lines) + "\n"
+
+
 def align_with_mfa(
     audio_path: Path,
     canonical_syllables: dict,
@@ -95,6 +117,7 @@ def align_with_mfa(
     role: str,
     config: AlignmentConfig,
     overrides: dict | None = None,
+    stt_transcript: list[str] | None = None,
 ) -> Path:
     mfa_bin, mfa_env = _check_mfa_available()
 
@@ -108,13 +131,22 @@ def align_with_mfa(
         output_dir = tmp / "output"
 
         shutil.copy2(audio_path, corpus_dir / f"{role}.wav")
-        transcript = _generate_transcript(canonical_syllables)
-        (corpus_dir / f"{role}.txt").write_text(transcript)
 
+        if stt_transcript is not None:
+            cleaned = [_clean_word_for_mfa(w) for w in stt_transcript]
+            transcript = " ".join(w for w in cleaned if w)
+            dict_text = _generate_dictionary_for_words(
+                stt_transcript, overrides, config.multi_pronunciation
+            )
+        else:
+            transcript = _generate_transcript(canonical_syllables)
+            dict_text = _generate_dictionary(
+                canonical_syllables, overrides, config.multi_pronunciation
+            )
+
+        (corpus_dir / f"{role}.txt").write_text(transcript)
         dict_path = tmp / "dictionary.txt"
-        dict_path.write_text(
-            _generate_dictionary(canonical_syllables, overrides, config.multi_pronunciation)
-        )
+        dict_path.write_text(dict_text)
 
         cmd = [
             mfa_bin,
@@ -125,14 +157,14 @@ def align_with_mfa(
             str(output_dir),
             "--clean",
             "--single_speaker",
-            "--beam", "400",
-            "--retry_beam", "1000",
+            "--beam",
+            "400",
+            "--retry_beam",
+            "1000",
         ]
         result = subprocess.run(cmd, capture_output=True, text=True, env=mfa_env)
         if result.returncode != 0:
-            raise RuntimeError(
-                f"MFA alignment failed (exit {result.returncode}):\n{result.stderr}"
-            )
+            raise RuntimeError(f"MFA alignment failed (exit {result.returncode}):\n{result.stderr}")
 
         textgrid_path = output_dir / f"{role}.TextGrid"
         if not textgrid_path.exists():

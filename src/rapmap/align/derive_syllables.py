@@ -42,9 +42,7 @@ def _phone_confidence(phones: list[PhoneTimestamp], sample_rate: int) -> float:
     return min(1.0, max(0.0, min_duration_ms / 30.0))
 
 
-def _smooth_phones(
-    phones: list[PhoneTimestamp], min_duration_samples: int
-) -> list[PhoneTimestamp]:
+def _smooth_phones(phones: list[PhoneTimestamp], min_duration_samples: int) -> list[PhoneTimestamp]:
     if len(phones) <= 1:
         return phones
     result = list(phones)
@@ -147,6 +145,7 @@ def derive_syllable_timestamps(
     anchor_strategy: str = "onset",
     smoothing_min_ms: float = 0.0,
     audio_data: np.ndarray | None = None,
+    canonical_word_indices: list[int] | None = None,
 ) -> AlignmentResult:
     tiers = parse_textgrid(textgrid_path)
     assert "words" in tiers, f"TextGrid missing 'words' tier, found: {list(tiers.keys())}"
@@ -157,6 +156,14 @@ def derive_syllable_timestamps(
 
     tg_words = [iv for iv in word_tier.intervals if iv.text]
     tg_phones = [iv for iv in phone_tier.intervals if iv.text]
+
+    if canonical_word_indices is not None:
+        assert all(0 <= i < len(tg_words) for i in canonical_word_indices), (
+            f"canonical_word_indices out of range: max="
+            f"{max(canonical_word_indices) if canonical_word_indices else 'n/a'}, "
+            f"tg_words count={len(tg_words)}"
+        )
+        tg_words = [tg_words[i] for i in canonical_word_indices]
 
     canonical_syls = canonical_syllables["syllables"]
     canonical_words: list[dict] = []
@@ -213,9 +220,7 @@ def derive_syllable_timestamps(
             word_phones = _smooth_phones(word_phones, min_dur)
 
         word_phone_labels = [p.phone for p in word_phones]
-        canonical_syl_count = sum(
-            1 for s in canonical_syls if s["word_index"] == cw["word_index"]
-        )
+        canonical_syl_count = sum(1 for s in canonical_syls if s["word_index"] == cw["word_index"])
         vowel_count = sum(1 for p in word_phone_labels if is_vowel(p))
 
         if vowel_count == canonical_syl_count and vowel_count > 0:
@@ -249,7 +254,10 @@ def derive_syllable_timestamps(
             if audio_data is not None:
                 word_audio = audio_data[w_start:w_end]
                 energy_boundaries = _energy_split(
-                    word_audio, canonical_syl_count, sample_rate, w_start,
+                    word_audio,
+                    canonical_syl_count,
+                    sample_rate,
+                    w_start,
                 )
 
             if energy_boundaries:
@@ -298,7 +306,10 @@ def derive_syllable_timestamps(
             if audio_data is not None:
                 word_audio_2 = audio_data[w_start:w_end]
                 energy_boundaries_2 = _energy_split(
-                    word_audio_2, canonical_syl_count, sample_rate, w_start,
+                    word_audio_2,
+                    canonical_syl_count,
+                    sample_rate,
+                    w_start,
                 )
 
             if energy_boundaries_2:
@@ -337,15 +348,12 @@ def derive_syllable_timestamps(
                     global_syl_idx += 1
 
     assert len(all_syllables) == len(canonical_syls), (
-        f"Derived syllable count {len(all_syllables)} != "
-        f"canonical count {len(canonical_syls)}"
+        f"Derived syllable count {len(all_syllables)} != canonical count {len(canonical_syls)}"
     )
 
     total_dur = 0
     if tg_words:
-        total_dur = _seconds_to_samples(
-            max(iv.xmax for iv in word_tier.intervals), sample_rate
-        )
+        total_dur = _seconds_to_samples(max(iv.xmax for iv in word_tier.intervals), sample_rate)
 
     return AlignmentResult(
         sample_rate=sample_rate,

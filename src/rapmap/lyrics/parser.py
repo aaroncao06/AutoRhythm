@@ -8,6 +8,7 @@ from rapmap.lyrics.normalize import normalize_word
 def parse_lyrics(lyrics_text: str) -> dict:
     raw_bars = re.split(r"\n\s*\n", lyrics_text.strip())
     bars = []
+    global_word_idx = 0
     for bar_idx, raw_bar in enumerate(raw_bars):
         lines = []
         for line_idx, raw_line in enumerate(
@@ -22,11 +23,12 @@ def parse_lyrics(lyrics_text: str) -> dict:
                     continue
                 words.append(
                     {
-                        "word_index": len(words),
+                        "word_index": global_word_idx,
                         "text": token,
                         "normalized": normalized,
                     }
                 )
+                global_word_idx += 1
             if words:
                 lines.append({"line_index": line_idx, "text": raw_line.strip(), "words": words})
         if lines:

@@ -1,0 +1,442 @@
+{
+  "sample_rate": 48000,
+  "grouping_mode": "safe_boundary",
+  "anchor_strategy": "onset",
+  "total_clips": 21,
+  "crossfade_samples": 384,
+  "operations": [
+    {
+      "clip_index": 0,
+      "clip_id": "clip_0000_my",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 0,
+          "source_start_sample": 31200,
+          "source_end_sample": 38880,
+          "target_start_sample": 1920,
+          "target_end_sample": 10560,
+          "source_duration_samples": 7680,
+          "target_duration_samples": 8640,
+          "stretch_ratio": 1.125
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 1,
+      "clip_id": "clip_0001_boyfriends",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 1,
+          "source_start_sample": 38880,
+          "source_end_sample": 50880,
+          "target_start_sample": 10560,
+          "target_end_sample": 30720,
+          "source_duration_samples": 12000,
+          "target_duration_samples": 20160,
+          "stretch_ratio": 1.68
+        },
+        {
+          "segment_index": 1,
+          "syllable_index": 2,
+          "source_start_sample": 50880,
+          "source_end_sample": 70080,
+          "target_start_sample": 30720,
+          "target_end_sample": 61920,
+          "source_duration_samples": 19200,
+          "target_duration_samples": 31200,
+          "stretch_ratio": 1.625
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 2,
+      "clip_id": "clip_0002_there_are",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 3,
+          "source_start_sample": 70080,
+          "source_end_sample": 81120,
+          "target_start_sample": 61920,
+          "target_end_sample": 76320,
+          "source_duration_samples": 11040,
+          "target_duration_samples": 14400,
+          "stretch_ratio": 1.3043478260869565
+        },
+        {
+          "segment_index": 1,
+          "syllable_index": 4,
+          "source_start_sample": 81120,
+          "source_end_sample": 83520,
+          "target_start_sample": 76320,
+          "target_end_sample": 78720,
+          "source_duration_samples": 2400,
+          "target_duration_samples": 2400,
+          "stretch_ratio": 1.0
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 3,
+      "clip_id": "clip_0003_10",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 5,
+          "source_start_sample": 83520,
+          "source_end_sample": 108960,
+          "target_start_sample": 78720,
+          "target_end_sample": 101280,
+          "source_duration_samples": 25440,
+          "target_duration_samples": 22560,
+          "stretch_ratio": 0.8867924528301887
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 4,
+      "clip_id": "clip_0004_my",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 6,
+          "source_start_sample": 116640,
+          "source_end_sample": 125280,
+          "target_start_sample": 192480,
+          "target_end_sample": 198720,
+          "source_duration_samples": 8640,
+          "target_duration_samples": 6240,
+          "stretch_ratio": 0.7222222222222222
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 5,
+      "clip_id": "clip_0005_name",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 7,
+          "source_start_sample": 125280,
+          "source_end_sample": 139680,
+          "target_start_sample": 198720,
+          "target_end_sample": 222240,
+          "source_duration_samples": 14400,
+          "target_duration_samples": 23520,
+          "stretch_ratio": 1.6333333333333333
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 6,
+      "clip_id": "clip_0006_edwin",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 8,
+          "source_start_sample": 142080,
+          "source_end_sample": 146880,
+          "target_start_sample": 226560,
+          "target_end_sample": 232800,
+          "source_duration_samples": 4800,
+          "target_duration_samples": 6240,
+          "stretch_ratio": 1.3
+        },
+        {
+          "segment_index": 1,
+          "syllable_index": 9,
+          "source_start_sample": 146880,
+          "source_end_sample": 166080,
+          "target_start_sample": 232800,
+          "target_end_sample": 250080,
+          "source_duration_samples": 19200,
+          "target_duration_samples": 17280,
+          "stretch_ratio": 0.9
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 7,
+      "clip_id": "clip_0007_i",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 10,
+          "source_start_sample": 167520,
+          "source_end_sample": 172800,
+          "target_start_sample": 250080,
+          "target_end_sample": 255840,
+          "source_duration_samples": 5280,
+          "target_duration_samples": 5760,
+          "stretch_ratio": 1.0909090909090908
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 8,
+      "clip_id": "clip_0008_like",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 11,
+          "source_start_sample": 172800,
+          "source_end_sample": 183360,
+          "target_start_sample": 255840,
+          "target_end_sample": 273600,
+          "source_duration_samples": 10560,
+          "target_duration_samples": 17760,
+          "stretch_ratio": 1.6818181818181819
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 9,
+      "clip_id": "clip_0009_men",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 12,
+          "source_start_sample": 183360,
+          "source_end_sample": 201120,
+          "target_start_sample": 273600,
+          "target_end_sample": 334560,
+          "source_duration_samples": 17760,
+          "target_duration_samples": 60960,
+          "stretch_ratio": 3.4324324324324325
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 10,
+      "clip_id": "clip_0010_i_am",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 13,
+          "source_start_sample": 233760,
+          "source_end_sample": 236160,
+          "target_start_sample": 401760,
+          "target_end_sample": 404640,
+          "source_duration_samples": 2400,
+          "target_duration_samples": 2880,
+          "stretch_ratio": 1.2
+        },
+        {
+          "segment_index": 1,
+          "syllable_index": 14,
+          "source_start_sample": 236160,
+          "source_end_sample": 247200,
+          "target_start_sample": 404640,
+          "target_end_sample": 420960,
+          "source_duration_samples": 11040,
+          "target_duration_samples": 16320,
+          "stretch_ratio": 1.4782608695652173
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 11,
+      "clip_id": "clip_0011_too",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 15,
+          "source_start_sample": 247200,
+          "source_end_sample": 304800,
+          "target_start_sample": 420960,
+          "target_end_sample": 445440,
+          "source_duration_samples": 57600,
+          "target_duration_samples": 24480,
+          "stretch_ratio": 0.425
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 12,
+      "clip_id": "clip_0012_smart",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 16,
+          "source_start_sample": 304800,
+          "source_end_sample": 324960,
+          "target_start_sample": 445440,
+          "target_end_sample": 473280,
+          "source_duration_samples": 20160,
+          "target_duration_samples": 27840,
+          "stretch_ratio": 1.380952380952381
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 13,
+      "clip_id": "clip_0013_i_dont",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 17,
+          "source_start_sample": 353760,
+          "source_end_sample": 356640,
+          "target_start_sample": 499200,
+          "target_end_sample": 502560,
+          "source_duration_samples": 2880,
+          "target_duration_samples": 3360,
+          "stretch_ratio": 1.1666666666666667
+        },
+        {
+          "segment_index": 1,
+          "syllable_index": 18,
+          "source_start_sample": 356640,
+          "source_end_sample": 368640,
+          "target_start_sample": 502560,
+          "target_end_sample": 513600,
+          "source_duration_samples": 12000,
+          "target_duration_samples": 11040,
+          "stretch_ratio": 0.92
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 14,
+      "clip_id": "clip_0014_wash",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 19,
+          "source_start_sample": 368640,
+          "source_end_sample": 381120,
+          "target_start_sample": 513600,
+          "target_end_sample": 526080,
+          "source_duration_samples": 12480,
+          "target_duration_samples": 12480,
+          "stretch_ratio": 1.0
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 15,
+      "clip_id": "clip_0015_my",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 20,
+          "source_start_sample": 381120,
+          "source_end_sample": 386400,
+          "target_start_sample": 526080,
+          "target_end_sample": 537120,
+          "source_duration_samples": 5280,
+          "target_duration_samples": 11040,
+          "stretch_ratio": 2.090909090909091
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 16,
+      "clip_id": "clip_0016_ass",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 21,
+          "source_start_sample": 386400,
+          "source_end_sample": 402240,
+          "target_start_sample": 537120,
+          "target_end_sample": 561600,
+          "source_duration_samples": 15840,
+          "target_duration_samples": 24480,
+          "stretch_ratio": 1.5454545454545454
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 17,
+      "clip_id": "clip_0017_it",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 22,
+          "source_start_sample": 402240,
+          "source_end_sample": 408000,
+          "target_start_sample": 561600,
+          "target_end_sample": 566400,
+          "source_duration_samples": 5760,
+          "target_duration_samples": 4800,
+          "stretch_ratio": 0.8333333333333334
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 18,
+      "clip_id": "clip_0018_smell",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 23,
+          "source_start_sample": 408000,
+          "source_end_sample": 419520,
+          "target_start_sample": 566400,
+          "target_end_sample": 600480,
+          "source_duration_samples": 11520,
+          "target_duration_samples": 34080,
+          "stretch_ratio": 2.9583333333333335
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 19,
+      "clip_id": "clip_0019_like",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 24,
+          "source_start_sample": 419520,
+          "source_end_sample": 426720,
+          "target_start_sample": 600480,
+          "target_end_sample": 612480,
+          "source_duration_samples": 7200,
+          "target_duration_samples": 12000,
+          "stretch_ratio": 1.6666666666666667
+        }
+      ],
+      "crossfade_samples": 384
+    },
+    {
+      "clip_index": 20,
+      "clip_id": "clip_0020_fart",
+      "segments": [
+        {
+          "segment_index": 0,
+          "syllable_index": 25,
+          "source_start_sample": 426720,
+          "source_end_sample": 443040,
+          "target_start_sample": 612480,
+          "target_end_sample": 654240,
+          "source_duration_samples": 16320,
+          "target_duration_samples": 41760,
+          "stretch_ratio": 2.5588235294117645
+        }
+      ],
+      "crossfade_samples": 384
+    }
+  ]
+}

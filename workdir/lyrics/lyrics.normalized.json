@@ -1,0 +1,153 @@
+{
+  "bars": [
+    {
+      "bar_index": 0,
+      "lines": [
+        {
+          "line_index": 0,
+          "text": "My boyfriends there are 10",
+          "words": [
+            {
+              "word_index": 0,
+              "text": "My",
+              "normalized": "my"
+            },
+            {
+              "word_index": 1,
+              "text": "boyfriends",
+              "normalized": "boyfriends"
+            },
+            {
+              "word_index": 2,
+              "text": "there",
+              "normalized": "there"
+            },
+            {
+              "word_index": 3,
+              "text": "are",
+              "normalized": "are"
+            },
+            {
+              "word_index": 4,
+              "text": "10",
+              "normalized": "10"
+            }
+          ]
+        },
+        {
+          "line_index": 1,
+          "text": "My name Edwin I like men",
+          "words": [
+            {
+              "word_index": 5,
+              "text": "My",
+              "normalized": "my"
+            },
+            {
+              "word_index": 6,
+              "text": "name",
+              "normalized": "name"
+            },
+            {
+              "word_index": 7,
+              "text": "Edwin",
+              "normalized": "edwin"
+            },
+            {
+              "word_index": 8,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 9,
+              "text": "like",
+              "normalized": "like"
+            },
+            {
+              "word_index": 10,
+              "text": "men",
+              "normalized": "men"
+            }
+          ]
+        },
+        {
+          "line_index": 2,
+          "text": "I am too smart",
+          "words": [
+            {
+              "word_index": 11,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 12,
+              "text": "am",
+              "normalized": "am"
+            },
+            {
+              "word_index": 13,
+              "text": "too",
+              "normalized": "too"
+            },
+            {
+              "word_index": 14,
+              "text": "smart",
+              "normalized": "smart"
+            }
+          ]
+        },
+        {
+          "line_index": 3,
+          "text": "I dont wash my ass it smell like fart",
+          "words": [
+            {
+              "word_index": 15,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 16,
+              "text": "dont",
+              "normalized": "dont"
+            },
+            {
+              "word_index": 17,
+              "text": "wash",
+              "normalized": "wash"
+            },
+            {
+              "word_index": 18,
+              "text": "my",
+              "normalized": "my"
+            },
+            {
+              "word_index": 19,
+              "text": "ass",
+              "normalized": "ass"
+            },
+            {
+              "word_index": 20,
+              "text": "it",
+              "normalized": "it"
+            },
+            {
+              "word_index": 21,
+              "text": "smell",
+              "normalized": "smell"
+            },
+            {
+              "word_index": 22,
+              "text": "like",
+              "normalized": "like"
+            },
+            {
+              "word_index": 23,
+              "text": "fart",
+              "normalized": "fart"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

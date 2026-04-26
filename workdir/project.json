@@ -1,0 +1,18 @@
+{
+  "sample_rate": 48000,
+  "backing_duration_samples": 2538001,
+  "human_duration_samples": 475587,
+  "human_channels": 1,
+  "backing_path": "audio/backing.wav",
+  "human_path": "audio/human_rap.wav",
+  "human_analysis_path": "audio/human_rap.wav",
+  "created": "2026-04-26T10:48:42.631950+00:00",
+  "original_files": {
+    "backing": "/Users/aaroncao/Documents/AutoRapper/example/beat.m4a",
+    "human": "/Users/aaroncao/Documents/AutoRapper/example/vocals.wav",
+    "lyrics": "/Users/aaroncao/Documents/AutoRapper/example/lyrics.txt"
+  },
+  "guide_path": "audio/ai_guide_vocal.wav",
+  "guide_duration_samples": 720000,
+  "guide_source": "manual"
+}

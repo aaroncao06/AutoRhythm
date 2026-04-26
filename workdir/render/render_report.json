@@ -1,0 +1,62 @@
+{
+  "sample_rate": 48000,
+  "rendering_mode": "warp",
+  "total_segments": 53,
+  "syllable_segments": 26,
+  "gap_segments": 25,
+  "anchor_errors": [],
+  "max_stretch_ratio": 11.875,
+  "min_stretch_ratio": 0.06153846153846154,
+  "extreme_stretches": [
+    {
+      "segment_index": 0,
+      "segment_type": "lead_in",
+      "syllable_index": null,
+      "ratio": 0.06153846153846154
+    },
+    {
+      "segment_index": 12,
+      "segment_type": "gap",
+      "syllable_index": null,
+      "ratio": 11.875
+    },
+    {
+      "segment_index": 25,
+      "segment_type": "syllable",
+      "syllable_index": 12,
+      "ratio": 3.4324324324324325
+    },
+    {
+      "segment_index": 26,
+      "segment_type": "gap",
+      "syllable_index": null,
+      "ratio": 2.0588235294117645
+    },
+    {
+      "segment_index": 31,
+      "segment_type": "syllable",
+      "syllable_index": 15,
+      "ratio": 0.425
+    },
+    {
+      "segment_index": 41,
+      "segment_type": "syllable",
+      "syllable_index": 20,
+      "ratio": 2.090909090909091
+    },
+    {
+      "segment_index": 47,
+      "segment_type": "syllable",
+      "syllable_index": 23,
+      "ratio": 2.9583333333333335
+    },
+    {
+      "segment_index": 51,
+      "segment_type": "syllable",
+      "syllable_index": 25,
+      "ratio": 2.5588235294117645
+    }
+  ],
+  "validation_passed": true,
+  "output_duration_samples": 654240
+}

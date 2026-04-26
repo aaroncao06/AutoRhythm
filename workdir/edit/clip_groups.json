@@ -1,0 +1,243 @@
+{
+  "sample_rate": 48000,
+  "grouping_mode": "safe_boundary",
+  "clip_count": 21,
+  "clips": [
+    {
+      "clip_index": 0,
+      "clip_id": "clip_0000_my",
+      "syllable_indices": [
+        0
+      ],
+      "source_start_sample": 31200,
+      "source_end_sample": 38880,
+      "target_start_sample": 1920,
+      "target_end_sample": 10560
+    },
+    {
+      "clip_index": 1,
+      "clip_id": "clip_0001_boyfriends",
+      "syllable_indices": [
+        1,
+        2
+      ],
+      "source_start_sample": 38880,
+      "source_end_sample": 70080,
+      "target_start_sample": 10560,
+      "target_end_sample": 61920
+    },
+    {
+      "clip_index": 2,
+      "clip_id": "clip_0002_there_are",
+      "syllable_indices": [
+        3,
+        4
+      ],
+      "source_start_sample": 70080,
+      "source_end_sample": 83520,
+      "target_start_sample": 61920,
+      "target_end_sample": 78720
+    },
+    {
+      "clip_index": 3,
+      "clip_id": "clip_0003_10",
+      "syllable_indices": [
+        5
+      ],
+      "source_start_sample": 83520,
+      "source_end_sample": 108960,
+      "target_start_sample": 78720,
+      "target_end_sample": 101280
+    },
+    {
+      "clip_index": 4,
+      "clip_id": "clip_0004_my",
+      "syllable_indices": [
+        6
+      ],
+      "source_start_sample": 116640,
+      "source_end_sample": 125280,
+      "target_start_sample": 192480,
+      "target_end_sample": 198720
+    },
+    {
+      "clip_index": 5,
+      "clip_id": "clip_0005_name",
+      "syllable_indices": [
+        7
+      ],
+      "source_start_sample": 125280,
+      "source_end_sample": 139680,
+      "target_start_sample": 198720,
+      "target_end_sample": 222240
+    },
+    {
+      "clip_index": 6,
+      "clip_id": "clip_0006_edwin",
+      "syllable_indices": [
+        8,
+        9
+      ],
+      "source_start_sample": 142080,
+      "source_end_sample": 166080,
+      "target_start_sample": 226560,
+      "target_end_sample": 250080
+    },
+    {
+      "clip_index": 7,
+      "clip_id": "clip_0007_i",
+      "syllable_indices": [
+        10
+      ],
+      "source_start_sample": 167520,
+      "source_end_sample": 172800,
+      "target_start_sample": 250080,
+      "target_end_sample": 255840
+    },
+    {
+      "clip_index": 8,
+      "clip_id": "clip_0008_like",
+      "syllable_indices": [
+        11
+      ],
+      "source_start_sample": 172800,
+      "source_end_sample": 183360,
+      "target_start_sample": 255840,
+      "target_end_sample": 273600
+    },
+    {
+      "clip_index": 9,
+      "clip_id": "clip_0009_men",
+      "syllable_indices": [
+        12
+      ],
+      "source_start_sample": 183360,
+      "source_end_sample": 201120,
+      "target_start_sample": 273600,
+      "target_end_sample": 334560
+    },
+    {
+      "clip_index": 10,
+      "clip_id": "clip_0010_i_am",
+      "syllable_indices": [
+        13,
+        14
+      ],
+      "source_start_sample": 233760,
+      "source_end_sample": 247200,
+      "target_start_sample": 401760,
+      "target_end_sample": 420960
+    },
+    {
+      "clip_index": 11,
+      "clip_id": "clip_0011_too",
+      "syllable_indices": [
+        15
+      ],
+      "source_start_sample": 247200,
+      "source_end_sample": 304800,
+      "target_start_sample": 420960,
+      "target_end_sample": 445440
+    },
+    {
+      "clip_index": 12,
+      "clip_id": "clip_0012_smart",
+      "syllable_indices": [
+        16
+      ],
+      "source_start_sample": 304800,
+      "source_end_sample": 324960,
+      "target_start_sample": 445440,
+      "target_end_sample": 473280
+    },
+    {
+      "clip_index": 13,
+      "clip_id": "clip_0013_i_dont",
+      "syllable_indices": [
+        17,
+        18
+      ],
+      "source_start_sample": 353760,
+      "source_end_sample": 368640,
+      "target_start_sample": 499200,
+      "target_end_sample": 513600
+    },
+    {
+      "clip_index": 14,
+      "clip_id": "clip_0014_wash",
+      "syllable_indices": [
+        19
+      ],
+      "source_start_sample": 368640,
+      "source_end_sample": 381120,
+      "target_start_sample": 513600,
+      "target_end_sample": 526080
+    },
+    {
+      "clip_index": 15,
+      "clip_id": "clip_0015_my",
+      "syllable_indices": [
+        20
+      ],
+      "source_start_sample": 381120,
+      "source_end_sample": 386400,
+      "target_start_sample": 526080,
+      "target_end_sample": 537120
+    },
+    {
+      "clip_index": 16,
+      "clip_id": "clip_0016_ass",
+      "syllable_indices": [
+        21
+      ],
+      "source_start_sample": 386400,
+      "source_end_sample": 402240,
+      "target_start_sample": 537120,
+      "target_end_sample": 561600
+    },
+    {
+      "clip_index": 17,
+      "clip_id": "clip_0017_it",
+      "syllable_indices": [
+        22
+      ],
+      "source_start_sample": 402240,
+      "source_end_sample": 408000,
+      "target_start_sample": 561600,
+      "target_end_sample": 566400
+    },
+    {
+      "clip_index": 18,
+      "clip_id": "clip_0018_smell",
+      "syllable_indices": [
+        23
+      ],
+      "source_start_sample": 408000,
+      "source_end_sample": 419520,
+      "target_start_sample": 566400,
+      "target_end_sample": 600480
+    },
+    {
+      "clip_index": 19,
+      "clip_id": "clip_0019_like",
+      "syllable_indices": [
+        24
+      ],
+      "source_start_sample": 419520,
+      "source_end_sample": 426720,
+      "target_start_sample": 600480,
+      "target_end_sample": 612480
+    },
+    {
+      "clip_index": 20,
+      "clip_id": "clip_0020_fart",
+      "syllable_indices": [
+        25
+      ],
+      "source_start_sample": 426720,
+      "source_end_sample": 443040,
+      "target_start_sample": 612480,
+      "target_end_sample": 654240
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "sample_rate": 48000,
+  "anchor_strategy": "onset",
+  "syllable_count": 26,
+  "anchors": [
+    {
+      "syllable_index": 0,
+      "human_anchor_sample": 31200,
+      "guide_anchor_sample": 1920,
+      "delta_samples": 29280,
+      "human_start_sample": 31200,
+      "human_end_sample": 38880,
+      "guide_start_sample": 1920,
+      "guide_end_sample": 10560,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 1,
+      "human_anchor_sample": 38880,
+      "guide_anchor_sample": 10560,
+      "delta_samples": 28320,
+      "human_start_sample": 38880,
+      "human_end_sample": 50880,
+      "guide_start_sample": 10560,
+      "guide_end_sample": 30720,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 2,
+      "human_anchor_sample": 50880,
+      "guide_anchor_sample": 30720,
+      "delta_samples": 20160,
+      "human_start_sample": 50880,
+      "human_end_sample": 70080,
+      "guide_start_sample": 30720,
+      "guide_end_sample": 61920,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 3,
+      "human_anchor_sample": 70080,
+      "guide_anchor_sample": 61920,
+      "delta_samples": 8160,
+      "human_start_sample": 70080,
+      "human_end_sample": 81120,
+      "guide_start_sample": 61920,
+      "guide_end_sample": 76320,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 4,
+      "human_anchor_sample": 81120,
+      "guide_anchor_sample": 76320,
+      "delta_samples": 4800,
+      "human_start_sample": 81120,
+      "human_end_sample": 83520,
+      "guide_start_sample": 76320,
+      "guide_end_sample": 78720,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 5,
+      "human_anchor_sample": 83520,
+      "guide_anchor_sample": 78720,
+      "delta_samples": 4800,
+      "human_start_sample": 83520,
+      "human_end_sample": 108960,
+      "guide_start_sample": 78720,
+      "guide_end_sample": 101280,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 6,
+      "human_anchor_sample": 116640,
+      "guide_anchor_sample": 192480,
+      "delta_samples": -75840,
+      "human_start_sample": 116640,
+      "human_end_sample": 125280,
+      "guide_start_sample": 192480,
+      "guide_end_sample": 198720,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 7,
+      "human_anchor_sample": 125280,
+      "guide_anchor_sample": 198720,
+      "delta_samples": -73440,
+      "human_start_sample": 125280,
+      "human_end_sample": 139680,
+      "guide_start_sample": 198720,
+      "guide_end_sample": 222240,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 8,
+      "human_anchor_sample": 142080,
+      "guide_anchor_sample": 226560,
+      "delta_samples": -84480,
+      "human_start_sample": 142080,
+      "human_end_sample": 146880,
+      "guide_start_sample": 226560,
+      "guide_end_sample": 232800,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 9,
+      "human_anchor_sample": 146880,
+      "guide_anchor_sample": 232800,
+      "delta_samples": -85920,
+      "human_start_sample": 146880,
+      "human_end_sample": 166080,
+      "guide_start_sample": 232800,
+      "guide_end_sample": 250080,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 10,
+      "human_anchor_sample": 167520,
+      "guide_anchor_sample": 250080,
+      "delta_samples": -82560,
+      "human_start_sample": 167520,
+      "human_end_sample": 172800,
+      "guide_start_sample": 250080,
+      "guide_end_sample": 255840,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 11,
+      "human_anchor_sample": 172800,
+      "guide_anchor_sample": 255840,
+      "delta_samples": -83040,
+      "human_start_sample": 172800,
+      "human_end_sample": 183360,
+      "guide_start_sample": 255840,
+      "guide_end_sample": 273600,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 12,
+      "human_anchor_sample": 183360,
+      "guide_anchor_sample": 273600,
+      "delta_samples": -90240,
+      "human_start_sample": 183360,
+      "human_end_sample": 201120,
+      "guide_start_sample": 273600,
+      "guide_end_sample": 334560,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 13,
+      "human_anchor_sample": 233760,
+      "guide_anchor_sample": 401760,
+      "delta_samples": -168000,
+      "human_start_sample": 233760,
+      "human_end_sample": 236160,
+      "guide_start_sample": 401760,
+      "guide_end_sample": 404640,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 14,
+      "human_anchor_sample": 236160,
+      "guide_anchor_sample": 404640,
+      "delta_samples": -168480,
+      "human_start_sample": 236160,
+      "human_end_sample": 247200,
+      "guide_start_sample": 404640,
+      "guide_end_sample": 420960,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 15,
+      "human_anchor_sample": 247200,
+      "guide_anchor_sample": 420960,
+      "delta_samples": -173760,
+      "human_start_sample": 247200,
+      "human_end_sample": 304800,
+      "guide_start_sample": 420960,
+      "guide_end_sample": 445440,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 16,
+      "human_anchor_sample": 304800,
+      "guide_anchor_sample": 445440,
+      "delta_samples": -140640,
+      "human_start_sample": 304800,
+      "human_end_sample": 324960,
+      "guide_start_sample": 445440,
+      "guide_end_sample": 473280,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 17,
+      "human_anchor_sample": 353760,
+      "guide_anchor_sample": 499200,
+      "delta_samples": -145440,
+      "human_start_sample": 353760,
+      "human_end_sample": 356640,
+      "guide_start_sample": 499200,
+      "guide_end_sample": 502560,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 18,
+      "human_anchor_sample": 356640,
+      "guide_anchor_sample": 502560,
+      "delta_samples": -145920,
+      "human_start_sample": 356640,
+      "human_end_sample": 368640,
+      "guide_start_sample": 502560,
+      "guide_end_sample": 513600,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 19,
+      "human_anchor_sample": 368640,
+      "guide_anchor_sample": 513600,
+      "delta_samples": -144960,
+      "human_start_sample": 368640,
+      "human_end_sample": 381120,
+      "guide_start_sample": 513600,
+      "guide_end_sample": 526080,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 20,
+      "human_anchor_sample": 381120,
+      "guide_anchor_sample": 526080,
+      "delta_samples": -144960,
+      "human_start_sample": 381120,
+      "human_end_sample": 386400,
+      "guide_start_sample": 526080,
+      "guide_end_sample": 537120,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 21,
+      "human_anchor_sample": 386400,
+      "guide_anchor_sample": 537120,
+      "delta_samples": -150720,
+      "human_start_sample": 386400,
+      "human_end_sample": 402240,
+      "guide_start_sample": 537120,
+      "guide_end_sample": 561600,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 22,
+      "human_anchor_sample": 402240,
+      "guide_anchor_sample": 561600,
+      "delta_samples": -159360,
+      "human_start_sample": 402240,
+      "human_end_sample": 408000,
+      "guide_start_sample": 561600,
+      "guide_end_sample": 566400,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 23,
+      "human_anchor_sample": 408000,
+      "guide_anchor_sample": 566400,
+      "delta_samples": -158400,
+      "human_start_sample": 408000,
+      "human_end_sample": 419520,
+      "guide_start_sample": 566400,
+      "guide_end_sample": 600480,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 24,
+      "human_anchor_sample": 419520,
+      "guide_anchor_sample": 600480,
+      "delta_samples": -180960,
+      "human_start_sample": 419520,
+      "human_end_sample": 426720,
+      "guide_start_sample": 600480,
+      "guide_end_sample": 612480,
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 25,
+      "human_anchor_sample": 426720,
+      "guide_anchor_sample": 612480,
+      "delta_samples": -185760,
+      "human_start_sample": 426720,
+      "human_end_sample": 443040,
+      "guide_start_sample": 612480,
+      "guide_end_sample": 654240,
+      "confidence": 1.0
+    }
+  ]
+}

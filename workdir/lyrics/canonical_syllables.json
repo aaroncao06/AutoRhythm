@@ -1,0 +1,444 @@
+{
+  "syllables": [
+    {
+      "syllable_index": 0,
+      "bar_index": 0,
+      "line_index": 0,
+      "word_index": 0,
+      "word_text": "My",
+      "syllable_text": "My",
+      "phones": [
+        "M",
+        "AY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 1,
+      "bar_index": 0,
+      "line_index": 0,
+      "word_index": 1,
+      "word_text": "boyfriends",
+      "syllable_text": "boyfr",
+      "phones": [
+        "B",
+        "OY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": false,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 2,
+      "bar_index": 0,
+      "line_index": 0,
+      "word_index": 1,
+      "word_text": "boyfriends",
+      "syllable_text": "iends",
+      "phones": [
+        "F",
+        "R",
+        "EH2",
+        "N",
+        "D",
+        "Z"
+      ],
+      "source": "cmudict",
+      "is_word_initial": false,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 3,
+      "bar_index": 0,
+      "line_index": 0,
+      "word_index": 2,
+      "word_text": "there",
+      "syllable_text": "there",
+      "phones": [
+        "DH",
+        "EH1",
+        "R"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 4,
+      "bar_index": 0,
+      "line_index": 0,
+      "word_index": 3,
+      "word_text": "are",
+      "syllable_text": "are",
+      "phones": [
+        "AA1",
+        "R"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 5,
+      "bar_index": 0,
+      "line_index": 0,
+      "word_index": 4,
+      "word_text": "10",
+      "syllable_text": "10",
+      "phones": [
+        "T",
+        "EH1",
+        "N"
+      ],
+      "source": "g2p",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": true
+    },
+    {
+      "syllable_index": 6,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 5,
+      "word_text": "My",
+      "syllable_text": "My",
+      "phones": [
+        "M",
+        "AY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 7,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 6,
+      "word_text": "name",
+      "syllable_text": "name",
+      "phones": [
+        "N",
+        "EY1",
+        "M"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 8,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 7,
+      "word_text": "Edwin",
+      "syllable_text": "Ed",
+      "phones": [
+        "EH1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": false,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 9,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 7,
+      "word_text": "Edwin",
+      "syllable_text": "win",
+      "phones": [
+        "D",
+        "W",
+        "AH0",
+        "N"
+      ],
+      "source": "cmudict",
+      "is_word_initial": false,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 10,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 8,
+      "word_text": "I",
+      "syllable_text": "I",
+      "phones": [
+        "AY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 11,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 9,
+      "word_text": "like",
+      "syllable_text": "like",
+      "phones": [
+        "L",
+        "AY1",
+        "K"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 12,
+      "bar_index": 0,
+      "line_index": 1,
+      "word_index": 10,
+      "word_text": "men",
+      "syllable_text": "men",
+      "phones": [
+        "M",
+        "EH1",
+        "N"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": true
+    },
+    {
+      "syllable_index": 13,
+      "bar_index": 0,
+      "line_index": 2,
+      "word_index": 11,
+      "word_text": "I",
+      "syllable_text": "I",
+      "phones": [
+        "AY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 14,
+      "bar_index": 0,
+      "line_index": 2,
+      "word_index": 12,
+      "word_text": "am",
+      "syllable_text": "am",
+      "phones": [
+        "AE1",
+        "M"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 15,
+      "bar_index": 0,
+      "line_index": 2,
+      "word_index": 13,
+      "word_text": "too",
+      "syllable_text": "too",
+      "phones": [
+        "T",
+        "UW1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 16,
+      "bar_index": 0,
+      "line_index": 2,
+      "word_index": 14,
+      "word_text": "smart",
+      "syllable_text": "smart",
+      "phones": [
+        "S",
+        "M",
+        "AA1",
+        "R",
+        "T"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": true
+    },
+    {
+      "syllable_index": 17,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 15,
+      "word_text": "I",
+      "syllable_text": "I",
+      "phones": [
+        "AY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 18,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 16,
+      "word_text": "dont",
+      "syllable_text": "dont",
+      "phones": [
+        "D",
+        "AA1",
+        "N",
+        "T"
+      ],
+      "source": "g2p",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 19,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 17,
+      "word_text": "wash",
+      "syllable_text": "wash",
+      "phones": [
+        "W",
+        "AA1",
+        "SH"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 20,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 18,
+      "word_text": "my",
+      "syllable_text": "my",
+      "phones": [
+        "M",
+        "AY1"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 21,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 19,
+      "word_text": "ass",
+      "syllable_text": "ass",
+      "phones": [
+        "AE1",
+        "S"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 22,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 20,
+      "word_text": "it",
+      "syllable_text": "it",
+      "phones": [
+        "IH1",
+        "T"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 23,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 21,
+      "word_text": "smell",
+      "syllable_text": "smell",
+      "phones": [
+        "S",
+        "M",
+        "EH1",
+        "L"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 24,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 22,
+      "word_text": "like",
+      "syllable_text": "like",
+      "phones": [
+        "L",
+        "AY1",
+        "K"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": false
+    },
+    {
+      "syllable_index": 25,
+      "bar_index": 0,
+      "line_index": 3,
+      "word_index": 23,
+      "word_text": "fart",
+      "syllable_text": "fart",
+      "phones": [
+        "F",
+        "AA1",
+        "R",
+        "T"
+      ],
+      "source": "cmudict",
+      "is_word_initial": true,
+      "is_word_final": true,
+      "is_line_final": true
+    }
+  ],
+  "sources": {
+    "cmudict": 22,
+    "g2p": 2,
+    "override": 0
+  },
+  "sample_rate": 48000
+}

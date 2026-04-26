@@ -42,6 +42,9 @@ class AlignmentConfig:
     fail_on_missing_syllables: bool = True
     fail_on_alignment_error: bool = True
     max_low_confidence_fraction: float = 0.2
+    phoneme_smoothing_min_ms: float = 15.0
+    energy_fallback: bool = True
+    multi_pronunciation: bool = True
 
 
 @dataclass
@@ -84,6 +87,7 @@ class RenderingConfig:
     backend: str = "rubberband"
     preserve_pitch: bool = True
     deterministic: bool = True
+    rendering_mode: str = "warp"
     crossfade_ms: float = 8
     pre_handle_ms: float = 20
     post_handle_ms: float = 20

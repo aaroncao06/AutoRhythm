@@ -142,6 +142,137 @@ def render_clips(
     return {"report": report, "manifest": manifest}
 
 
+def render_warp_map(
+    warp_map,
+    human_audio: np.ndarray,
+    sample_rate: int,
+    output_dir: Path,
+    config: RenderingConfig,
+    anchor_map: dict | None = None,
+    fail_on_anchor_error: bool = False,
+) -> dict:
+    import json
+
+    from rapmap.edit.warp_map import validate_warp_map, warp_map_to_dict
+
+    render_dir = output_dir / "render"
+    render_dir.mkdir(parents=True, exist_ok=True)
+
+    errors = validate_warp_map(warp_map)
+    if errors:
+        raise ValueError(f"Invalid warp map: {'; '.join(errors)}")
+
+    parts: list[np.ndarray] = []
+    all_ratios: list[float] = []
+    extreme_stretches: list[dict] = []
+    syllable_target_starts: dict[int, int] = {}
+
+    running_target_sample = 0
+
+    for seg in warp_map.segments:
+        if seg.source_duration == 0 and seg.target_duration == 0:
+            continue
+
+        if seg.segment_type == "syllable" and seg.syllable_index is not None:
+            syllable_target_starts[seg.syllable_index] = running_target_sample
+
+        if seg.source_duration == 0 and seg.target_duration > 0:
+            parts.append(np.zeros(seg.target_duration, dtype=np.float32))
+            running_target_sample += seg.target_duration
+            continue
+
+        source = human_audio[seg.source_start_sample : seg.source_end_sample]
+        ratio = seg.stretch_ratio
+        all_ratios.append(ratio)
+
+        if ratio < config.min_stretch_ratio or ratio > config.max_stretch_ratio:
+            extreme_stretches.append({
+                "segment_index": seg.segment_index,
+                "segment_type": seg.segment_type,
+                "syllable_index": seg.syllable_index,
+                "ratio": ratio,
+            })
+
+        if abs(ratio - 1.0) < 1e-6:
+            stretched = source.copy()
+        else:
+            stretched = time_stretch(source, sample_rate, ratio, config.preserve_pitch)
+
+        target_len = seg.target_duration
+        if len(stretched) > target_len:
+            stretched = stretched[:target_len]
+        elif len(stretched) < target_len:
+            pad = np.zeros(target_len - len(stretched), dtype=np.float32)
+            stretched = np.concatenate([stretched, pad])
+
+        parts.append(stretched)
+        running_target_sample += target_len
+
+    if parts:
+        output = np.concatenate(parts)
+    else:
+        output = np.zeros(0, dtype=np.float32)
+
+    output_path = render_dir / "corrected_human_rap.wav"
+    write_audio(output_path, output, sample_rate)
+
+    anchor_errors: list[dict] = []
+    if anchor_map:
+        for a in anchor_map["anchors"]:
+            si = a["syllable_index"]
+            guide_start = a["guide_start_sample"]
+            target_start = syllable_target_starts.get(si)
+            if target_start is None:
+                anchor_errors.append({
+                    "syllable_index": si,
+                    "guide_start": guide_start,
+                    "error": "syllable not in warp map",
+                })
+            elif target_start != guide_start:
+                anchor_errors.append({
+                    "syllable_index": si,
+                    "guide_start": guide_start,
+                    "rendered_start": target_start,
+                    "error_samples": target_start - guide_start,
+                })
+
+    if fail_on_anchor_error and anchor_errors:
+        parts = []
+        for e in anchor_errors:
+            msg = e.get("error", "off by %s" % e.get("error_samples", "?"))
+            parts.append("syl %d: %s" % (e["syllable_index"], msg))
+        errors_str = "; ".join(parts)
+        raise AssertionError(
+            f"Zero-sample anchor invariant violated for "
+            f"{len(anchor_errors)} syllable(s): {errors_str}"
+        )
+
+    edit_dir = output_dir / "edit"
+    edit_dir.mkdir(parents=True, exist_ok=True)
+    with open(edit_dir / "warp_map.json", "w") as f:
+        json.dump(warp_map_to_dict(warp_map), f, indent=2)
+
+    report = {
+        "sample_rate": sample_rate,
+        "rendering_mode": "warp",
+        "total_segments": len(warp_map.segments),
+        "syllable_segments": sum(
+            1 for s in warp_map.segments if s.segment_type == "syllable"
+        ),
+        "gap_segments": sum(
+            1 for s in warp_map.segments if s.segment_type == "gap"
+        ),
+        "anchor_errors": anchor_errors,
+        "max_stretch_ratio": max(all_ratios) if all_ratios else 1.0,
+        "min_stretch_ratio": min(all_ratios) if all_ratios else 1.0,
+        "extreme_stretches": extreme_stretches,
+        "validation_passed": len(anchor_errors) == 0,
+        "output_duration_samples": len(output),
+    }
+
+    return {"report": report}
+
+
 def _assemble_flattened(
     rendered_clips: list[tuple[int, int, np.ndarray]],
     output_path: Path,

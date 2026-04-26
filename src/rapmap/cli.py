@@ -184,6 +184,7 @@ def align(project: Path, audio: Path | None, role: str, config_path: Path | None
     from rapmap.align.derive_syllables import derive_syllable_timestamps
     from rapmap.align.mfa import align_with_mfa
     from rapmap.align.validate import validate_alignment
+    from rapmap.audio.io import read_audio
     from rapmap.lyrics.overrides import load_overrides
 
     config = load_config(config_path or _bundled_config("default.yaml"))
@@ -211,8 +212,11 @@ def align(project: Path, audio: Path | None, role: str, config_path: Path | None
     textgrid_path = align_with_mfa(audio, canonical, project, role, config.alignment, overrides)
     click.echo(f"  TextGrid: {textgrid_path}")
 
+    audio_for_fallback, _ = read_audio(audio, mono=True)
     alignment = derive_syllable_timestamps(
-        textgrid_path, canonical, sr, role, str(audio), config.anchor_strategy.default
+        textgrid_path, canonical, sr, role, str(audio), config.anchor_strategy.default,
+        smoothing_min_ms=config.alignment.phoneme_smoothing_min_ms,
+        audio_data=audio_for_fallback,
     )
 
     validation = validate_alignment(alignment, canonical, config.alignment)
@@ -659,7 +663,12 @@ def run(
         if not audio_path.exists() and role_name == "human":
             audio_path = out / proj_meta["human_path"]
         tg = align_with_mfa(audio_path, canonical, out, role_name, config.alignment, overrides)
-        al = derive_syllable_timestamps(tg, canonical, sr, role_name, str(audio_path), anchor)
+        audio_for_fallback, _ = read_audio(audio_path, mono=True)
+        al = derive_syllable_timestamps(
+            tg, canonical, sr, role_name, str(audio_path), anchor,
+            smoothing_min_ms=config.alignment.phoneme_smoothing_min_ms,
+            audio_data=audio_for_fallback,
+        )
         validate_alignment(al, canonical, config.alignment)
         with open(alignment_dir / f"{role_name}_alignment.json", "w") as f:
             json.dump(alignment_to_dict(al), f, indent=2)
@@ -735,16 +744,35 @@ def run(
     human_audio, _ = read_audio(
         out / proj_meta.get("human_analysis_path", proj_meta["human_path"]), mono=True
     )
-    render_result = render_clips(
-        edit_plan, human_audio, sr, out, config.rendering, anchor_map,
-        fail_on_anchor_error=config.validation.require_zero_sample_anchor_error,
-    )
+
+    if config.rendering.rendering_mode == "warp":
+        from rapmap.audio.render import render_warp_map
+        from rapmap.edit.warp_map import build_warp_map
+
+        click.echo("  Mode: warp (contiguous piecewise time-stretch)")
+        warp_map = build_warp_map(anchor_map, len(human_audio))
+        click.echo(
+            f"  Segments: {len(warp_map.segments)} "
+            f"({sum(1 for s in warp_map.segments if s.segment_type == 'syllable')} syllables, "
+            f"{sum(1 for s in warp_map.segments if s.segment_type == 'gap')} gaps)"
+        )
+        render_result = render_warp_map(
+            warp_map, human_audio, sr, out, config.rendering, anchor_map,
+            fail_on_anchor_error=config.validation.require_zero_sample_anchor_error,
+        )
+    else:
+        click.echo("  Mode: clip-based")
+        render_result = render_clips(
+            edit_plan, human_audio, sr, out, config.rendering, anchor_map,
+            fail_on_anchor_error=config.validation.require_zero_sample_anchor_error,
+        )
+        with open(edit_dir / "clip_manifest.json", "w") as f:
+            json.dump(render_result["manifest"], f, indent=2)
+
     render_dir = out / "render"
     render_dir.mkdir(parents=True, exist_ok=True)
     with open(render_dir / "render_report.json", "w") as f:
         json.dump(render_result["report"], f, indent=2)
-    with open(edit_dir / "clip_manifest.json", "w") as f:
-        json.dump(render_result["manifest"], f, indent=2)
     passed = render_result["report"]["validation_passed"]
     click.echo(f"  Validation: {'PASSED' if passed else 'FAILED'}")
 

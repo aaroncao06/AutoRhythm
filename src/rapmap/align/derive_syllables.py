@@ -3,6 +3,8 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
+import numpy as np
+
 from rapmap.align.base import (
     AlignmentResult,
     PhoneTimestamp,
@@ -40,6 +42,102 @@ def _phone_confidence(phones: list[PhoneTimestamp], sample_rate: int) -> float:
     return min(1.0, max(0.0, min_duration_ms / 30.0))
 
 
+def _smooth_phones(
+    phones: list[PhoneTimestamp], min_duration_samples: int
+) -> list[PhoneTimestamp]:
+    if len(phones) <= 1:
+        return phones
+    result = list(phones)
+    changed = True
+    while changed:
+        changed = False
+        i = 0
+        while i < len(result):
+            dur = result[i].end_sample - result[i].start_sample
+            if dur < min_duration_samples and len(result) > 1:
+                if i == 0:
+                    result[1] = PhoneTimestamp(
+                        phone=result[1].phone,
+                        start_sample=result[0].start_sample,
+                        end_sample=result[1].end_sample,
+                    )
+                    result.pop(0)
+                elif i == len(result) - 1:
+                    result[-2] = PhoneTimestamp(
+                        phone=result[-2].phone,
+                        start_sample=result[-2].start_sample,
+                        end_sample=result[-1].end_sample,
+                    )
+                    result.pop(-1)
+                else:
+                    prev_dur = result[i - 1].end_sample - result[i - 1].start_sample
+                    next_dur = result[i + 1].end_sample - result[i + 1].start_sample
+                    if prev_dur >= next_dur:
+                        result[i - 1] = PhoneTimestamp(
+                            phone=result[i - 1].phone,
+                            start_sample=result[i - 1].start_sample,
+                            end_sample=result[i].end_sample,
+                        )
+                    else:
+                        result[i + 1] = PhoneTimestamp(
+                            phone=result[i + 1].phone,
+                            start_sample=result[i].start_sample,
+                            end_sample=result[i + 1].end_sample,
+                        )
+                    result.pop(i)
+                changed = True
+                continue
+            i += 1
+    return result
+
+
+def _energy_split(
+    audio_segment: np.ndarray,
+    num_syllables: int,
+    sample_rate: int,
+    word_start_sample: int,
+) -> list[tuple[int, int]]:
+    if len(audio_segment) < num_syllables * 2:
+        return []
+
+    win_samples = max(1, int(0.010 * sample_rate))
+    hop = max(1, win_samples // 2)
+    n_frames = (len(audio_segment) - win_samples) // hop + 1
+    if n_frames < num_syllables:
+        return []
+
+    rms = np.zeros(n_frames, dtype=np.float32)
+    for i in range(n_frames):
+        start = i * hop
+        frame = audio_segment[start : start + win_samples]
+        rms[i] = np.sqrt(np.mean(frame**2))
+
+    from scipy.signal import find_peaks
+
+    min_distance = max(1, n_frames // (num_syllables * 2))
+    peaks, _ = find_peaks(rms, distance=min_distance, prominence=np.max(rms) * 0.05)
+
+    if len(peaks) != num_syllables:
+        return []
+
+    boundaries_frames = [0]
+    for i in range(len(peaks) - 1):
+        valley_region = rms[peaks[i] : peaks[i + 1]]
+        valley_offset = np.argmin(valley_region)
+        boundaries_frames.append(peaks[i] + valley_offset)
+    boundaries_frames.append(n_frames)
+
+    result = []
+    for i in range(num_syllables):
+        s_start = word_start_sample + boundaries_frames[i] * hop
+        s_end = word_start_sample + boundaries_frames[i + 1] * hop
+        if i == num_syllables - 1:
+            s_end = word_start_sample + len(audio_segment)
+        result.append((s_start, s_end))
+
+    return result
+
+
 def derive_syllable_timestamps(
     textgrid_path: Path,
     canonical_syllables: dict,
@@ -47,6 +145,8 @@ def derive_syllable_timestamps(
     role: str,
     audio_path: str,
     anchor_strategy: str = "onset",
+    smoothing_min_ms: float = 0.0,
+    audio_data: np.ndarray | None = None,
 ) -> AlignmentResult:
     tiers = parse_textgrid(textgrid_path)
     assert "words" in tiers, f"TextGrid missing 'words' tier, found: {list(tiers.keys())}"
@@ -108,6 +208,10 @@ def derive_syllable_timestamps(
             )
         )
 
+        if smoothing_min_ms > 0:
+            min_dur = int(smoothing_min_ms * sample_rate / 1000)
+            word_phones = _smooth_phones(word_phones, min_dur)
+
         word_phone_labels = [p.phone for p in word_phones]
         canonical_syl_count = sum(
             1 for s in canonical_syls if s["word_index"] == cw["word_index"]
@@ -137,55 +241,100 @@ def derive_syllable_timestamps(
         elif vowel_count == 0 and canonical_syl_count > 0:
             logger.warning(
                 "Word '%s': no vowels detected by MFA, fabricating %d "
-                "syllable boundaries by equal division (confidence=0.1)",
+                "syllable boundaries (confidence=0.1-0.5)",
                 cw["text"],
                 canonical_syl_count,
             )
-            total_dur = w_end - w_start
-            chunk = total_dur // canonical_syl_count if canonical_syl_count > 0 else total_dur
-            for si in range(canonical_syl_count):
-                s_start = w_start + si * chunk
-                s_end = w_start + (si + 1) * chunk if si < canonical_syl_count - 1 else w_end
-                all_syllables.append(
-                    SyllableTimestamp(
-                        syllable_index=global_syl_idx,
-                        word_index=cw["word_index"],
-                        word_text=cw["text"],
-                        start_sample=s_start,
-                        end_sample=s_end,
-                        anchor_sample=s_start,
-                        phones=word_phones if si == 0 else [],
-                        confidence=0.1,
-                    )
+            energy_boundaries: list[tuple[int, int]] = []
+            if audio_data is not None:
+                word_audio = audio_data[w_start:w_end]
+                energy_boundaries = _energy_split(
+                    word_audio, canonical_syl_count, sample_rate, w_start,
                 )
-                global_syl_idx += 1
+
+            if energy_boundaries:
+                for si, (s_start, s_end) in enumerate(energy_boundaries):
+                    all_syllables.append(
+                        SyllableTimestamp(
+                            syllable_index=global_syl_idx,
+                            word_index=cw["word_index"],
+                            word_text=cw["text"],
+                            start_sample=s_start,
+                            end_sample=s_end,
+                            anchor_sample=s_start,
+                            phones=word_phones if si == 0 else [],
+                            confidence=0.5,
+                        )
+                    )
+                    global_syl_idx += 1
+            else:
+                total_dur = w_end - w_start
+                chunk = total_dur // canonical_syl_count if canonical_syl_count > 0 else total_dur
+                for si in range(canonical_syl_count):
+                    s_start = w_start + si * chunk
+                    s_end = w_start + (si + 1) * chunk if si < canonical_syl_count - 1 else w_end
+                    all_syllables.append(
+                        SyllableTimestamp(
+                            syllable_index=global_syl_idx,
+                            word_index=cw["word_index"],
+                            word_text=cw["text"],
+                            start_sample=s_start,
+                            end_sample=s_end,
+                            anchor_sample=s_start,
+                            phones=word_phones if si == 0 else [],
+                            confidence=0.1,
+                        )
+                    )
+                    global_syl_idx += 1
         else:
             logger.warning(
                 "Word '%s': MFA detected %d vowels but canonical has %d "
-                "syllables, fabricating boundaries by equal division "
-                "(confidence=0.3)",
+                "syllables, fabricating boundaries (confidence=0.3-0.5)",
                 cw["text"],
                 vowel_count,
                 canonical_syl_count,
             )
-            total_dur = w_end - w_start
-            chunk = total_dur // canonical_syl_count if canonical_syl_count > 0 else total_dur
-            for si in range(canonical_syl_count):
-                s_start = w_start + si * chunk
-                s_end = w_start + (si + 1) * chunk if si < canonical_syl_count - 1 else w_end
-                all_syllables.append(
-                    SyllableTimestamp(
-                        syllable_index=global_syl_idx,
-                        word_index=cw["word_index"],
-                        word_text=cw["text"],
-                        start_sample=s_start,
-                        end_sample=s_end,
-                        anchor_sample=s_start,
-                        phones=[],
-                        confidence=0.3,
-                    )
+            energy_boundaries_2: list[tuple[int, int]] = []
+            if audio_data is not None:
+                word_audio_2 = audio_data[w_start:w_end]
+                energy_boundaries_2 = _energy_split(
+                    word_audio_2, canonical_syl_count, sample_rate, w_start,
                 )
-                global_syl_idx += 1
+
+            if energy_boundaries_2:
+                for si, (s_start, s_end) in enumerate(energy_boundaries_2):
+                    all_syllables.append(
+                        SyllableTimestamp(
+                            syllable_index=global_syl_idx,
+                            word_index=cw["word_index"],
+                            word_text=cw["text"],
+                            start_sample=s_start,
+                            end_sample=s_end,
+                            anchor_sample=s_start,
+                            phones=word_phones if si == 0 else [],
+                            confidence=0.5,
+                        )
+                    )
+                    global_syl_idx += 1
+            else:
+                total_dur = w_end - w_start
+                chunk = total_dur // canonical_syl_count if canonical_syl_count > 0 else total_dur
+                for si in range(canonical_syl_count):
+                    s_start = w_start + si * chunk
+                    s_end = w_start + (si + 1) * chunk if si < canonical_syl_count - 1 else w_end
+                    all_syllables.append(
+                        SyllableTimestamp(
+                            syllable_index=global_syl_idx,
+                            word_index=cw["word_index"],
+                            word_text=cw["text"],
+                            start_sample=s_start,
+                            end_sample=s_end,
+                            anchor_sample=s_start,
+                            phones=[],
+                            confidence=0.3,
+                        )
+                    )
+                    global_syl_idx += 1
 
     assert len(all_syllables) == len(canonical_syls), (
         f"Derived syllable count {len(all_syllables)} != "

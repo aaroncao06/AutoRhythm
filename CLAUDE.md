@@ -78,7 +78,7 @@ src/rapmap/
 │   ├── normalize.py
 │   ├── analysis.py
 │   ├── stretch.py         # Rubber Band wrapper
-│   ├── render.py          # Clip rendering from edit plan
+│   ├── render.py          # Clip rendering + warp rendering from edit plan
 │   └── source_separation.py  # Demucs wrapper (guide fallback)
 ├── beat/                  # Beat detection and syllable quantization
 │   ├── detect.py          # BPM + beat frame extraction (librosa)
@@ -107,11 +107,12 @@ src/rapmap/
 │   ├── anchors.py
 │   ├── anchor_map.py
 │   └── confidence.py
-├── edit/                  # Clip grouping, edit planning, rendering
+├── edit/                  # Clip grouping, edit planning, warp map, rendering
 │   ├── safe_boundaries.py # Safe-boundary scoring
 │   ├── grouping.py        # All grouping modes
 │   ├── planner.py         # Deterministic edit plan generation
 │   ├── operations.py      # Edit operation types
+│   ├── warp_map.py        # Contiguous warp map model (piecewise time-stretch)
 │   ├── crossfade.py
 │   └── manifest.py        # Clip manifest generation
 ├── audacity/              # Audacity integration
@@ -135,7 +136,11 @@ src/rapmap/
 tests/
 ├── test_lyrics_parser.py
 ├── test_syllabification.py
+├── test_pronunciation_multi.py
+├── test_phoneme_smoothing.py
+├── test_energy_fallback.py
 ├── test_anchor_mapping.py
+├── test_warp_map.py
 ├── test_safe_boundary_grouping.py
 ├── test_edit_plan_exactness.py
 ├── test_render_clip_lengths.py
@@ -199,6 +204,15 @@ Default is `safe_boundary`. All six modes must produce valid results from the sa
 4. `strict_syllable` — hard cut per syllable (debug mode)
 5. `phrase` — group by line/breath
 6. `bar` — group by bar/newline
+
+### Rendering Modes
+
+Two rendering modes coexist (configured via `rendering.rendering_mode`):
+
+- `warp` (default) — Contiguous piecewise time-stretch. The entire vocal is partitioned into alternating syllable and gap segments. Each segment is stretched/compressed independently. No cutting, splicing, or crossfades. Produces a single corrected vocal file. Uses `edit/warp_map.py` and `audio/render.render_warp_map()`.
+- `clip` — Clip-based rendering. Syllables are grouped into clips, each rendered independently and placed at target positions with crossfades. Needed for Audacity visual editing. Uses `edit/planner.py` and `audio/render.render_clips()`.
+
+Both modes are always computed in the `run` command (clip grouping runs regardless for Audacity export), but only the active mode's corrected vocal is written.
 
 ### Anchor Strategies
 
@@ -291,6 +305,7 @@ Additional validation:
 | `src/rapmap/cli.py` | CLI entry point — all user-facing commands |
 | `src/rapmap/config.py` | Default config and config loading |
 | `src/rapmap/edit/planner.py` | Core deterministic edit plan generation |
+| `src/rapmap/edit/warp_map.py` | Contiguous warp map model (default rendering) |
 | `src/rapmap/edit/safe_boundaries.py` | Safe-boundary scoring algorithm |
 | `src/rapmap/audio/stretch.py` | Rubber Band time-stretch wrapper |
 | `src/rapmap/align/mfa.py` | Montreal Forced Aligner integration |

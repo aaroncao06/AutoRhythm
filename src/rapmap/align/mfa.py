@@ -1,43 +1,79 @@
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import tempfile
 from pathlib import Path
 
 from rapmap.config import AlignmentConfig
-from rapmap.lyrics.pronunciations import lookup_pronunciation
+from rapmap.lyrics.normalize import normalize_word
+from rapmap.lyrics.pronunciations import lookup_all_pronunciations, lookup_pronunciation
+
+_mfa_env: dict[str, str] | None = None
 
 
-def _find_mfa_binary() -> str:
+def _find_mfa_env() -> tuple[str, dict[str, str]]:
+    global _mfa_env
+    if _mfa_env is not None:
+        for p in _mfa_env.get("PATH", "").split(os.pathsep):
+            mfa = Path(p) / "mfa"
+            if mfa.exists():
+                return str(mfa), _mfa_env
+
+    env = os.environ.copy()
     if shutil.which("mfa"):
-        return "mfa"
-    conda_mfa = Path.home() / "miniconda3" / "envs" / "aligner" / "bin" / "mfa"
-    if conda_mfa.exists():
-        return str(conda_mfa)
+        _mfa_env = env
+        return "mfa", env
+
+    conda_dirs = [
+        Path.home() / "miniconda3" / "envs" / "aligner",
+        Path.home() / "miniforge3" / "envs" / "aligner",
+        Path.home() / "anaconda3" / "envs" / "aligner",
+    ]
+    for conda_env in conda_dirs:
+        mfa_bin = conda_env / "bin" / "mfa"
+        if mfa_bin.exists():
+            env["PATH"] = str(conda_env / "bin") + os.pathsep + env.get("PATH", "")
+            _mfa_env = env
+            return str(mfa_bin), env
+
     raise RuntimeError(
         "MFA not found on PATH. Install: conda install -c conda-forge montreal-forced-aligner\n"
         "Then download models: mfa model download acoustic english_us_arpa"
     )
 
 
-def _check_mfa_available() -> str:
-    mfa = _find_mfa_binary()
-    subprocess.run([mfa, "version"], capture_output=True, check=True)
-    return mfa
+def _check_mfa_available() -> tuple[str, dict[str, str]]:
+    mfa, env = _find_mfa_env()
+    subprocess.run([mfa, "version"], capture_output=True, check=True, env=env)
+    return mfa, env
 
 
-def _generate_dictionary(canonical_syllables: dict, overrides: dict | None) -> str:
+def _clean_word_for_mfa(word_text: str) -> str:
+    normalized = normalize_word(word_text)
+    return normalized if normalized else word_text.lower().strip()
+
+
+def _generate_dictionary(
+    canonical_syllables: dict,
+    overrides: dict | None,
+    multi_pronunciation: bool = True,
+) -> str:
     seen: set[str] = set()
     lines: list[str] = []
     for syl in canonical_syllables["syllables"]:
-        word = syl["word_text"].lower()
+        word = _clean_word_for_mfa(syl["word_text"])
         if word in seen:
             continue
         seen.add(word)
-        normalized = word
-        phones, _ = lookup_pronunciation(normalized, overrides)
-        lines.append(f"{word}\t{' '.join(phones)}")
+        if multi_pronunciation:
+            variants = lookup_all_pronunciations(word, overrides)
+            for phones, _ in variants:
+                lines.append(f"{word}\t{' '.join(phones)}")
+        else:
+            phones, _ = lookup_pronunciation(word, overrides)
+            lines.append(f"{word}\t{' '.join(phones)}")
     return "\n".join(lines) + "\n"
 
 
@@ -48,7 +84,7 @@ def _generate_transcript(canonical_syllables: dict) -> str:
         wi = syl["word_index"]
         if wi not in seen_indices:
             seen_indices.add(wi)
-            words.append(syl["word_text"].lower())
+            words.append(_clean_word_for_mfa(syl["word_text"]))
     return " ".join(words)
 
 
@@ -60,7 +96,7 @@ def align_with_mfa(
     config: AlignmentConfig,
     overrides: dict | None = None,
 ) -> Path:
-    mfa_bin = _check_mfa_available()
+    mfa_bin, mfa_env = _check_mfa_available()
 
     alignment_dir = project_dir / "alignment"
     alignment_dir.mkdir(parents=True, exist_ok=True)
@@ -76,7 +112,9 @@ def align_with_mfa(
         (corpus_dir / f"{role}.txt").write_text(transcript)
 
         dict_path = tmp / "dictionary.txt"
-        dict_path.write_text(_generate_dictionary(canonical_syllables, overrides))
+        dict_path.write_text(
+            _generate_dictionary(canonical_syllables, overrides, config.multi_pronunciation)
+        )
 
         cmd = [
             mfa_bin,
@@ -90,7 +128,7 @@ def align_with_mfa(
             "--beam", "400",
             "--retry_beam", "1000",
         ]
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, env=mfa_env)
         if result.returncode != 0:
             raise RuntimeError(
                 f"MFA alignment failed (exit {result.returncode}):\n{result.stderr}"

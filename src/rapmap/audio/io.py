@@ -1,11 +1,16 @@
 from __future__ import annotations
 
+import shutil
+import subprocess
+import tempfile
 from math import gcd
 from pathlib import Path
 
 import numpy as np
 import soundfile as sf
 from scipy.signal import resample_poly
+
+_COMPRESSED_EXTENSIONS = {".m4a", ".mp3", ".aac", ".wma", ".opus", ".ogg"}
 
 
 def _subtype_for_path(path: Path) -> str:
@@ -17,8 +22,36 @@ def _subtype_for_path(path: Path) -> str:
     return "FLOAT"
 
 
+def _decode_to_wav(src: Path, dst: Path) -> None:
+    if shutil.which("afconvert"):
+        subprocess.run(
+            ["afconvert", "-f", "WAVE", "-d", "LEF32", str(src), str(dst)],
+            check=True,
+            capture_output=True,
+        )
+    elif shutil.which("ffmpeg"):
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", str(src), "-f", "wav", "-acodec", "pcm_f32le", str(dst)],
+            check=True,
+            capture_output=True,
+        )
+    else:
+        raise RuntimeError(
+            f"Cannot read {src.suffix} files: install ffmpeg or use macOS (afconvert)"
+        )
+
+
 def read_audio(path: Path, mono: bool = False) -> tuple[np.ndarray, int]:
-    data, sample_rate = sf.read(path, dtype="float32")
+    if path.suffix.lower() in _COMPRESSED_EXTENSIONS:
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+            tmp_path = Path(tmp.name)
+        try:
+            _decode_to_wav(path, tmp_path)
+            data, sample_rate = sf.read(tmp_path, dtype="float32")
+        finally:
+            tmp_path.unlink(missing_ok=True)
+    else:
+        data, sample_rate = sf.read(path, dtype="float32")
     if mono and data.ndim == 2:
         data = data.mean(axis=1)
     return data, sample_rate
@@ -45,6 +78,17 @@ def resample(data: np.ndarray, sr_orig: int, sr_target: int) -> np.ndarray:
 
 
 def audio_info(path: Path) -> dict:
+    if path.suffix.lower() in _COMPRESSED_EXTENSIONS:
+        data, sr = read_audio(path)
+        frames = data.shape[0]
+        channels = 1 if data.ndim == 1 else data.shape[1]
+        return {
+            "sample_rate": sr,
+            "channels": channels,
+            "frames": frames,
+            "duration_samples": frames,
+            "duration_seconds": frames / sr,
+        }
     info = sf.info(str(path))
     return {
         "sample_rate": info.samplerate,

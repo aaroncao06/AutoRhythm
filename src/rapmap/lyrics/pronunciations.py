@@ -69,6 +69,35 @@ def lookup_pronunciation(
     raise ValueError(f"Word '{word}' not in CMUdict and G2P produced no phones")
 
 
+def lookup_all_pronunciations(
+    word: str, overrides: dict | None = None, g2p_fallback: bool = True
+) -> list[tuple[list[str], str]]:
+    key = word.lower()
+
+    if overrides and key in overrides:
+        entry = overrides[key]
+        phones = entry["phones"]
+        assert len(phones) > 0, f"Override for '{word}' has empty phone list"
+        return [(phones, "override")]
+
+    d = _ensure_cmudict()
+    if key in d:
+        return [(phones, "cmudict") for phones in d[key]]
+
+    if not g2p_fallback:
+        raise ValueError(
+            f"Word '{word}' not in CMUdict and g2p_fallback is disabled; add an override instead"
+        )
+
+    g2p = _ensure_g2p()
+    phones_raw = g2p(key)
+    phones = [p for p in phones_raw if p.strip() and p not in ".,!?;:"]
+    if phones:
+        return [(phones, "g2p")]
+
+    raise ValueError(f"Word '{word}' not in CMUdict and G2P produced no phones")
+
+
 def lookup_all_words(
     words: list[str], overrides: dict | None = None, g2p_fallback: bool = True
 ) -> list[dict]:

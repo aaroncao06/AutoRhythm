@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoRapper — Syllable-Level Rhythm Correction for Rap Vocals</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --purple: #bc8cff;
+      --orange: #d29922;
+      --red: #da3633;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { text-align: center; padding: 3rem 0 2rem; }
+    header h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
+    header h1 span { color: var(--accent); }
+    header p { color: var(--muted); font-size: 1.15rem; margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .badge-row { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+    .badge {
+      display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border);
+    }
+    .badge.green { color: var(--green); border-color: var(--green); }
+    .badge.purple { color: var(--purple); border-color: var(--purple); }
+    .badge.orange { color: var(--orange); border-color: var(--orange); }
+
+    section { margin: 2.5rem 0; }
+    h2 {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;
+      padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+    }
+
+    /* Audio cards */
+    .audio-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem;
+    }
+    .audio-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .audio-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.75rem; }
+    .audio-card audio { width: 100%; height: 40px; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    .compare .audio-card { margin-bottom: 0; }
+    .compare-label {
+      display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 0.15rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;
+    }
+    .compare-label.before { background: var(--red); color: #fff; }
+    .compare-label.after { background: var(--green); color: #0d1117; }
+
+    /* Editor section */
+    #editor-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    #editor-toolbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 16px; background: #1c2333; border-bottom: 1px solid var(--border);
+    }
+    .toolbar-group { display: flex; align-items: center; gap: 8px; }
+    .toolbar-btn {
+      padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px;
+      background: var(--bg); color: var(--text); cursor: pointer; font-size: 12px;
+    }
+    .toolbar-btn:hover { background: #2a2a4e; }
+    .toolbar-btn.accent { background: #1a3a5c; border-color: var(--accent); color: var(--accent); }
+    .toolbar-btn.accent:hover { background: #1a4a7c; }
+    #editor-info { color: var(--muted); font-size: 0.8rem; }
+
+    #editor-tracks { padding: 12px 16px; }
+    .track-row { margin-bottom: 12px; }
+    .track-header {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .waveform-wrap { position: relative; border-radius: 6px; overflow: hidden; }
+    .waveform-wrap canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    #syllable-layer {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 3; overflow: hidden; pointer-events: none;
+    }
+    .syllable-block {
+      position: absolute; top: 58%; height: 38%;
+      background: rgba(76, 175, 80, 0.3); border: 1px solid rgba(76, 175, 80, 0.6);
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 9px; color: #c8e6c9; white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis; padding: 0 2px; min-width: 4px;
+    }
+    .syllable-block.selected {
+      background: rgba(33, 150, 243, 0.45); border-color: rgba(33, 150, 243, 0.9); color: #bbdefb;
+    }
+    .anchor-line {
+      position: absolute; top: 0; height: 100%; width: 1px; z-index: 4; pointer-events: none;
+    }
+    .anchor-line.human { background: rgba(218, 54, 51, 0.7); }
+    .anchor-line.guide { background: rgba(63, 185, 80, 0.7); }
+    .anchor-arrow {
+      position: absolute; top: 45%; height: 2px; z-index: 4; pointer-events: none; opacity: 0.5;
+    }
+
+    #editor-status {
+      display: flex; gap: 24px; padding: 6px 16px;
+      background: #1c2333; border-top: 1px solid var(--border);
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    /* Syllable table */
+    #syllable-table-wrap {
+      max-height: 400px; overflow-y: auto; margin-top: 1rem;
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    #syllable-table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    #syllable-table-wrap th {
+      position: sticky; top: 0; background: #1c2333;
+      padding: 6px 10px; text-align: left; font-weight: 600;
+      border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    #syllable-table-wrap td {
+      padding: 4px 10px; border-bottom: 1px solid #1e2530;
+    }
+    #syllable-table-wrap tr:hover td { background: rgba(88, 166, 255, 0.05); }
+    .delta-pos { color: var(--red); }
+    .delta-neg { color: var(--green); }
+    .delta-zero { color: var(--muted); }
+    .conf-high { color: var(--green); }
+    .conf-med { color: var(--orange); }
+    .conf-low { color: var(--red); }
+    td.mono { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.75rem; }
+
+    /* Pipeline */
+    .pipeline { display: flex; flex-direction: column; }
+    .phase { display: flex; align-items: stretch; gap: 1rem; }
+    .phase-line { display: flex; flex-direction: column; align-items: center; width: 24px; flex-shrink: 0; }
+    .phase-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.3rem; }
+    .phase-dot.det { background: var(--green); }
+    .phase-connector { width: 2px; flex: 1; background: var(--border); }
+    .phase-content {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.5rem; flex: 1;
+    }
+    .phase-content strong { font-size: 0.9rem; }
+    .phase-content span { color: var(--muted); font-size: 0.85rem; }
+    .phase-tag {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      padding: 0.1rem 0.4rem; border-radius: 3px; margin-left: 0.5rem;
+    }
+    .phase-tag.ai { background: var(--purple); color: #0d1117; }
+    .phase-tag.det { background: var(--green); color: #0d1117; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
+    .feature {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem;
+    }
+    .feature h3 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .feature p { color: var(--muted); font-size: 0.85rem; }
+
+    .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+    .tech-list li {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center; padding: 2rem 0; color: var(--muted); font-size: 0.85rem;
+      border-top: 1px solid var(--border); margin-top: 2rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    .legend { display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.75rem; color: var(--muted); }
+    .legend-item { display: flex; align-items: center; gap: 4px; }
+    .legend-swatch { width: 12px; height: 3px; border-radius: 1px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Auto<span>Rapper</span></h1>
+      <p>Syllable-level rhythm correction for rap vocals. Every syllable on beat. Your voice, untouched.</p>
+      <div class="badge-row">
+        <span class="badge green">Zero-Sample Anchor Error</span>
+        <span class="badge purple">AI Guide Generation</span>
+        <span class="badge orange">Audacity Integration</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Listen: Before &amp; After</h2>
+      <div class="compare">
+        <div class="audio-card">
+          <span class="compare-label before">Before</span>
+          <h3>Original Human Vocal</h3>
+          <p>Raw rap vocal, off-beat timing</p>
+          <audio controls preload="metadata" src="audio/original.wav"></audio>
+        </div>
+        <div class="audio-card">
+          <span class="compare-label after">After</span>
+          <h3>Corrected Vocal</h3>
+          <p>Every syllable snapped to the guide's rhythm</p>
+          <audio controls preload="metadata" src="audio/corrected.wav"></audio>
+        </div>
+      </div>
+      <div style="margin-top: 1rem;">
+        <div class="audio-card">
+          <h3>AI Guide Vocal (Timing Reference)</h3>
+          <p>Generated by ACE-Step 1.5, vocals isolated with Demucs</p>
+          <audio controls preload="metadata" src="audio/guide.wav"></audio>
+        </div>
+        <div class="audio-card">
+          <h3>Backing Track</h3>
+          <p>The beat both vocals are synced to</p>
+          <audio controls preload="metadata" src="audio/backing.wav"></audio>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Syllable Alignment Viewer</h2>
+      <p style="color: var(--muted); margin-bottom: 0.75rem;">Interactive waveform with syllable anchor overlay from a real pipeline run. 110 syllables aligned between human vocal and AI guide.</p>
+
+      <div id="editor-section">
+        <div id="editor-toolbar">
+          <div class="toolbar-group">
+            <button class="toolbar-btn accent" id="btn-play">Play</button>
+            <button class="toolbar-btn" id="btn-stop">Stop</button>
+          </div>
+          <div id="editor-info">110 syllables &middot; 48kHz &middot; onset anchors</div>
+        </div>
+        <div id="editor-tracks">
+          <div class="track-row">
+            <div class="track-header">Backing Track</div>
+            <div class="waveform-wrap" id="waveform-backing" style="height:80px;"></div>
+          </div>
+          <div class="track-row">
+            <div class="track-header">Human Vocal + Syllable Anchors</div>
+            <div class="waveform-wrap" id="waveform-human-wrap" style="height:160px;">
+              <div id="waveform-human" style="width:100%;height:100%;"></div>
+              <div id="syllable-layer"></div>
+            </div>
+            <div class="legend">
+              <div class="legend-item"><div class="legend-swatch" style="background:rgba(76,175,80,0.7);"></div> Guide anchor</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:rgba(218,54,51,0.7);"></div> Human anchor</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:rgba(76,175,80,0.3); width:24px; height:12px; border:1px solid rgba(76,175,80,0.6); border-radius:2px;"></div> Syllable region</div>
+            </div>
+          </div>
+        </div>
+        <div id="editor-status">
+          <span id="syl-count">Syllables: 110</span>
+          <span id="cursor-time">Time: 0.000s</span>
+          <span id="syl-hover">Hover a syllable for details</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Anchor Map Detail</h2>
+      <p style="color: var(--muted); margin-bottom: 0.75rem;">Every syllable's human timing vs. guide timing. Delta shows how far each syllable was shifted. Zero-sample error on render.</p>
+      <div id="syllable-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Syllable</th>
+              <th>Word</th>
+              <th>Human Onset</th>
+              <th>Guide Onset</th>
+              <th>Delta</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="syllable-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>How It Works</h2>
+      <p style="color: var(--muted); margin-bottom: 1.25rem;">9-phase pipeline. AI handles guide generation and alignment. Everything after that is fully deterministic &mdash; no neural model touches the human voice.</p>
+      <div class="pipeline">
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 0: Normalize</strong><span class="phase-tag det">Deterministic</span><br><span>Resample to 48kHz, mono for analysis</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 1: Guide Generation</strong><span class="phase-tag ai">AI</span><br><span>ACE-Step 1.5 generates a rap vocal from lyrics, Demucs isolates vocals</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 2: Syllabify</strong><span class="phase-tag ai">AI</span><br><span>CMUdict + G2P maps lyrics to canonical syllables</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 3: Forced Alignment</strong><span class="phase-tag ai">AI</span><br><span>Montreal Forced Aligner extracts phone-level timestamps from both vocals</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 4: Anchor Mapping</strong><span class="phase-tag det">Deterministic</span><br><span>Map each human syllable anchor to the guide's timing</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 5: Clip Grouping</strong><span class="phase-tag det">Deterministic</span><br><span>Safe-boundary scoring finds acoustically clean split points</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 6: Edit Plan</strong><span class="phase-tag det">Deterministic</span><br><span>Piecewise time-warp specification for every segment</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
+          <div class="phase-content"><strong>Phase 7: Render</strong><span class="phase-tag det">Deterministic</span><br><span>Rubber Band pitch-preserving time-stretch produces the corrected vocal</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot det"></div></div>
+          <div class="phase-content"><strong>Phase 8: Audacity Session</strong><span class="phase-tag det">Deterministic</span><br><span>Builds a full session with clips, labels, and tracks via mod-script-pipe</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Features</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>Zero-Sample Precision</h3>
+          <p>Every rendered syllable anchor lands exactly on the guide anchor at the integer sample index. Not "close enough" &mdash; mathematically exact.</p>
+        </div>
+        <div class="feature">
+          <h3>Voice Preservation</h3>
+          <p>AI generates a timing reference and extracts timestamps. The human voice is only cut and time-stretched &mdash; never regenerated or transformed.</p>
+        </div>
+        <div class="feature">
+          <h3>Transparent Editing</h3>
+          <p>Output is a full Audacity session with visible clips, label tracks, and waveforms. Every edit is inspectable and overridable.</p>
+        </div>
+        <div class="feature">
+          <h3>Two Modes</h3>
+          <p><strong>Guide mode</strong> uses an AI vocal as timing reference. <strong>Beat-only mode</strong> snaps syllables to the detected beat grid.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Built With</h2>
+      <ul class="tech-list">
+        <li>Python</li>
+        <li>ACE-Step 1.5</li>
+        <li>Demucs</li>
+        <li>Montreal Forced Aligner</li>
+        <li>CMUdict + g2p_en</li>
+        <li>Rubber Band</li>
+        <li>librosa</li>
+        <li>Flask</li>
+        <li>pywebview</li>
+        <li>wavesurfer.js</li>
+        <li>Audacity</li>
+        <li>NumPy</li>
+        <li>SciPy</li>
+        <li>PyTorch</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p><a href="https://github.com/aaroncao06/AutoRapper">View on GitHub</a></p>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+  <script>
+  (function() {
+    "use strict";
+
+    let anchorMap = null;
+    let canonical = null;
+    let wsBacking = null;
+    let wsHuman = null;
+    const SR = 48000;
+
+    function samplesToSec(s) { return s / SR; }
+    function fmtTime(s) { return s.toFixed(3) + "s"; }
+    function fmtMs(s) { return (s * 1000).toFixed(1) + "ms"; }
+
+    async function loadData() {
+      const [amResp, csResp] = await Promise.all([
+        fetch("anchor_map.json"),
+        fetch("canonical_syllables.json"),
+      ]);
+      anchorMap = await amResp.json();
+      canonical = await csResp.json();
+    }
+
+    function initWaveforms() {
+      wsBacking = WaveSurfer.create({
+        container: "#waveform-backing",
+        url: "audio/backing.wav",
+        waveColor: "#444",
+        progressColor: "#666",
+        height: 80,
+        interact: false,
+        normalize: true,
+        barWidth: 2,
+        barGap: 1,
+      });
+
+      wsHuman = WaveSurfer.create({
+        container: "#waveform-human",
+        url: "audio/original.wav",
+        waveColor: "#2563eb",
+        progressColor: "#60a5fa",
+        height: 160,
+        normalize: true,
+        barWidth: 2,
+        barGap: 1,
+      });
+
+      wsHuman.on("ready", function() {
+        renderSyllableOverlay();
+      });
+
+      wsHuman.on("timeupdate", function(time) {
+        document.getElementById("cursor-time").textContent = "Time: " + time.toFixed(3) + "s";
+      });
+
+      wsHuman.on("scroll", repositionBlocks);
+      wsHuman.on("zoom", repositionBlocks);
+
+      document.getElementById("btn-play").addEventListener("click", function() {
+        if (wsHuman) wsHuman.play();
+        if (wsBacking) wsBacking.play();
+      });
+      document.getElementById("btn-stop").addEventListener("click", function() {
+        if (wsHuman) { wsHuman.stop(); }
+        if (wsBacking) { wsBacking.stop(); }
+      });
+    }
+
+    function getPixelsPerSecond() {
+      if (!wsHuman) return 50;
+      var wrapper = wsHuman.getWrapper();
+      if (!wrapper) return 50;
+      var scrollWidth = wrapper.scrollWidth || wrapper.clientWidth;
+      var dur = wsHuman.getDuration();
+      return dur > 0 ? scrollWidth / dur : 50;
+    }
+
+    function getScrollLeft() {
+      if (!wsHuman) return 0;
+      var wrapper = wsHuman.getWrapper();
+      return wrapper ? wrapper.scrollLeft : 0;
+    }
+
+    function sampleToPixel(sample) {
+      return (sample / SR) * getPixelsPerSecond() - getScrollLeft();
+    }
+
+    function getSylText(i) {
+      if (canonical && canonical.syllables && i < canonical.syllables.length) {
+        return canonical.syllables[i].syllable_text || canonical.syllables[i].text || "";
+      }
+      return "";
+    }
+
+    function getWordText(i) {
+      if (canonical && canonical.syllables && i < canonical.syllables.length) {
+        return canonical.syllables[i].word_text || "";
+      }
+      return "";
+    }
+
+    function renderSyllableOverlay() {
+      var layer = document.getElementById("syllable-layer");
+      layer.innerHTML = "";
+      if (!anchorMap || !anchorMap.anchors) return;
+
+      anchorMap.anchors.forEach(function(anchor, i) {
+        var div = document.createElement("div");
+        div.className = "syllable-block";
+        div.dataset.index = i;
+        div.textContent = getSylText(i);
+        div.title = getSylText(i) + " (" + getWordText(i) + ")\n"
+          + "Human: " + fmtTime(samplesToSec(anchor.human_anchor_sample)) + "\n"
+          + "Guide: " + fmtTime(samplesToSec(anchor.guide_anchor_sample)) + "\n"
+          + "Delta: " + fmtMs(samplesToSec(anchor.delta_samples));
+        positionBlock(div, anchor);
+        layer.appendChild(div);
+      });
+    }
+
+    function positionBlock(div, anchor) {
+      var x = sampleToPixel(anchor.guide_start_sample);
+      var w = sampleToPixel(anchor.guide_end_sample) - x;
+      div.style.transform = "translateX(" + x + "px)";
+      div.style.width = Math.max(4, w) + "px";
+    }
+
+    function repositionBlocks() {
+      if (!anchorMap || !anchorMap.anchors) return;
+      var blocks = document.querySelectorAll(".syllable-block");
+      blocks.forEach(function(div) {
+        var i = parseInt(div.dataset.index);
+        positionBlock(div, anchorMap.anchors[i]);
+      });
+    }
+
+    function buildTable() {
+      var tbody = document.getElementById("syllable-tbody");
+      if (!anchorMap || !anchorMap.anchors) return;
+
+      anchorMap.anchors.forEach(function(anchor, i) {
+        var tr = document.createElement("tr");
+        var sylText = getSylText(i);
+        var wordText = getWordText(i);
+        var humanSec = samplesToSec(anchor.human_anchor_sample);
+        var guideSec = samplesToSec(anchor.guide_anchor_sample);
+        var deltaSec = samplesToSec(anchor.delta_samples);
+        var conf = anchor.confidence;
+
+        var deltaClass = anchor.delta_samples > 0 ? "delta-pos" : anchor.delta_samples < 0 ? "delta-neg" : "delta-zero";
+        var confClass = conf >= 0.8 ? "conf-high" : conf >= 0.5 ? "conf-med" : "conf-low";
+
+        tr.innerHTML = '<td class="mono">' + i + '</td>'
+          + '<td><strong>' + escHtml(sylText) + '</strong></td>'
+          + '<td style="color:var(--muted);">' + escHtml(wordText) + '</td>'
+          + '<td class="mono">' + fmtTime(humanSec) + '</td>'
+          + '<td class="mono">' + fmtTime(guideSec) + '</td>'
+          + '<td class="mono ' + deltaClass + '">' + (anchor.delta_samples > 0 ? "+" : "") + fmtMs(deltaSec) + '</td>'
+          + '<td class="mono ' + confClass + '">' + (conf * 100).toFixed(0) + '%</td>';
+        tbody.appendChild(tr);
+      });
+    }
+
+    function escHtml(s) {
+      var d = document.createElement("div");
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    async function init() {
+      await loadData();
+      initWaveforms();
+      buildTable();
+    }
+
+    init();
+  })();
+  </script>
+</body>
+</html>

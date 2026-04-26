@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import dataclasses
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -141,6 +142,17 @@ def load_config(config_path: Path | None = None) -> RapMapConfig:
     return _merge_config(RapMapConfig(), raw)
 
 
+def _merge_section(section: Any, overrides: dict[str, Any]) -> None:
+    for key, value in overrides.items():
+        if not hasattr(section, key):
+            continue
+        existing = getattr(section, key)
+        if isinstance(value, dict) and dataclasses.is_dataclass(existing):
+            _merge_section(existing, value)
+        else:
+            setattr(section, key, value)
+
+
 def _merge_config(config: RapMapConfig, overrides: dict[str, Any]) -> RapMapConfig:
     for section_name, section_overrides in overrides.items():
         if not isinstance(section_overrides, dict):
@@ -148,7 +160,5 @@ def _merge_config(config: RapMapConfig, overrides: dict[str, Any]) -> RapMapConf
         section = getattr(config, section_name, None)
         if section is None:
             continue
-        for key, value in section_overrides.items():
-            if hasattr(section, key):
-                setattr(section, key, value)
+        _merge_section(section, section_overrides)
     return config

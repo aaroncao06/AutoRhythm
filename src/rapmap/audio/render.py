@@ -181,6 +181,9 @@ def render_warp_map(
             running_target_sample += seg.target_duration
             continue
 
+        if seg.target_duration == 0 and seg.source_duration > 0:
+            continue
+
         source = human_audio[seg.source_start_sample : seg.source_end_sample]
         ratio = seg.stretch_ratio
         all_ratios.append(ratio)

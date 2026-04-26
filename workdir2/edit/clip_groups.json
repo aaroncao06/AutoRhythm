@@ -9,8 +9,8 @@
       "syllable_indices": [
         0
       ],
-      "source_start_sample": 163680,
-      "source_end_sample": 189600,
+      "source_start_sample": 164160,
+      "source_end_sample": 189120,
       "target_start_sample": 31200,
       "target_end_sample": 62880
     },
@@ -192,7 +192,7 @@
       "source_start_sample": 757920,
       "source_end_sample": 780000,
       "target_start_sample": 963840,
-      "target_end_sample": 1072800
+      "target_end_sample": 1072320
     },
     {
       "clip_index": 17,
@@ -292,7 +292,7 @@
       "source_start_sample": 927360,
       "source_end_sample": 945120,
       "target_start_sample": 1174560,
-      "target_end_sample": 1194720
+      "target_end_sample": 1195200
     },
     {
       "clip_index": 26,
@@ -301,8 +301,8 @@
         31
       ],
       "source_start_sample": 945120,
-      "source_end_sample": 952800,
-      "target_start_sample": 1194720,
+      "source_end_sample": 952320,
+      "target_start_sample": 1195200,
       "target_end_sample": 1209120
     },
     {
@@ -311,7 +311,7 @@
       "syllable_indices": [
         32
       ],
-      "source_start_sample": 952800,
+      "source_start_sample": 952320,
       "source_end_sample": 980640,
       "target_start_sample": 1209120,
       "target_end_sample": 1246560
@@ -480,7 +480,7 @@
         50
       ],
       "source_start_sample": 1276320,
-      "source_end_sample": 1297920,
+      "source_end_sample": 1297440,
       "target_start_sample": 1565280,
       "target_end_sample": 1580640
     },
@@ -490,7 +490,7 @@
       "syllable_indices": [
         51
       ],
-      "source_start_sample": 1297920,
+      "source_start_sample": 1297440,
       "source_end_sample": 1311840,
       "target_start_sample": 1580640,
       "target_end_sample": 1591200
@@ -614,7 +614,7 @@
         64
       ],
       "source_start_sample": 1492320,
-      "source_end_sample": 1502880,
+      "source_end_sample": 1503360,
       "target_start_sample": 1725120,
       "target_end_sample": 1734720
     },
@@ -624,7 +624,7 @@
       "syllable_indices": [
         65
       ],
-      "source_start_sample": 1502880,
+      "source_start_sample": 1503360,
       "source_end_sample": 1515840,
       "target_start_sample": 1734720,
       "target_end_sample": 1742400
@@ -658,7 +658,7 @@
         68
       ],
       "source_start_sample": 1578240,
-      "source_end_sample": 1589280,
+      "source_end_sample": 1589760,
       "target_start_sample": 1784640,
       "target_end_sample": 1798560
     },
@@ -668,7 +668,7 @@
       "syllable_indices": [
         69
       ],
-      "source_start_sample": 1589280,
+      "source_start_sample": 1589760,
       "source_end_sample": 1605600,
       "target_start_sample": 1798560,
       "target_end_sample": 1814880
@@ -813,7 +813,7 @@
         83
       ],
       "source_start_sample": 1813920,
-      "source_end_sample": 1830240,
+      "source_end_sample": 1829760,
       "target_start_sample": 1942560,
       "target_end_sample": 1959840
     },
@@ -823,7 +823,7 @@
       "syllable_indices": [
         84
       ],
-      "source_start_sample": 1830240,
+      "source_start_sample": 1829760,
       "source_end_sample": 1840320,
       "target_start_sample": 1959840,
       "target_end_sample": 1969440
@@ -857,7 +857,7 @@
         87
       ],
       "source_start_sample": 1860960,
-      "source_end_sample": 1870080,
+      "source_end_sample": 1869600,
       "target_start_sample": 1990560,
       "target_end_sample": 2001120
     },
@@ -867,7 +867,7 @@
       "syllable_indices": [
         88
       ],
-      "source_start_sample": 1870080,
+      "source_start_sample": 1869600,
       "source_end_sample": 1905600,
       "target_start_sample": 2001120,
       "target_end_sample": 2039520
@@ -925,7 +925,7 @@
         95
       ],
       "source_start_sample": 2011200,
-      "source_end_sample": 2039040,
+      "source_end_sample": 2038560,
       "target_start_sample": 2096160,
       "target_end_sample": 2110560
     },

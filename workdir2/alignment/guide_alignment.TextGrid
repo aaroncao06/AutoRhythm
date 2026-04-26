@@ -122,10 +122,10 @@ item []:
             text = "world" 
         intervals [28]:
             xmin = 20.08 
-            xmax = 22.35 
+            xmax = 22.34 
             text = "home" 
         intervals [29]:
-            xmin = 22.35 
+            xmin = 22.34 
             xmax = 22.43 
             text = "" 
         intervals [30]:
@@ -166,10 +166,10 @@ item []:
             text = "i'm" 
         intervals [39]:
             xmin = 24.469999 
-            xmax = 24.889999 
+            xmax = 24.9 
             text = "tellin" 
         intervals [40]:
-            xmin = 24.889999 
+            xmin = 24.9 
             xmax = 25.190001 
             text = "no" 
         intervals [41]:
@@ -764,14 +764,14 @@ item []:
             text = "HH" 
         intervals [70]:
             xmin = 20.110001 
-            xmax = 22.32 
+            xmax = 22.309999 
             text = "OW1" 
         intervals [71]:
-            xmin = 22.32 
-            xmax = 22.35 
+            xmin = 22.309999 
+            xmax = 22.34 
             text = "M" 
         intervals [72]:
-            xmin = 22.35 
+            xmin = 22.34 
             xmax = 22.43 
             text = "" 
         intervals [73]:
@@ -884,10 +884,10 @@ item []:
             text = "IH0" 
         intervals [100]:
             xmin = 24.780001 
-            xmax = 24.889999 
+            xmax = 24.9 
             text = "N" 
         intervals [101]:
-            xmin = 24.889999 
+            xmin = 24.9 
             xmax = 24.940001 
             text = "N" 
         intervals [102]:
@@ -1504,10 +1504,10 @@ item []:
             text = "IH0" 
         intervals [255]:
             xmin = 41.299999 
-            xmax = 41.380001 
+            xmax = 41.389999 
             text = "S" 
         intervals [256]:
-            xmin = 41.380001 
+            xmin = 41.389999 
             xmax = 41.470001 
             text = "T" 
         intervals [257]:
@@ -1700,10 +1700,10 @@ item []:
             text = "G" 
         intervals [304]:
             xmin = 45.759998 
-            xmax = 45.84 
+            xmax = 45.830002 
             text = "R" 
         intervals [305]:
-            xmin = 45.84 
+            xmin = 45.830002 
             xmax = 45.990002 
             text = "EY1" 
         intervals [306]:

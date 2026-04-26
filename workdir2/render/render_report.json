@@ -6,19 +6,19 @@
   "gap_segments": 109,
   "anchor_errors": [],
   "max_stretch_ratio": 16.666666666666668,
-  "min_stretch_ratio": 0.11940298507462686,
+  "min_stretch_ratio": 0.13432835820895522,
   "extreme_stretches": [
     {
       "segment_index": 0,
       "segment_type": "lead_in",
       "syllable_index": null,
-      "ratio": 0.1906158357771261
+      "ratio": 0.19005847953216373
     },
     {
       "segment_index": 2,
       "segment_type": "gap",
       "syllable_index": null,
-      "ratio": 0.21908893709327548
+      "ratio": 0.21861471861471862
     },
     {
       "segment_index": 3,
@@ -72,13 +72,13 @@
       "segment_index": 41,
       "segment_type": "syllable",
       "syllable_index": 20,
-      "ratio": 4.934782608695652
+      "ratio": 4.913043478260869
     },
     {
       "segment_index": 42,
       "segment_type": "gap",
       "syllable_index": null,
-      "ratio": 0.11940298507462686
+      "ratio": 0.13432835820895522
     },
     {
       "segment_index": 45,

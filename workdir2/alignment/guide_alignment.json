@@ -421,7 +421,7 @@
       "word_index": 16,
       "text": "home.",
       "start_sample": 963840,
-      "end_sample": 1072800,
+      "end_sample": 1072320,
       "phones": [
         {
           "phone": "HH",
@@ -431,12 +431,12 @@
         {
           "phone": "OW1",
           "start_sample": 965280,
-          "end_sample": 1071360
+          "end_sample": 1070880
         },
         {
           "phone": "M",
-          "start_sample": 1071360,
-          "end_sample": 1072800
+          "start_sample": 1070880,
+          "end_sample": 1072320
         }
       ]
     },
@@ -618,7 +618,7 @@
       "word_index": 25,
       "text": "tellin\u2019",
       "start_sample": 1174560,
-      "end_sample": 1194720,
+      "end_sample": 1195200,
       "phones": [
         {
           "phone": "T",
@@ -643,19 +643,19 @@
         {
           "phone": "N",
           "start_sample": 1189440,
-          "end_sample": 1194720
+          "end_sample": 1195200
         }
       ]
     },
     {
       "word_index": 26,
       "text": "no",
-      "start_sample": 1194720,
+      "start_sample": 1195200,
       "end_sample": 1209120,
       "phones": [
         {
           "phone": "N",
-          "start_sample": 1194720,
+          "start_sample": 1195200,
           "end_sample": 1197120
         },
         {
@@ -1780,11 +1780,11 @@
         {
           "phone": "S",
           "start_sample": 1982400,
-          "end_sample": 1986240
+          "end_sample": 1986720
         },
         {
           "phone": "T",
-          "start_sample": 1986240,
+          "start_sample": 1986720,
           "end_sample": 1990560
         }
       ]
@@ -2132,11 +2132,11 @@
         {
           "phone": "R",
           "start_sample": 2196480,
-          "end_sample": 2200320
+          "end_sample": 2199840
         },
         {
           "phone": "EY1",
-          "start_sample": 2200320,
+          "start_sample": 2199840,
           "end_sample": 2207520
         },
         {
@@ -2780,7 +2780,7 @@
       "word_index": 16,
       "word_text": "home.",
       "start_sample": 963840,
-      "end_sample": 1072800,
+      "end_sample": 1072320,
       "anchor_sample": 963840,
       "phones": [
         {
@@ -2791,12 +2791,12 @@
         {
           "phone": "OW1",
           "start_sample": 965280,
-          "end_sample": 1071360
+          "end_sample": 1070880
         },
         {
           "phone": "M",
-          "start_sample": 1071360,
-          "end_sample": 1072800
+          "start_sample": 1070880,
+          "end_sample": 1072320
         }
       ],
       "confidence": 1.0
@@ -3025,7 +3025,7 @@
       "word_index": 25,
       "word_text": "tellin\u2019",
       "start_sample": 1183680,
-      "end_sample": 1194720,
+      "end_sample": 1195200,
       "anchor_sample": 1183680,
       "phones": [
         {
@@ -3041,7 +3041,7 @@
         {
           "phone": "N",
           "start_sample": 1189440,
-          "end_sample": 1194720
+          "end_sample": 1195200
         }
       ],
       "confidence": 1.0
@@ -3050,13 +3050,13 @@
       "syllable_index": 31,
       "word_index": 26,
       "word_text": "no",
-      "start_sample": 1194720,
+      "start_sample": 1195200,
       "end_sample": 1209120,
-      "anchor_sample": 1194720,
+      "anchor_sample": 1195200,
       "phones": [
         {
           "phone": "N",
-          "start_sample": 1194720,
+          "start_sample": 1195200,
           "end_sample": 1197120
         },
         {
@@ -4402,11 +4402,11 @@
         {
           "phone": "S",
           "start_sample": 1982400,
-          "end_sample": 1986240
+          "end_sample": 1986720
         },
         {
           "phone": "T",
-          "start_sample": 1986240,
+          "start_sample": 1986720,
           "end_sample": 1990560
         }
       ],
@@ -4829,11 +4829,11 @@
         {
           "phone": "R",
           "start_sample": 2196480,
-          "end_sample": 2200320
+          "end_sample": 2199840
         },
         {
           "phone": "EY1",
-          "start_sample": 2200320,
+          "start_sample": 2199840,
           "end_sample": 2207520
         },
         {

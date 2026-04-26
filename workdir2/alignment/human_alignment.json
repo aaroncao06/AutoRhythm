@@ -7,18 +7,18 @@
     {
       "word_index": 0,
       "text": "Yeah",
-      "start_sample": 163680,
-      "end_sample": 189600,
+      "start_sample": 164160,
+      "end_sample": 189120,
       "phones": [
         {
           "phone": "Y",
-          "start_sample": 163680,
+          "start_sample": 164160,
           "end_sample": 176160
         },
         {
           "phone": "AE1",
           "start_sample": 176160,
-          "end_sample": 189600
+          "end_sample": 189120
         }
       ]
     },
@@ -431,11 +431,11 @@
         {
           "phone": "OW1",
           "start_sample": 761760,
-          "end_sample": 771360
+          "end_sample": 771840
         },
         {
           "phone": "M",
-          "start_sample": 771360,
+          "start_sample": 771840,
           "end_sample": 780000
         }
       ]
@@ -495,11 +495,11 @@
         {
           "phone": "EH1",
           "start_sample": 840000,
-          "end_sample": 841440
+          "end_sample": 845280
         },
         {
           "phone": "R",
-          "start_sample": 841440,
+          "start_sample": 845280,
           "end_sample": 848640
         }
       ]
@@ -651,7 +651,7 @@
       "word_index": 26,
       "text": "no",
       "start_sample": 945120,
-      "end_sample": 952800,
+      "end_sample": 952320,
       "phones": [
         {
           "phone": "N",
@@ -661,19 +661,19 @@
         {
           "phone": "OW1",
           "start_sample": 947520,
-          "end_sample": 952800
+          "end_sample": 952320
         }
       ]
     },
     {
       "word_index": 27,
       "text": "lies",
-      "start_sample": 952800,
+      "start_sample": 952320,
       "end_sample": 980640,
       "phones": [
         {
           "phone": "L",
-          "start_sample": 952800,
+          "start_sample": 952320,
           "end_sample": 958080
         },
         {
@@ -1026,7 +1026,7 @@
       "word_index": 41,
       "text": "nah,",
       "start_sample": 1276320,
-      "end_sample": 1297920,
+      "end_sample": 1297440,
       "phones": [
         {
           "phone": "N",
@@ -1036,19 +1036,19 @@
         {
           "phone": "AA1",
           "start_sample": 1280160,
-          "end_sample": 1297920
+          "end_sample": 1297440
         }
       ]
     },
     {
       "word_index": 42,
       "text": "this",
-      "start_sample": 1297920,
+      "start_sample": 1297440,
       "end_sample": 1311840,
       "phones": [
         {
           "phone": "DH",
-          "start_sample": 1297920,
+          "start_sample": 1297440,
           "end_sample": 1301760
         },
         {
@@ -1271,11 +1271,11 @@
         {
           "phone": "N",
           "start_sample": 1460640,
-          "end_sample": 1462080
+          "end_sample": 1462560
         },
         {
           "phone": "D",
-          "start_sample": 1462080,
+          "start_sample": 1462560,
           "end_sample": 1465440
         }
       ]
@@ -1317,7 +1317,7 @@
       "word_index": 53,
       "text": "what",
       "start_sample": 1492320,
-      "end_sample": 1502880,
+      "end_sample": 1503360,
       "phones": [
         {
           "phone": "W",
@@ -1327,24 +1327,24 @@
         {
           "phone": "AH1",
           "start_sample": 1496160,
-          "end_sample": 1500000
+          "end_sample": 1500480
         },
         {
           "phone": "T",
-          "start_sample": 1500000,
-          "end_sample": 1502880
+          "start_sample": 1500480,
+          "end_sample": 1503360
         }
       ]
     },
     {
       "word_index": 54,
       "text": "it",
-      "start_sample": 1502880,
+      "start_sample": 1503360,
       "end_sample": 1515840,
       "phones": [
         {
           "phone": "IH0",
-          "start_sample": 1502880,
+          "start_sample": 1503360,
           "end_sample": 1510080
         },
         {
@@ -1404,7 +1404,7 @@
       "word_index": 57,
       "text": "dude",
       "start_sample": 1578240,
-      "end_sample": 1589280,
+      "end_sample": 1589760,
       "phones": [
         {
           "phone": "D",
@@ -1419,19 +1419,19 @@
         {
           "phone": "D",
           "start_sample": 1587360,
-          "end_sample": 1589280
+          "end_sample": 1589760
         }
       ]
     },
     {
       "word_index": 58,
       "text": "walks",
-      "start_sample": 1589280,
+      "start_sample": 1589760,
       "end_sample": 1605600,
       "phones": [
         {
           "phone": "W",
-          "start_sample": 1589280,
+          "start_sample": 1589760,
           "end_sample": 1593120
         },
         {
@@ -1711,7 +1711,7 @@
       "word_index": 71,
       "text": "life",
       "start_sample": 1813920,
-      "end_sample": 1830240,
+      "end_sample": 1829760,
       "phones": [
         {
           "phone": "L",
@@ -1726,19 +1726,19 @@
         {
           "phone": "F",
           "start_sample": 1823040,
-          "end_sample": 1830240
+          "end_sample": 1829760
         }
       ]
     },
     {
       "word_index": 72,
       "text": "like",
-      "start_sample": 1830240,
+      "start_sample": 1829760,
       "end_sample": 1840320,
       "phones": [
         {
           "phone": "L",
-          "start_sample": 1830240,
+          "start_sample": 1829760,
           "end_sample": 1831680
         },
         {
@@ -1798,7 +1798,7 @@
       "word_index": 75,
       "text": "got",
       "start_sample": 1860960,
-      "end_sample": 1870080,
+      "end_sample": 1869600,
       "phones": [
         {
           "phone": "G",
@@ -1813,19 +1813,19 @@
         {
           "phone": "T",
           "start_sample": 1868160,
-          "end_sample": 1870080
+          "end_sample": 1869600
         }
       ]
     },
     {
       "word_index": 76,
       "text": "smacked.",
-      "start_sample": 1870080,
+      "start_sample": 1869600,
       "end_sample": 1905600,
       "phones": [
         {
           "phone": "S",
-          "start_sample": 1870080,
+          "start_sample": 1869600,
           "end_sample": 1876800
         },
         {
@@ -1951,7 +1951,7 @@
       "word_index": 81,
       "text": "feel",
       "start_sample": 2011200,
-      "end_sample": 2039040,
+      "end_sample": 2038560,
       "phones": [
         {
           "phone": "F",
@@ -1966,7 +1966,7 @@
         {
           "phone": "L",
           "start_sample": 2023680,
-          "end_sample": 2039040
+          "end_sample": 2038560
         }
       ]
     },
@@ -2290,19 +2290,19 @@
       "syllable_index": 0,
       "word_index": 0,
       "word_text": "Yeah",
-      "start_sample": 163680,
-      "end_sample": 189600,
-      "anchor_sample": 163680,
+      "start_sample": 164160,
+      "end_sample": 189120,
+      "anchor_sample": 164160,
       "phones": [
         {
           "phone": "Y",
-          "start_sample": 163680,
+          "start_sample": 164160,
           "end_sample": 176160
         },
         {
           "phone": "AE1",
           "start_sample": 176160,
-          "end_sample": 189600
+          "end_sample": 189120
         }
       ],
       "confidence": 1.0
@@ -2807,11 +2807,11 @@
         {
           "phone": "OW1",
           "start_sample": 761760,
-          "end_sample": 771360
+          "end_sample": 771840
         },
         {
           "phone": "M",
-          "start_sample": 771360,
+          "start_sample": 771840,
           "end_sample": 780000
         }
       ],
@@ -2880,11 +2880,11 @@
         {
           "phone": "EH1",
           "start_sample": 840000,
-          "end_sample": 841440
+          "end_sample": 845280
         },
         {
           "phone": "R",
-          "start_sample": 841440,
+          "start_sample": 845280,
           "end_sample": 848640
         }
       ],
@@ -3067,7 +3067,7 @@
       "word_index": 26,
       "word_text": "no",
       "start_sample": 945120,
-      "end_sample": 952800,
+      "end_sample": 952320,
       "anchor_sample": 945120,
       "phones": [
         {
@@ -3078,7 +3078,7 @@
         {
           "phone": "OW1",
           "start_sample": 947520,
-          "end_sample": 952800
+          "end_sample": 952320
         }
       ],
       "confidence": 1.0
@@ -3087,13 +3087,13 @@
       "syllable_index": 32,
       "word_index": 27,
       "word_text": "lies",
-      "start_sample": 952800,
+      "start_sample": 952320,
       "end_sample": 980640,
-      "anchor_sample": 952800,
+      "anchor_sample": 952320,
       "phones": [
         {
           "phone": "L",
-          "start_sample": 952800,
+          "start_sample": 952320,
           "end_sample": 958080
         },
         {
@@ -3531,7 +3531,7 @@
       "word_index": 41,
       "word_text": "nah,",
       "start_sample": 1276320,
-      "end_sample": 1297920,
+      "end_sample": 1297440,
       "anchor_sample": 1276320,
       "phones": [
         {
@@ -3542,7 +3542,7 @@
         {
           "phone": "AA1",
           "start_sample": 1280160,
-          "end_sample": 1297920
+          "end_sample": 1297440
         }
       ],
       "confidence": 1.0
@@ -3551,13 +3551,13 @@
       "syllable_index": 51,
       "word_index": 42,
       "word_text": "this",
-      "start_sample": 1297920,
+      "start_sample": 1297440,
       "end_sample": 1311840,
-      "anchor_sample": 1297920,
+      "anchor_sample": 1297440,
       "phones": [
         {
           "phone": "DH",
-          "start_sample": 1297920,
+          "start_sample": 1297440,
           "end_sample": 1301760
         },
         {
@@ -3818,11 +3818,11 @@
         {
           "phone": "N",
           "start_sample": 1460640,
-          "end_sample": 1462080
+          "end_sample": 1462560
         },
         {
           "phone": "D",
-          "start_sample": 1462080,
+          "start_sample": 1462560,
           "end_sample": 1465440
         }
       ],
@@ -3880,7 +3880,7 @@
       "word_index": 53,
       "word_text": "what",
       "start_sample": 1492320,
-      "end_sample": 1502880,
+      "end_sample": 1503360,
       "anchor_sample": 1492320,
       "phones": [
         {
@@ -3891,12 +3891,12 @@
         {
           "phone": "AH1",
           "start_sample": 1496160,
-          "end_sample": 1500000
+          "end_sample": 1500480
         },
         {
           "phone": "T",
-          "start_sample": 1500000,
-          "end_sample": 1502880
+          "start_sample": 1500480,
+          "end_sample": 1503360
         }
       ],
       "confidence": 1.0
@@ -3905,13 +3905,13 @@
       "syllable_index": 65,
       "word_index": 54,
       "word_text": "it",
-      "start_sample": 1502880,
+      "start_sample": 1503360,
       "end_sample": 1515840,
-      "anchor_sample": 1502880,
+      "anchor_sample": 1503360,
       "phones": [
         {
           "phone": "IH0",
-          "start_sample": 1502880,
+          "start_sample": 1503360,
           "end_sample": 1510080
         },
         {
@@ -3979,7 +3979,7 @@
       "word_index": 57,
       "word_text": "dude",
       "start_sample": 1578240,
-      "end_sample": 1589280,
+      "end_sample": 1589760,
       "anchor_sample": 1578240,
       "phones": [
         {
@@ -3995,7 +3995,7 @@
         {
           "phone": "D",
           "start_sample": 1587360,
-          "end_sample": 1589280
+          "end_sample": 1589760
         }
       ],
       "confidence": 1.0
@@ -4004,13 +4004,13 @@
       "syllable_index": 69,
       "word_index": 58,
       "word_text": "walks",
-      "start_sample": 1589280,
+      "start_sample": 1589760,
       "end_sample": 1605600,
-      "anchor_sample": 1589280,
+      "anchor_sample": 1589760,
       "phones": [
         {
           "phone": "W",
-          "start_sample": 1589280,
+          "start_sample": 1589760,
           "end_sample": 1593120
         },
         {
@@ -4339,7 +4339,7 @@
       "word_index": 71,
       "word_text": "life",
       "start_sample": 1813920,
-      "end_sample": 1830240,
+      "end_sample": 1829760,
       "anchor_sample": 1813920,
       "phones": [
         {
@@ -4355,7 +4355,7 @@
         {
           "phone": "F",
           "start_sample": 1823040,
-          "end_sample": 1830240
+          "end_sample": 1829760
         }
       ],
       "confidence": 1.0
@@ -4364,13 +4364,13 @@
       "syllable_index": 84,
       "word_index": 72,
       "word_text": "like",
-      "start_sample": 1830240,
+      "start_sample": 1829760,
       "end_sample": 1840320,
-      "anchor_sample": 1830240,
+      "anchor_sample": 1829760,
       "phones": [
         {
           "phone": "L",
-          "start_sample": 1830240,
+          "start_sample": 1829760,
           "end_sample": 1831680
         },
         {
@@ -4438,7 +4438,7 @@
       "word_index": 75,
       "word_text": "got",
       "start_sample": 1860960,
-      "end_sample": 1870080,
+      "end_sample": 1869600,
       "anchor_sample": 1860960,
       "phones": [
         {
@@ -4454,7 +4454,7 @@
         {
           "phone": "T",
           "start_sample": 1868160,
-          "end_sample": 1870080
+          "end_sample": 1869600
         }
       ],
       "confidence": 1.0
@@ -4463,13 +4463,13 @@
       "syllable_index": 88,
       "word_index": 76,
       "word_text": "smacked.",
-      "start_sample": 1870080,
+      "start_sample": 1869600,
       "end_sample": 1905600,
-      "anchor_sample": 1870080,
+      "anchor_sample": 1869600,
       "phones": [
         {
           "phone": "S",
-          "start_sample": 1870080,
+          "start_sample": 1869600,
           "end_sample": 1876800
         },
         {
@@ -4631,7 +4631,7 @@
       "word_index": 81,
       "word_text": "feel",
       "start_sample": 2011200,
-      "end_sample": 2039040,
+      "end_sample": 2038560,
       "anchor_sample": 2011200,
       "phones": [
         {
@@ -4647,7 +4647,7 @@
         {
           "phone": "L",
           "start_sample": 2023680,
-          "end_sample": 2039040
+          "end_sample": 2038560
         }
       ],
       "confidence": 1.0

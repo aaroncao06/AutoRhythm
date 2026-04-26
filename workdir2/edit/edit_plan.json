@@ -12,13 +12,13 @@
         {
           "segment_index": 0,
           "syllable_index": 0,
-          "source_start_sample": 163680,
-          "source_end_sample": 189600,
+          "source_start_sample": 164160,
+          "source_end_sample": 189120,
           "target_start_sample": 31200,
           "target_end_sample": 62880,
-          "source_duration_samples": 25920,
+          "source_duration_samples": 24960,
           "target_duration_samples": 31680,
-          "stretch_ratio": 1.2222222222222223
+          "stretch_ratio": 1.2692307692307692
         }
       ],
       "crossfade_samples": 384
@@ -347,10 +347,10 @@
           "source_start_sample": 757920,
           "source_end_sample": 780000,
           "target_start_sample": 963840,
-          "target_end_sample": 1072800,
+          "target_end_sample": 1072320,
           "source_duration_samples": 22080,
-          "target_duration_samples": 108960,
-          "stretch_ratio": 4.934782608695652
+          "target_duration_samples": 108480,
+          "stretch_ratio": 4.913043478260869
         }
       ],
       "crossfade_samples": 384
@@ -520,10 +520,10 @@
           "source_start_sample": 934560,
           "source_end_sample": 945120,
           "target_start_sample": 1183680,
-          "target_end_sample": 1194720,
+          "target_end_sample": 1195200,
           "source_duration_samples": 10560,
-          "target_duration_samples": 11040,
-          "stretch_ratio": 1.0454545454545454
+          "target_duration_samples": 11520,
+          "stretch_ratio": 1.0909090909090908
         }
       ],
       "crossfade_samples": 384
@@ -536,12 +536,12 @@
           "segment_index": 0,
           "syllable_index": 31,
           "source_start_sample": 945120,
-          "source_end_sample": 952800,
-          "target_start_sample": 1194720,
+          "source_end_sample": 952320,
+          "target_start_sample": 1195200,
           "target_end_sample": 1209120,
-          "source_duration_samples": 7680,
-          "target_duration_samples": 14400,
-          "stretch_ratio": 1.875
+          "source_duration_samples": 7200,
+          "target_duration_samples": 13920,
+          "stretch_ratio": 1.9333333333333333
         }
       ],
       "crossfade_samples": 384
@@ -553,13 +553,13 @@
         {
           "segment_index": 0,
           "syllable_index": 32,
-          "source_start_sample": 952800,
+          "source_start_sample": 952320,
           "source_end_sample": 980640,
           "target_start_sample": 1209120,
           "target_end_sample": 1246560,
-          "source_duration_samples": 27840,
+          "source_duration_samples": 28320,
           "target_duration_samples": 37440,
-          "stretch_ratio": 1.3448275862068966
+          "stretch_ratio": 1.3220338983050848
         }
       ],
       "crossfade_samples": 384
@@ -857,12 +857,12 @@
           "segment_index": 0,
           "syllable_index": 50,
           "source_start_sample": 1276320,
-          "source_end_sample": 1297920,
+          "source_end_sample": 1297440,
           "target_start_sample": 1565280,
           "target_end_sample": 1580640,
-          "source_duration_samples": 21600,
+          "source_duration_samples": 21120,
           "target_duration_samples": 15360,
-          "stretch_ratio": 0.7111111111111111
+          "stretch_ratio": 0.7272727272727273
         }
       ],
       "crossfade_samples": 384
@@ -874,13 +874,13 @@
         {
           "segment_index": 0,
           "syllable_index": 51,
-          "source_start_sample": 1297920,
+          "source_start_sample": 1297440,
           "source_end_sample": 1311840,
           "target_start_sample": 1580640,
           "target_end_sample": 1591200,
-          "source_duration_samples": 13920,
+          "source_duration_samples": 14400,
           "target_duration_samples": 10560,
-          "stretch_ratio": 0.7586206896551724
+          "stretch_ratio": 0.7333333333333333
         }
       ],
       "crossfade_samples": 384
@@ -1095,12 +1095,12 @@
           "segment_index": 0,
           "syllable_index": 64,
           "source_start_sample": 1492320,
-          "source_end_sample": 1502880,
+          "source_end_sample": 1503360,
           "target_start_sample": 1725120,
           "target_end_sample": 1734720,
-          "source_duration_samples": 10560,
+          "source_duration_samples": 11040,
           "target_duration_samples": 9600,
-          "stretch_ratio": 0.9090909090909091
+          "stretch_ratio": 0.8695652173913043
         }
       ],
       "crossfade_samples": 384
@@ -1112,13 +1112,13 @@
         {
           "segment_index": 0,
           "syllable_index": 65,
-          "source_start_sample": 1502880,
+          "source_start_sample": 1503360,
           "source_end_sample": 1515840,
           "target_start_sample": 1734720,
           "target_end_sample": 1742400,
-          "source_duration_samples": 12960,
+          "source_duration_samples": 12480,
           "target_duration_samples": 7680,
-          "stretch_ratio": 0.5925925925925926
+          "stretch_ratio": 0.6153846153846154
         }
       ],
       "crossfade_samples": 384
@@ -1167,12 +1167,12 @@
           "segment_index": 0,
           "syllable_index": 68,
           "source_start_sample": 1578240,
-          "source_end_sample": 1589280,
+          "source_end_sample": 1589760,
           "target_start_sample": 1784640,
           "target_end_sample": 1798560,
-          "source_duration_samples": 11040,
+          "source_duration_samples": 11520,
           "target_duration_samples": 13920,
-          "stretch_ratio": 1.2608695652173914
+          "stretch_ratio": 1.2083333333333333
         }
       ],
       "crossfade_samples": 384
@@ -1184,13 +1184,13 @@
         {
           "segment_index": 0,
           "syllable_index": 69,
-          "source_start_sample": 1589280,
+          "source_start_sample": 1589760,
           "source_end_sample": 1605600,
           "target_start_sample": 1798560,
           "target_end_sample": 1814880,
-          "source_duration_samples": 16320,
+          "source_duration_samples": 15840,
           "target_duration_samples": 16320,
-          "stretch_ratio": 1.0
+          "stretch_ratio": 1.0303030303030303
         }
       ],
       "crossfade_samples": 384
@@ -1430,12 +1430,12 @@
           "segment_index": 0,
           "syllable_index": 83,
           "source_start_sample": 1813920,
-          "source_end_sample": 1830240,
+          "source_end_sample": 1829760,
           "target_start_sample": 1942560,
           "target_end_sample": 1959840,
-          "source_duration_samples": 16320,
+          "source_duration_samples": 15840,
           "target_duration_samples": 17280,
-          "stretch_ratio": 1.0588235294117647
+          "stretch_ratio": 1.0909090909090908
         }
       ],
       "crossfade_samples": 384
@@ -1447,13 +1447,13 @@
         {
           "segment_index": 0,
           "syllable_index": 84,
-          "source_start_sample": 1830240,
+          "source_start_sample": 1829760,
           "source_end_sample": 1840320,
           "target_start_sample": 1959840,
           "target_end_sample": 1969440,
-          "source_duration_samples": 10080,
+          "source_duration_samples": 10560,
           "target_duration_samples": 9600,
-          "stretch_ratio": 0.9523809523809523
+          "stretch_ratio": 0.9090909090909091
         }
       ],
       "crossfade_samples": 384
@@ -1502,12 +1502,12 @@
           "segment_index": 0,
           "syllable_index": 87,
           "source_start_sample": 1860960,
-          "source_end_sample": 1870080,
+          "source_end_sample": 1869600,
           "target_start_sample": 1990560,
           "target_end_sample": 2001120,
-          "source_duration_samples": 9120,
+          "source_duration_samples": 8640,
           "target_duration_samples": 10560,
-          "stretch_ratio": 1.1578947368421053
+          "stretch_ratio": 1.2222222222222223
         }
       ],
       "crossfade_samples": 384
@@ -1519,13 +1519,13 @@
         {
           "segment_index": 0,
           "syllable_index": 88,
-          "source_start_sample": 1870080,
+          "source_start_sample": 1869600,
           "source_end_sample": 1905600,
           "target_start_sample": 2001120,
           "target_end_sample": 2039520,
-          "source_duration_samples": 35520,
+          "source_duration_samples": 36000,
           "target_duration_samples": 38400,
-          "stretch_ratio": 1.0810810810810811
+          "stretch_ratio": 1.0666666666666667
         }
       ],
       "crossfade_samples": 384
@@ -1632,12 +1632,12 @@
           "segment_index": 0,
           "syllable_index": 95,
           "source_start_sample": 2011200,
-          "source_end_sample": 2039040,
+          "source_end_sample": 2038560,
           "target_start_sample": 2096160,
           "target_end_sample": 2110560,
-          "source_duration_samples": 27840,
+          "source_duration_samples": 27360,
           "target_duration_samples": 14400,
-          "stretch_ratio": 0.5172413793103449
+          "stretch_ratio": 0.5263157894736842
         }
       ],
       "crossfade_samples": 384

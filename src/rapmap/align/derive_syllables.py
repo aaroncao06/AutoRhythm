@@ -129,10 +129,10 @@ def _energy_split(
 
     result = []
     for i in range(num_syllables):
-        s_start = word_start_sample + boundaries_frames[i] * hop
-        s_end = word_start_sample + boundaries_frames[i + 1] * hop
+        s_start = int(word_start_sample + boundaries_frames[i] * hop)
+        s_end = int(word_start_sample + boundaries_frames[i + 1] * hop)
         if i == num_syllables - 1:
-            s_end = word_start_sample + len(audio_segment)
+            s_end = int(word_start_sample + len(audio_segment))
         result.append((s_start, s_end))
 
     return result

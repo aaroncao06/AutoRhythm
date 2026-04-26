@@ -1,0 +1,550 @@
+{
+  "bars": [
+    {
+      "bar_index": 0,
+      "lines": [
+        {
+          "line_index": 0,
+          "text": "Yeah",
+          "words": [
+            {
+              "word_index": 0,
+              "text": "Yeah",
+              "normalized": "yeah"
+            }
+          ]
+        },
+        {
+          "line_index": 1,
+          "text": "Load up Roblox, headset sittin\u2019 on my dome,",
+          "words": [
+            {
+              "word_index": 1,
+              "text": "Load",
+              "normalized": "load"
+            },
+            {
+              "word_index": 2,
+              "text": "up",
+              "normalized": "up"
+            },
+            {
+              "word_index": 3,
+              "text": "Roblox,",
+              "normalized": "roblox"
+            },
+            {
+              "word_index": 4,
+              "text": "headset",
+              "normalized": "headset"
+            },
+            {
+              "word_index": 5,
+              "text": "sittin\u2019",
+              "normalized": "sittin"
+            },
+            {
+              "word_index": 6,
+              "text": "on",
+              "normalized": "on"
+            },
+            {
+              "word_index": 7,
+              "text": "my",
+              "normalized": "my"
+            },
+            {
+              "word_index": 8,
+              "text": "dome,",
+              "normalized": "dome"
+            }
+          ]
+        },
+        {
+          "line_index": 2,
+          "text": "Full dive mindset, now the block world home.",
+          "words": [
+            {
+              "word_index": 9,
+              "text": "Full",
+              "normalized": "full"
+            },
+            {
+              "word_index": 10,
+              "text": "dive",
+              "normalized": "dive"
+            },
+            {
+              "word_index": 11,
+              "text": "mindset,",
+              "normalized": "mindset"
+            },
+            {
+              "word_index": 12,
+              "text": "now",
+              "normalized": "now"
+            },
+            {
+              "word_index": 13,
+              "text": "the",
+              "normalized": "the"
+            },
+            {
+              "word_index": 14,
+              "text": "block",
+              "normalized": "block"
+            },
+            {
+              "word_index": 15,
+              "text": "world",
+              "normalized": "world"
+            },
+            {
+              "word_index": 16,
+              "text": "home.",
+              "normalized": "home"
+            }
+          ]
+        },
+        {
+          "line_index": 3,
+          "text": "And I swear it gets weird, yeah I\u2019m tellin\u2019 no lies\u2014",
+          "words": [
+            {
+              "word_index": 17,
+              "text": "And",
+              "normalized": "and"
+            },
+            {
+              "word_index": 18,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 19,
+              "text": "swear",
+              "normalized": "swear"
+            },
+            {
+              "word_index": 20,
+              "text": "it",
+              "normalized": "it"
+            },
+            {
+              "word_index": 21,
+              "text": "gets",
+              "normalized": "gets"
+            },
+            {
+              "word_index": 22,
+              "text": "weird,",
+              "normalized": "weird"
+            },
+            {
+              "word_index": 23,
+              "text": "yeah",
+              "normalized": "yeah"
+            },
+            {
+              "word_index": 24,
+              "text": "I\u2019m",
+              "normalized": "i\u2019m"
+            },
+            {
+              "word_index": 25,
+              "text": "tellin\u2019",
+              "normalized": "tellin"
+            },
+            {
+              "word_index": 26,
+              "text": "no",
+              "normalized": "no"
+            },
+            {
+              "word_index": 27,
+              "text": "lies",
+              "normalized": "lies"
+            }
+          ]
+        },
+        {
+          "line_index": 4,
+          "text": "Got that \u201cphantom pain\u201d thing messin\u2019 up my mind.",
+          "words": [
+            {
+              "word_index": 28,
+              "text": "Got",
+              "normalized": "got"
+            },
+            {
+              "word_index": 29,
+              "text": "that",
+              "normalized": "that"
+            },
+            {
+              "word_index": 30,
+              "text": "\u201cphantom",
+              "normalized": "phantom"
+            },
+            {
+              "word_index": 31,
+              "text": "pain\u201d",
+              "normalized": "pain"
+            },
+            {
+              "word_index": 32,
+              "text": "thing",
+              "normalized": "thing"
+            },
+            {
+              "word_index": 33,
+              "text": "messin\u2019",
+              "normalized": "messin"
+            },
+            {
+              "word_index": 34,
+              "text": "up",
+              "normalized": "up"
+            },
+            {
+              "word_index": 35,
+              "text": "my",
+              "normalized": "my"
+            },
+            {
+              "word_index": 36,
+              "text": "mind.",
+              "normalized": "mind"
+            }
+          ]
+        },
+        {
+          "line_index": 5,
+          "text": "Not the medical type, nah, this one\u2019s absurd,",
+          "words": [
+            {
+              "word_index": 37,
+              "text": "Not",
+              "normalized": "not"
+            },
+            {
+              "word_index": 38,
+              "text": "the",
+              "normalized": "the"
+            },
+            {
+              "word_index": 39,
+              "text": "medical",
+              "normalized": "medical"
+            },
+            {
+              "word_index": 40,
+              "text": "type,",
+              "normalized": "type"
+            },
+            {
+              "word_index": 41,
+              "text": "nah,",
+              "normalized": "nah"
+            },
+            {
+              "word_index": 42,
+              "text": "this",
+              "normalized": "this"
+            },
+            {
+              "word_index": 43,
+              "text": "one\u2019s",
+              "normalized": "one\u2019s"
+            },
+            {
+              "word_index": 44,
+              "text": "absurd,",
+              "normalized": "absurd"
+            }
+          ]
+        },
+        {
+          "line_index": 6,
+          "text": "It\u2019s like my brain bought in and forgot what it heard.",
+          "words": [
+            {
+              "word_index": 45,
+              "text": "It\u2019s",
+              "normalized": "it\u2019s"
+            },
+            {
+              "word_index": 46,
+              "text": "like",
+              "normalized": "like"
+            },
+            {
+              "word_index": 47,
+              "text": "my",
+              "normalized": "my"
+            },
+            {
+              "word_index": 48,
+              "text": "brain",
+              "normalized": "brain"
+            },
+            {
+              "word_index": 49,
+              "text": "bought",
+              "normalized": "bought"
+            },
+            {
+              "word_index": 50,
+              "text": "in",
+              "normalized": "in"
+            },
+            {
+              "word_index": 51,
+              "text": "and",
+              "normalized": "and"
+            },
+            {
+              "word_index": 52,
+              "text": "forgot",
+              "normalized": "forgot"
+            },
+            {
+              "word_index": 53,
+              "text": "what",
+              "normalized": "what"
+            },
+            {
+              "word_index": 54,
+              "text": "it",
+              "normalized": "it"
+            },
+            {
+              "word_index": 55,
+              "text": "heard.",
+              "normalized": "heard"
+            }
+          ]
+        },
+        {
+          "line_index": 7,
+          "text": "Some dude walks through me in a lobby so packed\u2014",
+          "words": [
+            {
+              "word_index": 56,
+              "text": "Some",
+              "normalized": "some"
+            },
+            {
+              "word_index": 57,
+              "text": "dude",
+              "normalized": "dude"
+            },
+            {
+              "word_index": 58,
+              "text": "walks",
+              "normalized": "walks"
+            },
+            {
+              "word_index": 59,
+              "text": "through",
+              "normalized": "through"
+            },
+            {
+              "word_index": 60,
+              "text": "me",
+              "normalized": "me"
+            },
+            {
+              "word_index": 61,
+              "text": "in",
+              "normalized": "in"
+            },
+            {
+              "word_index": 62,
+              "text": "a",
+              "normalized": "a"
+            },
+            {
+              "word_index": 63,
+              "text": "lobby",
+              "normalized": "lobby"
+            },
+            {
+              "word_index": 64,
+              "text": "so",
+              "normalized": "so"
+            },
+            {
+              "word_index": 65,
+              "text": "packed",
+              "normalized": "packed"
+            }
+          ]
+        },
+        {
+          "line_index": 8,
+          "text": "And I flinch in real life like I just got smacked.",
+          "words": [
+            {
+              "word_index": 66,
+              "text": "And",
+              "normalized": "and"
+            },
+            {
+              "word_index": 67,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 68,
+              "text": "flinch",
+              "normalized": "flinch"
+            },
+            {
+              "word_index": 69,
+              "text": "in",
+              "normalized": "in"
+            },
+            {
+              "word_index": 70,
+              "text": "real",
+              "normalized": "real"
+            },
+            {
+              "word_index": 71,
+              "text": "life",
+              "normalized": "life"
+            },
+            {
+              "word_index": 72,
+              "text": "like",
+              "normalized": "like"
+            },
+            {
+              "word_index": 73,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 74,
+              "text": "just",
+              "normalized": "just"
+            },
+            {
+              "word_index": 75,
+              "text": "got",
+              "normalized": "got"
+            },
+            {
+              "word_index": 76,
+              "text": "smacked.",
+              "normalized": "smacked"
+            }
+          ]
+        },
+        {
+          "line_index": 9,
+          "text": "Avatar bump\u2014yo I feel that ghost,",
+          "words": [
+            {
+              "word_index": 77,
+              "text": "Avatar",
+              "normalized": "avatar"
+            },
+            {
+              "word_index": 78,
+              "text": "bump",
+              "normalized": "bump"
+            },
+            {
+              "word_index": 79,
+              "text": "yo",
+              "normalized": "yo"
+            },
+            {
+              "word_index": 80,
+              "text": "I",
+              "normalized": "i"
+            },
+            {
+              "word_index": 81,
+              "text": "feel",
+              "normalized": "feel"
+            },
+            {
+              "word_index": 82,
+              "text": "that",
+              "normalized": "that"
+            },
+            {
+              "word_index": 83,
+              "text": "ghost,",
+              "normalized": "ghost"
+            }
+          ]
+        },
+        {
+          "line_index": 10,
+          "text": "Like a pixel just grazed me, man I\u2019m doin\u2019 the most.",
+          "words": [
+            {
+              "word_index": 84,
+              "text": "Like",
+              "normalized": "like"
+            },
+            {
+              "word_index": 85,
+              "text": "a",
+              "normalized": "a"
+            },
+            {
+              "word_index": 86,
+              "text": "pixel",
+              "normalized": "pixel"
+            },
+            {
+              "word_index": 87,
+              "text": "just",
+              "normalized": "just"
+            },
+            {
+              "word_index": 88,
+              "text": "grazed",
+              "normalized": "grazed"
+            },
+            {
+              "word_index": 89,
+              "text": "me,",
+              "normalized": "me"
+            },
+            {
+              "word_index": 90,
+              "text": "man",
+              "normalized": "man"
+            },
+            {
+              "word_index": 91,
+              "text": "I\u2019m",
+              "normalized": "i\u2019m"
+            },
+            {
+              "word_index": 92,
+              "text": "doin\u2019",
+              "normalized": "doin"
+            },
+            {
+              "word_index": 93,
+              "text": "the",
+              "normalized": "the"
+            },
+            {
+              "word_index": 94,
+              "text": "most.",
+              "normalized": "most"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

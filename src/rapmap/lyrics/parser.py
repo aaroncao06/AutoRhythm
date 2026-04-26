@@ -18,17 +18,19 @@ def parse_lyrics(lyrics_text: str) -> dict:
             for token in raw_line.split():
                 if not token.strip():
                     continue
-                normalized = normalize_word(token)
-                if not normalized:
-                    continue
-                words.append(
-                    {
-                        "word_index": global_word_idx,
-                        "text": token,
-                        "normalized": normalized,
-                    }
-                )
-                global_word_idx += 1
+                subtokens = re.split(r"[—–]", token)
+                for subtoken in subtokens:
+                    normalized = normalize_word(subtoken)
+                    if not normalized:
+                        continue
+                    words.append(
+                        {
+                            "word_index": global_word_idx,
+                            "text": subtoken,
+                            "normalized": normalized,
+                        }
+                    )
+                    global_word_idx += 1
             if words:
                 lines.append({"line_index": line_idx, "text": raw_line.strip(), "words": words})
         if lines:

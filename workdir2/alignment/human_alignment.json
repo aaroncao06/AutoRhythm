@@ -1,0 +1,5020 @@
+{
+  "sample_rate": 48000,
+  "role": "human",
+  "audio_path": "workdir2/audio/human_rap.wav",
+  "total_duration_samples": 2772392,
+  "words": [
+    {
+      "word_index": 0,
+      "text": "Yeah",
+      "start_sample": 163680,
+      "end_sample": 189600,
+      "phones": [
+        {
+          "phone": "Y",
+          "start_sample": 163680,
+          "end_sample": 176160
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 176160,
+          "end_sample": 189600
+        }
+      ]
+    },
+    {
+      "word_index": 1,
+      "text": "Load",
+      "start_sample": 410880,
+      "end_sample": 422880,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 410880,
+          "end_sample": 415200
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 415200,
+          "end_sample": 420480
+        },
+        {
+          "phone": "D",
+          "start_sample": 420480,
+          "end_sample": 422880
+        }
+      ]
+    },
+    {
+      "word_index": 2,
+      "text": "up",
+      "start_sample": 422880,
+      "end_sample": 433440,
+      "phones": [
+        {
+          "phone": "AH1",
+          "start_sample": 422880,
+          "end_sample": 428640
+        },
+        {
+          "phone": "P",
+          "start_sample": 428640,
+          "end_sample": 433440
+        }
+      ]
+    },
+    {
+      "word_index": 3,
+      "text": "Roblox,",
+      "start_sample": 433440,
+      "end_sample": 466560,
+      "phones": [
+        {
+          "phone": "R",
+          "start_sample": 433440,
+          "end_sample": 436320
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 436320,
+          "end_sample": 440640
+        },
+        {
+          "phone": "B",
+          "start_sample": 440640,
+          "end_sample": 444480
+        },
+        {
+          "phone": "L",
+          "start_sample": 444480,
+          "end_sample": 446400
+        },
+        {
+          "phone": "AA0",
+          "start_sample": 446400,
+          "end_sample": 452160
+        },
+        {
+          "phone": "K",
+          "start_sample": 452160,
+          "end_sample": 455520
+        },
+        {
+          "phone": "S",
+          "start_sample": 455520,
+          "end_sample": 466560
+        }
+      ]
+    },
+    {
+      "word_index": 4,
+      "text": "headset",
+      "start_sample": 479040,
+      "end_sample": 509280,
+      "phones": [
+        {
+          "phone": "HH",
+          "start_sample": 479040,
+          "end_sample": 487200
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 487200,
+          "end_sample": 490560
+        },
+        {
+          "phone": "D",
+          "start_sample": 490560,
+          "end_sample": 494400
+        },
+        {
+          "phone": "S",
+          "start_sample": 494400,
+          "end_sample": 499680
+        },
+        {
+          "phone": "EH2",
+          "start_sample": 499680,
+          "end_sample": 504000
+        },
+        {
+          "phone": "T",
+          "start_sample": 504000,
+          "end_sample": 509280
+        }
+      ]
+    },
+    {
+      "word_index": 5,
+      "text": "sittin\u2019",
+      "start_sample": 509280,
+      "end_sample": 533280,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 509280,
+          "end_sample": 514560
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 514560,
+          "end_sample": 518400
+        },
+        {
+          "phone": "T",
+          "start_sample": 518400,
+          "end_sample": 520320
+        },
+        {
+          "phone": "IH0",
+          "start_sample": 520320,
+          "end_sample": 526560
+        },
+        {
+          "phone": "N",
+          "start_sample": 526560,
+          "end_sample": 533280
+        }
+      ]
+    },
+    {
+      "word_index": 6,
+      "text": "on",
+      "start_sample": 536160,
+      "end_sample": 545280,
+      "phones": [
+        {
+          "phone": "AA1",
+          "start_sample": 536160,
+          "end_sample": 540960
+        },
+        {
+          "phone": "N",
+          "start_sample": 540960,
+          "end_sample": 545280
+        }
+      ]
+    },
+    {
+      "word_index": 7,
+      "text": "my",
+      "start_sample": 545280,
+      "end_sample": 555360,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 545280,
+          "end_sample": 547680
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 547680,
+          "end_sample": 555360
+        }
+      ]
+    },
+    {
+      "word_index": 8,
+      "text": "dome,",
+      "start_sample": 555360,
+      "end_sample": 572640,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 555360,
+          "end_sample": 561120
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 561120,
+          "end_sample": 570720
+        },
+        {
+          "phone": "M",
+          "start_sample": 570720,
+          "end_sample": 572640
+        }
+      ]
+    },
+    {
+      "word_index": 9,
+      "text": "Full",
+      "start_sample": 615360,
+      "end_sample": 632640,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 615360,
+          "end_sample": 625920
+        },
+        {
+          "phone": "UH1",
+          "start_sample": 625920,
+          "end_sample": 627360
+        },
+        {
+          "phone": "L",
+          "start_sample": 627360,
+          "end_sample": 632640
+        }
+      ]
+    },
+    {
+      "word_index": 10,
+      "text": "dive",
+      "start_sample": 632640,
+      "end_sample": 648480,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 632640,
+          "end_sample": 638400
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 638400,
+          "end_sample": 645120
+        },
+        {
+          "phone": "V",
+          "start_sample": 645120,
+          "end_sample": 648480
+        }
+      ]
+    },
+    {
+      "word_index": 11,
+      "text": "mindset,",
+      "start_sample": 648480,
+      "end_sample": 674880,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 648480,
+          "end_sample": 650880
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 650880,
+          "end_sample": 656160
+        },
+        {
+          "phone": "N",
+          "start_sample": 656160,
+          "end_sample": 657600
+        },
+        {
+          "phone": "D",
+          "start_sample": 657600,
+          "end_sample": 660480
+        },
+        {
+          "phone": "S",
+          "start_sample": 660480,
+          "end_sample": 664800
+        },
+        {
+          "phone": "EH2",
+          "start_sample": 664800,
+          "end_sample": 672960
+        },
+        {
+          "phone": "T",
+          "start_sample": 672960,
+          "end_sample": 674880
+        }
+      ]
+    },
+    {
+      "word_index": 12,
+      "text": "now",
+      "start_sample": 702720,
+      "end_sample": 714240,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 702720,
+          "end_sample": 707520
+        },
+        {
+          "phone": "AW1",
+          "start_sample": 707520,
+          "end_sample": 714240
+        }
+      ]
+    },
+    {
+      "word_index": 13,
+      "text": "the",
+      "start_sample": 714240,
+      "end_sample": 734880,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 714240,
+          "end_sample": 718560
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 718560,
+          "end_sample": 734880
+        }
+      ]
+    },
+    {
+      "word_index": 14,
+      "text": "block",
+      "start_sample": 736320,
+      "end_sample": 749280,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 736320,
+          "end_sample": 738720
+        },
+        {
+          "phone": "L",
+          "start_sample": 738720,
+          "end_sample": 740640
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 740640,
+          "end_sample": 744960
+        },
+        {
+          "phone": "K",
+          "start_sample": 744960,
+          "end_sample": 749280
+        }
+      ]
+    },
+    {
+      "word_index": 15,
+      "text": "world",
+      "start_sample": 749280,
+      "end_sample": 757920,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 749280,
+          "end_sample": 750720
+        },
+        {
+          "phone": "ER1",
+          "start_sample": 750720,
+          "end_sample": 752160
+        },
+        {
+          "phone": "L",
+          "start_sample": 752160,
+          "end_sample": 755520
+        },
+        {
+          "phone": "D",
+          "start_sample": 755520,
+          "end_sample": 757920
+        }
+      ]
+    },
+    {
+      "word_index": 16,
+      "text": "home.",
+      "start_sample": 757920,
+      "end_sample": 780000,
+      "phones": [
+        {
+          "phone": "HH",
+          "start_sample": 757920,
+          "end_sample": 761760
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 761760,
+          "end_sample": 771360
+        },
+        {
+          "phone": "M",
+          "start_sample": 771360,
+          "end_sample": 780000
+        }
+      ]
+    },
+    {
+      "word_index": 17,
+      "text": "And",
+      "start_sample": 812160,
+      "end_sample": 825120,
+      "phones": [
+        {
+          "phone": "AE1",
+          "start_sample": 812160,
+          "end_sample": 820800
+        },
+        {
+          "phone": "N",
+          "start_sample": 820800,
+          "end_sample": 822720
+        },
+        {
+          "phone": "D",
+          "start_sample": 822720,
+          "end_sample": 825120
+        }
+      ]
+    },
+    {
+      "word_index": 18,
+      "text": "I",
+      "start_sample": 825120,
+      "end_sample": 830880,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 825120,
+          "end_sample": 830880
+        }
+      ]
+    },
+    {
+      "word_index": 19,
+      "text": "swear",
+      "start_sample": 830880,
+      "end_sample": 848640,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 830880,
+          "end_sample": 838080
+        },
+        {
+          "phone": "W",
+          "start_sample": 838080,
+          "end_sample": 840000
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 840000,
+          "end_sample": 841440
+        },
+        {
+          "phone": "R",
+          "start_sample": 841440,
+          "end_sample": 848640
+        }
+      ]
+    },
+    {
+      "word_index": 20,
+      "text": "it",
+      "start_sample": 848640,
+      "end_sample": 855840,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 848640,
+          "end_sample": 853440
+        },
+        {
+          "phone": "T",
+          "start_sample": 853440,
+          "end_sample": 855840
+        }
+      ]
+    },
+    {
+      "word_index": 21,
+      "text": "gets",
+      "start_sample": 855840,
+      "end_sample": 871680,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 855840,
+          "end_sample": 858720
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 858720,
+          "end_sample": 864000
+        },
+        {
+          "phone": "T",
+          "start_sample": 864000,
+          "end_sample": 866400
+        },
+        {
+          "phone": "S",
+          "start_sample": 866400,
+          "end_sample": 871680
+        }
+      ]
+    },
+    {
+      "word_index": 22,
+      "text": "weird,",
+      "start_sample": 871680,
+      "end_sample": 888480,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 871680,
+          "end_sample": 874560
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 874560,
+          "end_sample": 876960
+        },
+        {
+          "phone": "R",
+          "start_sample": 876960,
+          "end_sample": 883200
+        },
+        {
+          "phone": "D",
+          "start_sample": 883200,
+          "end_sample": 888480
+        }
+      ]
+    },
+    {
+      "word_index": 23,
+      "text": "yeah",
+      "start_sample": 909120,
+      "end_sample": 922560,
+      "phones": [
+        {
+          "phone": "Y",
+          "start_sample": 909120,
+          "end_sample": 914400
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 914400,
+          "end_sample": 922560
+        }
+      ]
+    },
+    {
+      "word_index": 24,
+      "text": "I\u2019m",
+      "start_sample": 922560,
+      "end_sample": 927360,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 922560,
+          "end_sample": 924000
+        },
+        {
+          "phone": "M",
+          "start_sample": 924000,
+          "end_sample": 927360
+        }
+      ]
+    },
+    {
+      "word_index": 25,
+      "text": "tellin\u2019",
+      "start_sample": 927360,
+      "end_sample": 945120,
+      "phones": [
+        {
+          "phone": "T",
+          "start_sample": 927360,
+          "end_sample": 932640
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 932640,
+          "end_sample": 934560
+        },
+        {
+          "phone": "L",
+          "start_sample": 934560,
+          "end_sample": 940800
+        },
+        {
+          "phone": "IH0",
+          "start_sample": 940800,
+          "end_sample": 943680
+        },
+        {
+          "phone": "N",
+          "start_sample": 943680,
+          "end_sample": 945120
+        }
+      ]
+    },
+    {
+      "word_index": 26,
+      "text": "no",
+      "start_sample": 945120,
+      "end_sample": 952800,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 945120,
+          "end_sample": 947520
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 947520,
+          "end_sample": 952800
+        }
+      ]
+    },
+    {
+      "word_index": 27,
+      "text": "lies",
+      "start_sample": 952800,
+      "end_sample": 980640,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 952800,
+          "end_sample": 958080
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 958080,
+          "end_sample": 970080
+        },
+        {
+          "phone": "Z",
+          "start_sample": 970080,
+          "end_sample": 980640
+        }
+      ]
+    },
+    {
+      "word_index": 28,
+      "text": "Got",
+      "start_sample": 1006080,
+      "end_sample": 1018080,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 1006080,
+          "end_sample": 1008960
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1008960,
+          "end_sample": 1014720
+        },
+        {
+          "phone": "T",
+          "start_sample": 1014720,
+          "end_sample": 1018080
+        }
+      ]
+    },
+    {
+      "word_index": 29,
+      "text": "that",
+      "start_sample": 1018080,
+      "end_sample": 1030560,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 1018080,
+          "end_sample": 1020000
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1020000,
+          "end_sample": 1025760
+        },
+        {
+          "phone": "T",
+          "start_sample": 1025760,
+          "end_sample": 1030560
+        }
+      ]
+    },
+    {
+      "word_index": 30,
+      "text": "\u201cphantom",
+      "start_sample": 1030560,
+      "end_sample": 1053120,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 1030560,
+          "end_sample": 1033440
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1033440,
+          "end_sample": 1038720
+        },
+        {
+          "phone": "N",
+          "start_sample": 1038720,
+          "end_sample": 1041600
+        },
+        {
+          "phone": "T",
+          "start_sample": 1041600,
+          "end_sample": 1044480
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1044480,
+          "end_sample": 1048800
+        },
+        {
+          "phone": "M",
+          "start_sample": 1048800,
+          "end_sample": 1053120
+        }
+      ]
+    },
+    {
+      "word_index": 31,
+      "text": "pain\u201d",
+      "start_sample": 1053120,
+      "end_sample": 1076160,
+      "phones": [
+        {
+          "phone": "P",
+          "start_sample": 1053120,
+          "end_sample": 1057440
+        },
+        {
+          "phone": "EY1",
+          "start_sample": 1057440,
+          "end_sample": 1069440
+        },
+        {
+          "phone": "N",
+          "start_sample": 1069440,
+          "end_sample": 1076160
+        }
+      ]
+    },
+    {
+      "word_index": 32,
+      "text": "thing",
+      "start_sample": 1076160,
+      "end_sample": 1101600,
+      "phones": [
+        {
+          "phone": "TH",
+          "start_sample": 1076160,
+          "end_sample": 1083360
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 1083360,
+          "end_sample": 1090560
+        },
+        {
+          "phone": "NG",
+          "start_sample": 1090560,
+          "end_sample": 1101600
+        }
+      ]
+    },
+    {
+      "word_index": 33,
+      "text": "messin\u2019",
+      "start_sample": 1103040,
+      "end_sample": 1129920,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1103040,
+          "end_sample": 1105920
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 1105920,
+          "end_sample": 1110240
+        },
+        {
+          "phone": "S",
+          "start_sample": 1110240,
+          "end_sample": 1117920
+        },
+        {
+          "phone": "IH0",
+          "start_sample": 1117920,
+          "end_sample": 1122720
+        },
+        {
+          "phone": "N",
+          "start_sample": 1122720,
+          "end_sample": 1129920
+        }
+      ]
+    },
+    {
+      "word_index": 34,
+      "text": "up",
+      "start_sample": 1129920,
+      "end_sample": 1138080,
+      "phones": [
+        {
+          "phone": "AH1",
+          "start_sample": 1129920,
+          "end_sample": 1132320
+        },
+        {
+          "phone": "P",
+          "start_sample": 1132320,
+          "end_sample": 1138080
+        }
+      ]
+    },
+    {
+      "word_index": 35,
+      "text": "my",
+      "start_sample": 1138080,
+      "end_sample": 1146240,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1138080,
+          "end_sample": 1141440
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1141440,
+          "end_sample": 1146240
+        }
+      ]
+    },
+    {
+      "word_index": 36,
+      "text": "mind.",
+      "start_sample": 1146240,
+      "end_sample": 1175040,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1146240,
+          "end_sample": 1153920
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1153920,
+          "end_sample": 1166400
+        },
+        {
+          "phone": "N",
+          "start_sample": 1166400,
+          "end_sample": 1171680
+        },
+        {
+          "phone": "D",
+          "start_sample": 1171680,
+          "end_sample": 1175040
+        }
+      ]
+    },
+    {
+      "word_index": 37,
+      "text": "Not",
+      "start_sample": 1205280,
+      "end_sample": 1215840,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 1205280,
+          "end_sample": 1207200
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1207200,
+          "end_sample": 1211040
+        },
+        {
+          "phone": "T",
+          "start_sample": 1211040,
+          "end_sample": 1215840
+        }
+      ]
+    },
+    {
+      "word_index": 38,
+      "text": "the",
+      "start_sample": 1215840,
+      "end_sample": 1222560,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 1215840,
+          "end_sample": 1217280
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1217280,
+          "end_sample": 1222560
+        }
+      ]
+    },
+    {
+      "word_index": 39,
+      "text": "medical",
+      "start_sample": 1222560,
+      "end_sample": 1246560,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1222560,
+          "end_sample": 1226880
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 1226880,
+          "end_sample": 1230240
+        },
+        {
+          "phone": "D",
+          "start_sample": 1230240,
+          "end_sample": 1231680
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1231680,
+          "end_sample": 1236000
+        },
+        {
+          "phone": "K",
+          "start_sample": 1236000,
+          "end_sample": 1239360
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1239360,
+          "end_sample": 1241760
+        },
+        {
+          "phone": "L",
+          "start_sample": 1241760,
+          "end_sample": 1246560
+        }
+      ]
+    },
+    {
+      "word_index": 40,
+      "text": "type,",
+      "start_sample": 1246560,
+      "end_sample": 1260960,
+      "phones": [
+        {
+          "phone": "T",
+          "start_sample": 1246560,
+          "end_sample": 1253280
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1253280,
+          "end_sample": 1258560
+        },
+        {
+          "phone": "P",
+          "start_sample": 1258560,
+          "end_sample": 1260960
+        }
+      ]
+    },
+    {
+      "word_index": 41,
+      "text": "nah,",
+      "start_sample": 1276320,
+      "end_sample": 1297920,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 1276320,
+          "end_sample": 1280160
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1280160,
+          "end_sample": 1297920
+        }
+      ]
+    },
+    {
+      "word_index": 42,
+      "text": "this",
+      "start_sample": 1297920,
+      "end_sample": 1311840,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 1297920,
+          "end_sample": 1301760
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 1301760,
+          "end_sample": 1305600
+        },
+        {
+          "phone": "S",
+          "start_sample": 1305600,
+          "end_sample": 1311840
+        }
+      ]
+    },
+    {
+      "word_index": 43,
+      "text": "one\u2019s",
+      "start_sample": 1311840,
+      "end_sample": 1322880,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 1311840,
+          "end_sample": 1313760
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1313760,
+          "end_sample": 1316640
+        },
+        {
+          "phone": "N",
+          "start_sample": 1316640,
+          "end_sample": 1319520
+        },
+        {
+          "phone": "Z",
+          "start_sample": 1319520,
+          "end_sample": 1322880
+        }
+      ]
+    },
+    {
+      "word_index": 44,
+      "text": "absurd,",
+      "start_sample": 1324320,
+      "end_sample": 1357920,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 1324320,
+          "end_sample": 1328160
+        },
+        {
+          "phone": "B",
+          "start_sample": 1328160,
+          "end_sample": 1332960
+        },
+        {
+          "phone": "S",
+          "start_sample": 1332960,
+          "end_sample": 1340160
+        },
+        {
+          "phone": "ER1",
+          "start_sample": 1340160,
+          "end_sample": 1352640
+        },
+        {
+          "phone": "D",
+          "start_sample": 1352640,
+          "end_sample": 1357920
+        }
+      ]
+    },
+    {
+      "word_index": 45,
+      "text": "It\u2019s",
+      "start_sample": 1388160,
+      "end_sample": 1398240,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 1388160,
+          "end_sample": 1392480
+        },
+        {
+          "phone": "T",
+          "start_sample": 1392480,
+          "end_sample": 1394400
+        },
+        {
+          "phone": "S",
+          "start_sample": 1394400,
+          "end_sample": 1398240
+        }
+      ]
+    },
+    {
+      "word_index": 46,
+      "text": "like",
+      "start_sample": 1398240,
+      "end_sample": 1409280,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1398240,
+          "end_sample": 1401600
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1401600,
+          "end_sample": 1405440
+        },
+        {
+          "phone": "K",
+          "start_sample": 1405440,
+          "end_sample": 1409280
+        }
+      ]
+    },
+    {
+      "word_index": 47,
+      "text": "my",
+      "start_sample": 1409280,
+      "end_sample": 1416960,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1409280,
+          "end_sample": 1411680
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1411680,
+          "end_sample": 1416960
+        }
+      ]
+    },
+    {
+      "word_index": 48,
+      "text": "brain",
+      "start_sample": 1416960,
+      "end_sample": 1431840,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1416960,
+          "end_sample": 1421280
+        },
+        {
+          "phone": "R",
+          "start_sample": 1421280,
+          "end_sample": 1423680
+        },
+        {
+          "phone": "EY1",
+          "start_sample": 1423680,
+          "end_sample": 1428000
+        },
+        {
+          "phone": "N",
+          "start_sample": 1428000,
+          "end_sample": 1431840
+        }
+      ]
+    },
+    {
+      "word_index": 49,
+      "text": "bought",
+      "start_sample": 1431840,
+      "end_sample": 1444800,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1431840,
+          "end_sample": 1434720
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1434720,
+          "end_sample": 1440480
+        },
+        {
+          "phone": "T",
+          "start_sample": 1440480,
+          "end_sample": 1444800
+        }
+      ]
+    },
+    {
+      "word_index": 50,
+      "text": "in",
+      "start_sample": 1444800,
+      "end_sample": 1456800,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1444800,
+          "end_sample": 1453920
+        },
+        {
+          "phone": "N",
+          "start_sample": 1453920,
+          "end_sample": 1456800
+        }
+      ]
+    },
+    {
+      "word_index": 51,
+      "text": "and",
+      "start_sample": 1456800,
+      "end_sample": 1465440,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 1456800,
+          "end_sample": 1460640
+        },
+        {
+          "phone": "N",
+          "start_sample": 1460640,
+          "end_sample": 1462080
+        },
+        {
+          "phone": "D",
+          "start_sample": 1462080,
+          "end_sample": 1465440
+        }
+      ]
+    },
+    {
+      "word_index": 52,
+      "text": "forgot",
+      "start_sample": 1465440,
+      "end_sample": 1492320,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 1465440,
+          "end_sample": 1469280
+        },
+        {
+          "phone": "ER0",
+          "start_sample": 1469280,
+          "end_sample": 1475040
+        },
+        {
+          "phone": "G",
+          "start_sample": 1475040,
+          "end_sample": 1479360
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1479360,
+          "end_sample": 1484640
+        },
+        {
+          "phone": "T",
+          "start_sample": 1484640,
+          "end_sample": 1492320
+        }
+      ]
+    },
+    {
+      "word_index": 53,
+      "text": "what",
+      "start_sample": 1492320,
+      "end_sample": 1502880,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 1492320,
+          "end_sample": 1496160
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1496160,
+          "end_sample": 1500000
+        },
+        {
+          "phone": "T",
+          "start_sample": 1500000,
+          "end_sample": 1502880
+        }
+      ]
+    },
+    {
+      "word_index": 54,
+      "text": "it",
+      "start_sample": 1502880,
+      "end_sample": 1515840,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1502880,
+          "end_sample": 1510080
+        },
+        {
+          "phone": "T",
+          "start_sample": 1510080,
+          "end_sample": 1515840
+        }
+      ]
+    },
+    {
+      "word_index": 55,
+      "text": "heard.",
+      "start_sample": 1515840,
+      "end_sample": 1535520,
+      "phones": [
+        {
+          "phone": "HH",
+          "start_sample": 1515840,
+          "end_sample": 1517760
+        },
+        {
+          "phone": "ER1",
+          "start_sample": 1517760,
+          "end_sample": 1531680
+        },
+        {
+          "phone": "D",
+          "start_sample": 1531680,
+          "end_sample": 1535520
+        }
+      ]
+    },
+    {
+      "word_index": 56,
+      "text": "Some",
+      "start_sample": 1545120,
+      "end_sample": 1578240,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1545120,
+          "end_sample": 1571520
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1571520,
+          "end_sample": 1574400
+        },
+        {
+          "phone": "M",
+          "start_sample": 1574400,
+          "end_sample": 1578240
+        }
+      ]
+    },
+    {
+      "word_index": 57,
+      "text": "dude",
+      "start_sample": 1578240,
+      "end_sample": 1589280,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 1578240,
+          "end_sample": 1581600
+        },
+        {
+          "phone": "UW1",
+          "start_sample": 1581600,
+          "end_sample": 1587360
+        },
+        {
+          "phone": "D",
+          "start_sample": 1587360,
+          "end_sample": 1589280
+        }
+      ]
+    },
+    {
+      "word_index": 58,
+      "text": "walks",
+      "start_sample": 1589280,
+      "end_sample": 1605600,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 1589280,
+          "end_sample": 1593120
+        },
+        {
+          "phone": "AO1",
+          "start_sample": 1593120,
+          "end_sample": 1599360
+        },
+        {
+          "phone": "K",
+          "start_sample": 1599360,
+          "end_sample": 1602720
+        },
+        {
+          "phone": "S",
+          "start_sample": 1602720,
+          "end_sample": 1605600
+        }
+      ]
+    },
+    {
+      "word_index": 59,
+      "text": "through",
+      "start_sample": 1605600,
+      "end_sample": 1614720,
+      "phones": [
+        {
+          "phone": "TH",
+          "start_sample": 1605600,
+          "end_sample": 1607520
+        },
+        {
+          "phone": "R",
+          "start_sample": 1607520,
+          "end_sample": 1608960
+        },
+        {
+          "phone": "UW1",
+          "start_sample": 1608960,
+          "end_sample": 1614720
+        }
+      ]
+    },
+    {
+      "word_index": 60,
+      "text": "me",
+      "start_sample": 1614720,
+      "end_sample": 1626720,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1614720,
+          "end_sample": 1617600
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 1617600,
+          "end_sample": 1626720
+        }
+      ]
+    },
+    {
+      "word_index": 61,
+      "text": "in",
+      "start_sample": 1626720,
+      "end_sample": 1632000,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1626720,
+          "end_sample": 1630560
+        },
+        {
+          "phone": "N",
+          "start_sample": 1630560,
+          "end_sample": 1632000
+        }
+      ]
+    },
+    {
+      "word_index": 62,
+      "text": "a",
+      "start_sample": 1632000,
+      "end_sample": 1639200,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 1632000,
+          "end_sample": 1639200
+        }
+      ]
+    },
+    {
+      "word_index": 63,
+      "text": "lobby",
+      "start_sample": 1639200,
+      "end_sample": 1658400,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1639200,
+          "end_sample": 1644960
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1644960,
+          "end_sample": 1650720
+        },
+        {
+          "phone": "B",
+          "start_sample": 1650720,
+          "end_sample": 1653120
+        },
+        {
+          "phone": "IY0",
+          "start_sample": 1653120,
+          "end_sample": 1658400
+        }
+      ]
+    },
+    {
+      "word_index": 64,
+      "text": "so",
+      "start_sample": 1658400,
+      "end_sample": 1680480,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1658400,
+          "end_sample": 1666560
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 1666560,
+          "end_sample": 1680480
+        }
+      ]
+    },
+    {
+      "word_index": 65,
+      "text": "packed",
+      "start_sample": 1680480,
+      "end_sample": 1710720,
+      "phones": [
+        {
+          "phone": "P",
+          "start_sample": 1680480,
+          "end_sample": 1688640
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1688640,
+          "end_sample": 1696320
+        },
+        {
+          "phone": "K",
+          "start_sample": 1696320,
+          "end_sample": 1701120
+        },
+        {
+          "phone": "T",
+          "start_sample": 1701120,
+          "end_sample": 1710720
+        }
+      ]
+    },
+    {
+      "word_index": 66,
+      "text": "And",
+      "start_sample": 1754400,
+      "end_sample": 1767840,
+      "phones": [
+        {
+          "phone": "AE1",
+          "start_sample": 1754400,
+          "end_sample": 1762560
+        },
+        {
+          "phone": "N",
+          "start_sample": 1762560,
+          "end_sample": 1765440
+        },
+        {
+          "phone": "D",
+          "start_sample": 1765440,
+          "end_sample": 1767840
+        }
+      ]
+    },
+    {
+      "word_index": 67,
+      "text": "I",
+      "start_sample": 1767840,
+      "end_sample": 1776480,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 1767840,
+          "end_sample": 1776480
+        }
+      ]
+    },
+    {
+      "word_index": 68,
+      "text": "flinch",
+      "start_sample": 1776480,
+      "end_sample": 1795680,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 1776480,
+          "end_sample": 1783200
+        },
+        {
+          "phone": "L",
+          "start_sample": 1783200,
+          "end_sample": 1784640
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 1784640,
+          "end_sample": 1789440
+        },
+        {
+          "phone": "N",
+          "start_sample": 1789440,
+          "end_sample": 1791360
+        },
+        {
+          "phone": "CH",
+          "start_sample": 1791360,
+          "end_sample": 1795680
+        }
+      ]
+    },
+    {
+      "word_index": 69,
+      "text": "in",
+      "start_sample": 1795680,
+      "end_sample": 1801920,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1795680,
+          "end_sample": 1798560
+        },
+        {
+          "phone": "N",
+          "start_sample": 1798560,
+          "end_sample": 1801920
+        }
+      ]
+    },
+    {
+      "word_index": 70,
+      "text": "real",
+      "start_sample": 1801920,
+      "end_sample": 1813920,
+      "phones": [
+        {
+          "phone": "R",
+          "start_sample": 1801920,
+          "end_sample": 1805280
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 1805280,
+          "end_sample": 1808640
+        },
+        {
+          "phone": "L",
+          "start_sample": 1808640,
+          "end_sample": 1813920
+        }
+      ]
+    },
+    {
+      "word_index": 71,
+      "text": "life",
+      "start_sample": 1813920,
+      "end_sample": 1830240,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1813920,
+          "end_sample": 1815360
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1815360,
+          "end_sample": 1823040
+        },
+        {
+          "phone": "F",
+          "start_sample": 1823040,
+          "end_sample": 1830240
+        }
+      ]
+    },
+    {
+      "word_index": 72,
+      "text": "like",
+      "start_sample": 1830240,
+      "end_sample": 1840320,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1830240,
+          "end_sample": 1831680
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1831680,
+          "end_sample": 1835520
+        },
+        {
+          "phone": "K",
+          "start_sample": 1835520,
+          "end_sample": 1840320
+        }
+      ]
+    },
+    {
+      "word_index": 73,
+      "text": "I",
+      "start_sample": 1840320,
+      "end_sample": 1847040,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 1840320,
+          "end_sample": 1847040
+        }
+      ]
+    },
+    {
+      "word_index": 74,
+      "text": "just",
+      "start_sample": 1847040,
+      "end_sample": 1860960,
+      "phones": [
+        {
+          "phone": "JH",
+          "start_sample": 1847040,
+          "end_sample": 1852800
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1852800,
+          "end_sample": 1855200
+        },
+        {
+          "phone": "S",
+          "start_sample": 1855200,
+          "end_sample": 1858560
+        },
+        {
+          "phone": "T",
+          "start_sample": 1858560,
+          "end_sample": 1860960
+        }
+      ]
+    },
+    {
+      "word_index": 75,
+      "text": "got",
+      "start_sample": 1860960,
+      "end_sample": 1870080,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 1860960,
+          "end_sample": 1863360
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1863360,
+          "end_sample": 1868160
+        },
+        {
+          "phone": "T",
+          "start_sample": 1868160,
+          "end_sample": 1870080
+        }
+      ]
+    },
+    {
+      "word_index": 76,
+      "text": "smacked.",
+      "start_sample": 1870080,
+      "end_sample": 1905600,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1870080,
+          "end_sample": 1876800
+        },
+        {
+          "phone": "M",
+          "start_sample": 1876800,
+          "end_sample": 1879200
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1879200,
+          "end_sample": 1887840
+        },
+        {
+          "phone": "K",
+          "start_sample": 1887840,
+          "end_sample": 1890240
+        },
+        {
+          "phone": "T",
+          "start_sample": 1890240,
+          "end_sample": 1905600
+        }
+      ]
+    },
+    {
+      "word_index": 77,
+      "text": "Avatar",
+      "start_sample": 1946400,
+      "end_sample": 1967520,
+      "phones": [
+        {
+          "phone": "AE1",
+          "start_sample": 1946400,
+          "end_sample": 1951680
+        },
+        {
+          "phone": "V",
+          "start_sample": 1951680,
+          "end_sample": 1953600
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1953600,
+          "end_sample": 1956000
+        },
+        {
+          "phone": "T",
+          "start_sample": 1956000,
+          "end_sample": 1960800
+        },
+        {
+          "phone": "AA2",
+          "start_sample": 1960800,
+          "end_sample": 1964160
+        },
+        {
+          "phone": "R",
+          "start_sample": 1964160,
+          "end_sample": 1967520
+        }
+      ]
+    },
+    {
+      "word_index": 78,
+      "text": "bump",
+      "start_sample": 1967520,
+      "end_sample": 1985280,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1967520,
+          "end_sample": 1973280
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1973280,
+          "end_sample": 1978560
+        },
+        {
+          "phone": "M",
+          "start_sample": 1978560,
+          "end_sample": 1980960
+        },
+        {
+          "phone": "P",
+          "start_sample": 1980960,
+          "end_sample": 1985280
+        }
+      ]
+    },
+    {
+      "word_index": 79,
+      "text": "yo",
+      "start_sample": 1989600,
+      "end_sample": 2004960,
+      "phones": [
+        {
+          "phone": "Y",
+          "start_sample": 1989600,
+          "end_sample": 1996800
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 1996800,
+          "end_sample": 2004960
+        }
+      ]
+    },
+    {
+      "word_index": 80,
+      "text": "I",
+      "start_sample": 2004960,
+      "end_sample": 2011200,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 2004960,
+          "end_sample": 2011200
+        }
+      ]
+    },
+    {
+      "word_index": 81,
+      "text": "feel",
+      "start_sample": 2011200,
+      "end_sample": 2039040,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 2011200,
+          "end_sample": 2018400
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 2018400,
+          "end_sample": 2023680
+        },
+        {
+          "phone": "L",
+          "start_sample": 2023680,
+          "end_sample": 2039040
+        }
+      ]
+    },
+    {
+      "word_index": 82,
+      "text": "that",
+      "start_sample": 2040480,
+      "end_sample": 2061600,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 2040480,
+          "end_sample": 2042880
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 2042880,
+          "end_sample": 2052960
+        },
+        {
+          "phone": "T",
+          "start_sample": 2052960,
+          "end_sample": 2061600
+        }
+      ]
+    },
+    {
+      "word_index": 83,
+      "text": "ghost,",
+      "start_sample": 2061600,
+      "end_sample": 2092800,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 2061600,
+          "end_sample": 2064960
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 2064960,
+          "end_sample": 2073600
+        },
+        {
+          "phone": "S",
+          "start_sample": 2073600,
+          "end_sample": 2086560
+        },
+        {
+          "phone": "T",
+          "start_sample": 2086560,
+          "end_sample": 2092800
+        }
+      ]
+    },
+    {
+      "word_index": 84,
+      "text": "Like",
+      "start_sample": 2135520,
+      "end_sample": 2149920,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 2135520,
+          "end_sample": 2141280
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 2141280,
+          "end_sample": 2145120
+        },
+        {
+          "phone": "K",
+          "start_sample": 2145120,
+          "end_sample": 2149920
+        }
+      ]
+    },
+    {
+      "word_index": 85,
+      "text": "a",
+      "start_sample": 2149920,
+      "end_sample": 2156160,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 2149920,
+          "end_sample": 2156160
+        }
+      ]
+    },
+    {
+      "word_index": 86,
+      "text": "pixel",
+      "start_sample": 2156160,
+      "end_sample": 2179680,
+      "phones": [
+        {
+          "phone": "P",
+          "start_sample": 2156160,
+          "end_sample": 2162880
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 2162880,
+          "end_sample": 2166240
+        },
+        {
+          "phone": "K",
+          "start_sample": 2166240,
+          "end_sample": 2169120
+        },
+        {
+          "phone": "S",
+          "start_sample": 2169120,
+          "end_sample": 2173440
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 2173440,
+          "end_sample": 2175840
+        },
+        {
+          "phone": "L",
+          "start_sample": 2175840,
+          "end_sample": 2179680
+        }
+      ]
+    },
+    {
+      "word_index": 87,
+      "text": "just",
+      "start_sample": 2179680,
+      "end_sample": 2205600,
+      "phones": [
+        {
+          "phone": "JH",
+          "start_sample": 2179680,
+          "end_sample": 2185920
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 2185920,
+          "end_sample": 2189280
+        },
+        {
+          "phone": "S",
+          "start_sample": 2189280,
+          "end_sample": 2196000
+        },
+        {
+          "phone": "T",
+          "start_sample": 2196000,
+          "end_sample": 2205600
+        }
+      ]
+    },
+    {
+      "word_index": 88,
+      "text": "grazed",
+      "start_sample": 2205600,
+      "end_sample": 2225760,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 2205600,
+          "end_sample": 2208960
+        },
+        {
+          "phone": "R",
+          "start_sample": 2208960,
+          "end_sample": 2211360
+        },
+        {
+          "phone": "EY1",
+          "start_sample": 2211360,
+          "end_sample": 2218560
+        },
+        {
+          "phone": "Z",
+          "start_sample": 2218560,
+          "end_sample": 2221440
+        },
+        {
+          "phone": "D",
+          "start_sample": 2221440,
+          "end_sample": 2225760
+        }
+      ]
+    },
+    {
+      "word_index": 89,
+      "text": "me,",
+      "start_sample": 2225760,
+      "end_sample": 2240160,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 2225760,
+          "end_sample": 2228640
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 2228640,
+          "end_sample": 2240160
+        }
+      ]
+    },
+    {
+      "word_index": 90,
+      "text": "man",
+      "start_sample": 2244960,
+      "end_sample": 2256960,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 2244960,
+          "end_sample": 2248800
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 2248800,
+          "end_sample": 2255040
+        },
+        {
+          "phone": "N",
+          "start_sample": 2255040,
+          "end_sample": 2256960
+        }
+      ]
+    },
+    {
+      "word_index": 91,
+      "text": "I\u2019m",
+      "start_sample": 2256960,
+      "end_sample": 2265120,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 2256960,
+          "end_sample": 2261760
+        },
+        {
+          "phone": "M",
+          "start_sample": 2261760,
+          "end_sample": 2265120
+        }
+      ]
+    },
+    {
+      "word_index": 92,
+      "text": "doin\u2019",
+      "start_sample": 2265120,
+      "end_sample": 2301120,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 2265120,
+          "end_sample": 2268960
+        },
+        {
+          "phone": "OY1",
+          "start_sample": 2268960,
+          "end_sample": 2276160
+        },
+        {
+          "phone": "N",
+          "start_sample": 2276160,
+          "end_sample": 2301120
+        }
+      ]
+    },
+    {
+      "word_index": 93,
+      "text": "the",
+      "start_sample": 2466240,
+      "end_sample": 2517600,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 2466240,
+          "end_sample": 2467680
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 2467680,
+          "end_sample": 2517600
+        }
+      ]
+    },
+    {
+      "word_index": 94,
+      "text": "most.",
+      "start_sample": 2705280,
+      "end_sample": 2732160,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 2705280,
+          "end_sample": 2706720
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 2706720,
+          "end_sample": 2723520
+        },
+        {
+          "phone": "S",
+          "start_sample": 2723520,
+          "end_sample": 2729280
+        },
+        {
+          "phone": "T",
+          "start_sample": 2729280,
+          "end_sample": 2732160
+        }
+      ]
+    }
+  ],
+  "syllables": [
+    {
+      "syllable_index": 0,
+      "word_index": 0,
+      "word_text": "Yeah",
+      "start_sample": 163680,
+      "end_sample": 189600,
+      "anchor_sample": 163680,
+      "phones": [
+        {
+          "phone": "Y",
+          "start_sample": 163680,
+          "end_sample": 176160
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 176160,
+          "end_sample": 189600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 1,
+      "word_index": 1,
+      "word_text": "Load",
+      "start_sample": 410880,
+      "end_sample": 422880,
+      "anchor_sample": 410880,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 410880,
+          "end_sample": 415200
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 415200,
+          "end_sample": 420480
+        },
+        {
+          "phone": "D",
+          "start_sample": 420480,
+          "end_sample": 422880
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 2,
+      "word_index": 2,
+      "word_text": "up",
+      "start_sample": 422880,
+      "end_sample": 433440,
+      "anchor_sample": 422880,
+      "phones": [
+        {
+          "phone": "AH1",
+          "start_sample": 422880,
+          "end_sample": 428640
+        },
+        {
+          "phone": "P",
+          "start_sample": 428640,
+          "end_sample": 433440
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 3,
+      "word_index": 3,
+      "word_text": "Roblox,",
+      "start_sample": 433440,
+      "end_sample": 440640,
+      "anchor_sample": 433440,
+      "phones": [
+        {
+          "phone": "R",
+          "start_sample": 433440,
+          "end_sample": 436320
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 436320,
+          "end_sample": 440640
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 4,
+      "word_index": 3,
+      "word_text": "Roblox,",
+      "start_sample": 440640,
+      "end_sample": 466560,
+      "anchor_sample": 440640,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 440640,
+          "end_sample": 444480
+        },
+        {
+          "phone": "L",
+          "start_sample": 444480,
+          "end_sample": 446400
+        },
+        {
+          "phone": "AA0",
+          "start_sample": 446400,
+          "end_sample": 452160
+        },
+        {
+          "phone": "K",
+          "start_sample": 452160,
+          "end_sample": 455520
+        },
+        {
+          "phone": "S",
+          "start_sample": 455520,
+          "end_sample": 466560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 5,
+      "word_index": 4,
+      "word_text": "headset",
+      "start_sample": 479040,
+      "end_sample": 490560,
+      "anchor_sample": 479040,
+      "phones": [
+        {
+          "phone": "HH",
+          "start_sample": 479040,
+          "end_sample": 487200
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 487200,
+          "end_sample": 490560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 6,
+      "word_index": 4,
+      "word_text": "headset",
+      "start_sample": 490560,
+      "end_sample": 509280,
+      "anchor_sample": 490560,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 490560,
+          "end_sample": 494400
+        },
+        {
+          "phone": "S",
+          "start_sample": 494400,
+          "end_sample": 499680
+        },
+        {
+          "phone": "EH2",
+          "start_sample": 499680,
+          "end_sample": 504000
+        },
+        {
+          "phone": "T",
+          "start_sample": 504000,
+          "end_sample": 509280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 7,
+      "word_index": 5,
+      "word_text": "sittin\u2019",
+      "start_sample": 509280,
+      "end_sample": 518400,
+      "anchor_sample": 509280,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 509280,
+          "end_sample": 514560
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 514560,
+          "end_sample": 518400
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 8,
+      "word_index": 5,
+      "word_text": "sittin\u2019",
+      "start_sample": 518400,
+      "end_sample": 533280,
+      "anchor_sample": 518400,
+      "phones": [
+        {
+          "phone": "T",
+          "start_sample": 518400,
+          "end_sample": 520320
+        },
+        {
+          "phone": "IH0",
+          "start_sample": 520320,
+          "end_sample": 526560
+        },
+        {
+          "phone": "N",
+          "start_sample": 526560,
+          "end_sample": 533280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 9,
+      "word_index": 6,
+      "word_text": "on",
+      "start_sample": 536160,
+      "end_sample": 545280,
+      "anchor_sample": 536160,
+      "phones": [
+        {
+          "phone": "AA1",
+          "start_sample": 536160,
+          "end_sample": 540960
+        },
+        {
+          "phone": "N",
+          "start_sample": 540960,
+          "end_sample": 545280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 10,
+      "word_index": 7,
+      "word_text": "my",
+      "start_sample": 545280,
+      "end_sample": 555360,
+      "anchor_sample": 545280,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 545280,
+          "end_sample": 547680
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 547680,
+          "end_sample": 555360
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 11,
+      "word_index": 8,
+      "word_text": "dome,",
+      "start_sample": 555360,
+      "end_sample": 572640,
+      "anchor_sample": 555360,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 555360,
+          "end_sample": 561120
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 561120,
+          "end_sample": 570720
+        },
+        {
+          "phone": "M",
+          "start_sample": 570720,
+          "end_sample": 572640
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 12,
+      "word_index": 9,
+      "word_text": "Full",
+      "start_sample": 615360,
+      "end_sample": 632640,
+      "anchor_sample": 615360,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 615360,
+          "end_sample": 625920
+        },
+        {
+          "phone": "UH1",
+          "start_sample": 625920,
+          "end_sample": 627360
+        },
+        {
+          "phone": "L",
+          "start_sample": 627360,
+          "end_sample": 632640
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 13,
+      "word_index": 10,
+      "word_text": "dive",
+      "start_sample": 632640,
+      "end_sample": 648480,
+      "anchor_sample": 632640,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 632640,
+          "end_sample": 638400
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 638400,
+          "end_sample": 645120
+        },
+        {
+          "phone": "V",
+          "start_sample": 645120,
+          "end_sample": 648480
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 14,
+      "word_index": 11,
+      "word_text": "mindset,",
+      "start_sample": 648480,
+      "end_sample": 656160,
+      "anchor_sample": 648480,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 648480,
+          "end_sample": 650880
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 650880,
+          "end_sample": 656160
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 15,
+      "word_index": 11,
+      "word_text": "mindset,",
+      "start_sample": 656160,
+      "end_sample": 674880,
+      "anchor_sample": 656160,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 656160,
+          "end_sample": 657600
+        },
+        {
+          "phone": "D",
+          "start_sample": 657600,
+          "end_sample": 660480
+        },
+        {
+          "phone": "S",
+          "start_sample": 660480,
+          "end_sample": 664800
+        },
+        {
+          "phone": "EH2",
+          "start_sample": 664800,
+          "end_sample": 672960
+        },
+        {
+          "phone": "T",
+          "start_sample": 672960,
+          "end_sample": 674880
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 16,
+      "word_index": 12,
+      "word_text": "now",
+      "start_sample": 702720,
+      "end_sample": 714240,
+      "anchor_sample": 702720,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 702720,
+          "end_sample": 707520
+        },
+        {
+          "phone": "AW1",
+          "start_sample": 707520,
+          "end_sample": 714240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 17,
+      "word_index": 13,
+      "word_text": "the",
+      "start_sample": 714240,
+      "end_sample": 734880,
+      "anchor_sample": 714240,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 714240,
+          "end_sample": 718560
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 718560,
+          "end_sample": 734880
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 18,
+      "word_index": 14,
+      "word_text": "block",
+      "start_sample": 736320,
+      "end_sample": 749280,
+      "anchor_sample": 736320,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 736320,
+          "end_sample": 738720
+        },
+        {
+          "phone": "L",
+          "start_sample": 738720,
+          "end_sample": 740640
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 740640,
+          "end_sample": 744960
+        },
+        {
+          "phone": "K",
+          "start_sample": 744960,
+          "end_sample": 749280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 19,
+      "word_index": 15,
+      "word_text": "world",
+      "start_sample": 749280,
+      "end_sample": 757920,
+      "anchor_sample": 749280,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 749280,
+          "end_sample": 750720
+        },
+        {
+          "phone": "ER1",
+          "start_sample": 750720,
+          "end_sample": 752160
+        },
+        {
+          "phone": "L",
+          "start_sample": 752160,
+          "end_sample": 755520
+        },
+        {
+          "phone": "D",
+          "start_sample": 755520,
+          "end_sample": 757920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 20,
+      "word_index": 16,
+      "word_text": "home.",
+      "start_sample": 757920,
+      "end_sample": 780000,
+      "anchor_sample": 757920,
+      "phones": [
+        {
+          "phone": "HH",
+          "start_sample": 757920,
+          "end_sample": 761760
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 761760,
+          "end_sample": 771360
+        },
+        {
+          "phone": "M",
+          "start_sample": 771360,
+          "end_sample": 780000
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 21,
+      "word_index": 17,
+      "word_text": "And",
+      "start_sample": 812160,
+      "end_sample": 825120,
+      "anchor_sample": 812160,
+      "phones": [
+        {
+          "phone": "AE1",
+          "start_sample": 812160,
+          "end_sample": 820800
+        },
+        {
+          "phone": "N",
+          "start_sample": 820800,
+          "end_sample": 822720
+        },
+        {
+          "phone": "D",
+          "start_sample": 822720,
+          "end_sample": 825120
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 22,
+      "word_index": 18,
+      "word_text": "I",
+      "start_sample": 825120,
+      "end_sample": 830880,
+      "anchor_sample": 825120,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 825120,
+          "end_sample": 830880
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 23,
+      "word_index": 19,
+      "word_text": "swear",
+      "start_sample": 830880,
+      "end_sample": 848640,
+      "anchor_sample": 830880,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 830880,
+          "end_sample": 838080
+        },
+        {
+          "phone": "W",
+          "start_sample": 838080,
+          "end_sample": 840000
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 840000,
+          "end_sample": 841440
+        },
+        {
+          "phone": "R",
+          "start_sample": 841440,
+          "end_sample": 848640
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 24,
+      "word_index": 20,
+      "word_text": "it",
+      "start_sample": 848640,
+      "end_sample": 855840,
+      "anchor_sample": 848640,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 848640,
+          "end_sample": 853440
+        },
+        {
+          "phone": "T",
+          "start_sample": 853440,
+          "end_sample": 855840
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 25,
+      "word_index": 21,
+      "word_text": "gets",
+      "start_sample": 855840,
+      "end_sample": 871680,
+      "anchor_sample": 855840,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 855840,
+          "end_sample": 858720
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 858720,
+          "end_sample": 864000
+        },
+        {
+          "phone": "T",
+          "start_sample": 864000,
+          "end_sample": 866400
+        },
+        {
+          "phone": "S",
+          "start_sample": 866400,
+          "end_sample": 871680
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 26,
+      "word_index": 22,
+      "word_text": "weird,",
+      "start_sample": 871680,
+      "end_sample": 888480,
+      "anchor_sample": 871680,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 871680,
+          "end_sample": 874560
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 874560,
+          "end_sample": 876960
+        },
+        {
+          "phone": "R",
+          "start_sample": 876960,
+          "end_sample": 883200
+        },
+        {
+          "phone": "D",
+          "start_sample": 883200,
+          "end_sample": 888480
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 27,
+      "word_index": 23,
+      "word_text": "yeah",
+      "start_sample": 909120,
+      "end_sample": 922560,
+      "anchor_sample": 909120,
+      "phones": [
+        {
+          "phone": "Y",
+          "start_sample": 909120,
+          "end_sample": 914400
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 914400,
+          "end_sample": 922560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 28,
+      "word_index": 24,
+      "word_text": "I\u2019m",
+      "start_sample": 922560,
+      "end_sample": 927360,
+      "anchor_sample": 922560,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 922560,
+          "end_sample": 924000
+        },
+        {
+          "phone": "M",
+          "start_sample": 924000,
+          "end_sample": 927360
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 29,
+      "word_index": 25,
+      "word_text": "tellin\u2019",
+      "start_sample": 927360,
+      "end_sample": 934560,
+      "anchor_sample": 927360,
+      "phones": [
+        {
+          "phone": "T",
+          "start_sample": 927360,
+          "end_sample": 932640
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 932640,
+          "end_sample": 934560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 30,
+      "word_index": 25,
+      "word_text": "tellin\u2019",
+      "start_sample": 934560,
+      "end_sample": 945120,
+      "anchor_sample": 934560,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 934560,
+          "end_sample": 940800
+        },
+        {
+          "phone": "IH0",
+          "start_sample": 940800,
+          "end_sample": 943680
+        },
+        {
+          "phone": "N",
+          "start_sample": 943680,
+          "end_sample": 945120
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 31,
+      "word_index": 26,
+      "word_text": "no",
+      "start_sample": 945120,
+      "end_sample": 952800,
+      "anchor_sample": 945120,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 945120,
+          "end_sample": 947520
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 947520,
+          "end_sample": 952800
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 32,
+      "word_index": 27,
+      "word_text": "lies",
+      "start_sample": 952800,
+      "end_sample": 980640,
+      "anchor_sample": 952800,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 952800,
+          "end_sample": 958080
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 958080,
+          "end_sample": 970080
+        },
+        {
+          "phone": "Z",
+          "start_sample": 970080,
+          "end_sample": 980640
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 33,
+      "word_index": 28,
+      "word_text": "Got",
+      "start_sample": 1006080,
+      "end_sample": 1018080,
+      "anchor_sample": 1006080,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 1006080,
+          "end_sample": 1008960
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1008960,
+          "end_sample": 1014720
+        },
+        {
+          "phone": "T",
+          "start_sample": 1014720,
+          "end_sample": 1018080
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 34,
+      "word_index": 29,
+      "word_text": "that",
+      "start_sample": 1018080,
+      "end_sample": 1030560,
+      "anchor_sample": 1018080,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 1018080,
+          "end_sample": 1020000
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1020000,
+          "end_sample": 1025760
+        },
+        {
+          "phone": "T",
+          "start_sample": 1025760,
+          "end_sample": 1030560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 35,
+      "word_index": 30,
+      "word_text": "\u201cphantom",
+      "start_sample": 1030560,
+      "end_sample": 1038720,
+      "anchor_sample": 1030560,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 1030560,
+          "end_sample": 1033440
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1033440,
+          "end_sample": 1038720
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 36,
+      "word_index": 30,
+      "word_text": "\u201cphantom",
+      "start_sample": 1038720,
+      "end_sample": 1053120,
+      "anchor_sample": 1038720,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 1038720,
+          "end_sample": 1041600
+        },
+        {
+          "phone": "T",
+          "start_sample": 1041600,
+          "end_sample": 1044480
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1044480,
+          "end_sample": 1048800
+        },
+        {
+          "phone": "M",
+          "start_sample": 1048800,
+          "end_sample": 1053120
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 37,
+      "word_index": 31,
+      "word_text": "pain\u201d",
+      "start_sample": 1053120,
+      "end_sample": 1076160,
+      "anchor_sample": 1053120,
+      "phones": [
+        {
+          "phone": "P",
+          "start_sample": 1053120,
+          "end_sample": 1057440
+        },
+        {
+          "phone": "EY1",
+          "start_sample": 1057440,
+          "end_sample": 1069440
+        },
+        {
+          "phone": "N",
+          "start_sample": 1069440,
+          "end_sample": 1076160
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 38,
+      "word_index": 32,
+      "word_text": "thing",
+      "start_sample": 1076160,
+      "end_sample": 1101600,
+      "anchor_sample": 1076160,
+      "phones": [
+        {
+          "phone": "TH",
+          "start_sample": 1076160,
+          "end_sample": 1083360
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 1083360,
+          "end_sample": 1090560
+        },
+        {
+          "phone": "NG",
+          "start_sample": 1090560,
+          "end_sample": 1101600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 39,
+      "word_index": 33,
+      "word_text": "messin\u2019",
+      "start_sample": 1103040,
+      "end_sample": 1110240,
+      "anchor_sample": 1103040,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1103040,
+          "end_sample": 1105920
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 1105920,
+          "end_sample": 1110240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 40,
+      "word_index": 33,
+      "word_text": "messin\u2019",
+      "start_sample": 1110240,
+      "end_sample": 1129920,
+      "anchor_sample": 1110240,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1110240,
+          "end_sample": 1117920
+        },
+        {
+          "phone": "IH0",
+          "start_sample": 1117920,
+          "end_sample": 1122720
+        },
+        {
+          "phone": "N",
+          "start_sample": 1122720,
+          "end_sample": 1129920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 41,
+      "word_index": 34,
+      "word_text": "up",
+      "start_sample": 1129920,
+      "end_sample": 1138080,
+      "anchor_sample": 1129920,
+      "phones": [
+        {
+          "phone": "AH1",
+          "start_sample": 1129920,
+          "end_sample": 1132320
+        },
+        {
+          "phone": "P",
+          "start_sample": 1132320,
+          "end_sample": 1138080
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 42,
+      "word_index": 35,
+      "word_text": "my",
+      "start_sample": 1138080,
+      "end_sample": 1146240,
+      "anchor_sample": 1138080,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1138080,
+          "end_sample": 1141440
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1141440,
+          "end_sample": 1146240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 43,
+      "word_index": 36,
+      "word_text": "mind.",
+      "start_sample": 1146240,
+      "end_sample": 1175040,
+      "anchor_sample": 1146240,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1146240,
+          "end_sample": 1153920
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1153920,
+          "end_sample": 1166400
+        },
+        {
+          "phone": "N",
+          "start_sample": 1166400,
+          "end_sample": 1171680
+        },
+        {
+          "phone": "D",
+          "start_sample": 1171680,
+          "end_sample": 1175040
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 44,
+      "word_index": 37,
+      "word_text": "Not",
+      "start_sample": 1205280,
+      "end_sample": 1215840,
+      "anchor_sample": 1205280,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 1205280,
+          "end_sample": 1207200
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1207200,
+          "end_sample": 1211040
+        },
+        {
+          "phone": "T",
+          "start_sample": 1211040,
+          "end_sample": 1215840
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 45,
+      "word_index": 38,
+      "word_text": "the",
+      "start_sample": 1215840,
+      "end_sample": 1222560,
+      "anchor_sample": 1215840,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 1215840,
+          "end_sample": 1217280
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1217280,
+          "end_sample": 1222560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 46,
+      "word_index": 39,
+      "word_text": "medical",
+      "start_sample": 1222560,
+      "end_sample": 1230240,
+      "anchor_sample": 1222560,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1222560,
+          "end_sample": 1226880
+        },
+        {
+          "phone": "EH1",
+          "start_sample": 1226880,
+          "end_sample": 1230240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 47,
+      "word_index": 39,
+      "word_text": "medical",
+      "start_sample": 1230240,
+      "end_sample": 1236000,
+      "anchor_sample": 1230240,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 1230240,
+          "end_sample": 1231680
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1231680,
+          "end_sample": 1236000
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 48,
+      "word_index": 39,
+      "word_text": "medical",
+      "start_sample": 1236000,
+      "end_sample": 1246560,
+      "anchor_sample": 1236000,
+      "phones": [
+        {
+          "phone": "K",
+          "start_sample": 1236000,
+          "end_sample": 1239360
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1239360,
+          "end_sample": 1241760
+        },
+        {
+          "phone": "L",
+          "start_sample": 1241760,
+          "end_sample": 1246560
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 49,
+      "word_index": 40,
+      "word_text": "type,",
+      "start_sample": 1246560,
+      "end_sample": 1260960,
+      "anchor_sample": 1246560,
+      "phones": [
+        {
+          "phone": "T",
+          "start_sample": 1246560,
+          "end_sample": 1253280
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1253280,
+          "end_sample": 1258560
+        },
+        {
+          "phone": "P",
+          "start_sample": 1258560,
+          "end_sample": 1260960
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 50,
+      "word_index": 41,
+      "word_text": "nah,",
+      "start_sample": 1276320,
+      "end_sample": 1297920,
+      "anchor_sample": 1276320,
+      "phones": [
+        {
+          "phone": "N",
+          "start_sample": 1276320,
+          "end_sample": 1280160
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1280160,
+          "end_sample": 1297920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 51,
+      "word_index": 42,
+      "word_text": "this",
+      "start_sample": 1297920,
+      "end_sample": 1311840,
+      "anchor_sample": 1297920,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 1297920,
+          "end_sample": 1301760
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 1301760,
+          "end_sample": 1305600
+        },
+        {
+          "phone": "S",
+          "start_sample": 1305600,
+          "end_sample": 1311840
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 52,
+      "word_index": 43,
+      "word_text": "one\u2019s",
+      "start_sample": 1311840,
+      "end_sample": 1322880,
+      "anchor_sample": 1311840,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 1311840,
+          "end_sample": 1313760
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1313760,
+          "end_sample": 1316640
+        },
+        {
+          "phone": "N",
+          "start_sample": 1316640,
+          "end_sample": 1319520
+        },
+        {
+          "phone": "Z",
+          "start_sample": 1319520,
+          "end_sample": 1322880
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 53,
+      "word_index": 44,
+      "word_text": "absurd,",
+      "start_sample": 1324320,
+      "end_sample": 1328160,
+      "anchor_sample": 1324320,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 1324320,
+          "end_sample": 1328160
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 54,
+      "word_index": 44,
+      "word_text": "absurd,",
+      "start_sample": 1328160,
+      "end_sample": 1357920,
+      "anchor_sample": 1328160,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1328160,
+          "end_sample": 1332960
+        },
+        {
+          "phone": "S",
+          "start_sample": 1332960,
+          "end_sample": 1340160
+        },
+        {
+          "phone": "ER1",
+          "start_sample": 1340160,
+          "end_sample": 1352640
+        },
+        {
+          "phone": "D",
+          "start_sample": 1352640,
+          "end_sample": 1357920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 55,
+      "word_index": 45,
+      "word_text": "It\u2019s",
+      "start_sample": 1388160,
+      "end_sample": 1398240,
+      "anchor_sample": 1388160,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 1388160,
+          "end_sample": 1392480
+        },
+        {
+          "phone": "T",
+          "start_sample": 1392480,
+          "end_sample": 1394400
+        },
+        {
+          "phone": "S",
+          "start_sample": 1394400,
+          "end_sample": 1398240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 56,
+      "word_index": 46,
+      "word_text": "like",
+      "start_sample": 1398240,
+      "end_sample": 1409280,
+      "anchor_sample": 1398240,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1398240,
+          "end_sample": 1401600
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1401600,
+          "end_sample": 1405440
+        },
+        {
+          "phone": "K",
+          "start_sample": 1405440,
+          "end_sample": 1409280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 57,
+      "word_index": 47,
+      "word_text": "my",
+      "start_sample": 1409280,
+      "end_sample": 1416960,
+      "anchor_sample": 1409280,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1409280,
+          "end_sample": 1411680
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1411680,
+          "end_sample": 1416960
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 58,
+      "word_index": 48,
+      "word_text": "brain",
+      "start_sample": 1416960,
+      "end_sample": 1431840,
+      "anchor_sample": 1416960,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1416960,
+          "end_sample": 1421280
+        },
+        {
+          "phone": "R",
+          "start_sample": 1421280,
+          "end_sample": 1423680
+        },
+        {
+          "phone": "EY1",
+          "start_sample": 1423680,
+          "end_sample": 1428000
+        },
+        {
+          "phone": "N",
+          "start_sample": 1428000,
+          "end_sample": 1431840
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 59,
+      "word_index": 49,
+      "word_text": "bought",
+      "start_sample": 1431840,
+      "end_sample": 1444800,
+      "anchor_sample": 1431840,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1431840,
+          "end_sample": 1434720
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1434720,
+          "end_sample": 1440480
+        },
+        {
+          "phone": "T",
+          "start_sample": 1440480,
+          "end_sample": 1444800
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 60,
+      "word_index": 50,
+      "word_text": "in",
+      "start_sample": 1444800,
+      "end_sample": 1456800,
+      "anchor_sample": 1444800,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1444800,
+          "end_sample": 1453920
+        },
+        {
+          "phone": "N",
+          "start_sample": 1453920,
+          "end_sample": 1456800
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 61,
+      "word_index": 51,
+      "word_text": "and",
+      "start_sample": 1456800,
+      "end_sample": 1465440,
+      "anchor_sample": 1456800,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 1456800,
+          "end_sample": 1460640
+        },
+        {
+          "phone": "N",
+          "start_sample": 1460640,
+          "end_sample": 1462080
+        },
+        {
+          "phone": "D",
+          "start_sample": 1462080,
+          "end_sample": 1465440
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 62,
+      "word_index": 52,
+      "word_text": "forgot",
+      "start_sample": 1465440,
+      "end_sample": 1475040,
+      "anchor_sample": 1465440,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 1465440,
+          "end_sample": 1469280
+        },
+        {
+          "phone": "ER0",
+          "start_sample": 1469280,
+          "end_sample": 1475040
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 63,
+      "word_index": 52,
+      "word_text": "forgot",
+      "start_sample": 1475040,
+      "end_sample": 1492320,
+      "anchor_sample": 1475040,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 1475040,
+          "end_sample": 1479360
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1479360,
+          "end_sample": 1484640
+        },
+        {
+          "phone": "T",
+          "start_sample": 1484640,
+          "end_sample": 1492320
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 64,
+      "word_index": 53,
+      "word_text": "what",
+      "start_sample": 1492320,
+      "end_sample": 1502880,
+      "anchor_sample": 1492320,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 1492320,
+          "end_sample": 1496160
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1496160,
+          "end_sample": 1500000
+        },
+        {
+          "phone": "T",
+          "start_sample": 1500000,
+          "end_sample": 1502880
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 65,
+      "word_index": 54,
+      "word_text": "it",
+      "start_sample": 1502880,
+      "end_sample": 1515840,
+      "anchor_sample": 1502880,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1502880,
+          "end_sample": 1510080
+        },
+        {
+          "phone": "T",
+          "start_sample": 1510080,
+          "end_sample": 1515840
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 66,
+      "word_index": 55,
+      "word_text": "heard.",
+      "start_sample": 1515840,
+      "end_sample": 1535520,
+      "anchor_sample": 1515840,
+      "phones": [
+        {
+          "phone": "HH",
+          "start_sample": 1515840,
+          "end_sample": 1517760
+        },
+        {
+          "phone": "ER1",
+          "start_sample": 1517760,
+          "end_sample": 1531680
+        },
+        {
+          "phone": "D",
+          "start_sample": 1531680,
+          "end_sample": 1535520
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 67,
+      "word_index": 56,
+      "word_text": "Some",
+      "start_sample": 1545120,
+      "end_sample": 1578240,
+      "anchor_sample": 1545120,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1545120,
+          "end_sample": 1571520
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1571520,
+          "end_sample": 1574400
+        },
+        {
+          "phone": "M",
+          "start_sample": 1574400,
+          "end_sample": 1578240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 68,
+      "word_index": 57,
+      "word_text": "dude",
+      "start_sample": 1578240,
+      "end_sample": 1589280,
+      "anchor_sample": 1578240,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 1578240,
+          "end_sample": 1581600
+        },
+        {
+          "phone": "UW1",
+          "start_sample": 1581600,
+          "end_sample": 1587360
+        },
+        {
+          "phone": "D",
+          "start_sample": 1587360,
+          "end_sample": 1589280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 69,
+      "word_index": 58,
+      "word_text": "walks",
+      "start_sample": 1589280,
+      "end_sample": 1605600,
+      "anchor_sample": 1589280,
+      "phones": [
+        {
+          "phone": "W",
+          "start_sample": 1589280,
+          "end_sample": 1593120
+        },
+        {
+          "phone": "AO1",
+          "start_sample": 1593120,
+          "end_sample": 1599360
+        },
+        {
+          "phone": "K",
+          "start_sample": 1599360,
+          "end_sample": 1602720
+        },
+        {
+          "phone": "S",
+          "start_sample": 1602720,
+          "end_sample": 1605600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 70,
+      "word_index": 59,
+      "word_text": "through",
+      "start_sample": 1605600,
+      "end_sample": 1614720,
+      "anchor_sample": 1605600,
+      "phones": [
+        {
+          "phone": "TH",
+          "start_sample": 1605600,
+          "end_sample": 1607520
+        },
+        {
+          "phone": "R",
+          "start_sample": 1607520,
+          "end_sample": 1608960
+        },
+        {
+          "phone": "UW1",
+          "start_sample": 1608960,
+          "end_sample": 1614720
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 71,
+      "word_index": 60,
+      "word_text": "me",
+      "start_sample": 1614720,
+      "end_sample": 1626720,
+      "anchor_sample": 1614720,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 1614720,
+          "end_sample": 1617600
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 1617600,
+          "end_sample": 1626720
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 72,
+      "word_index": 61,
+      "word_text": "in",
+      "start_sample": 1626720,
+      "end_sample": 1632000,
+      "anchor_sample": 1626720,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1626720,
+          "end_sample": 1630560
+        },
+        {
+          "phone": "N",
+          "start_sample": 1630560,
+          "end_sample": 1632000
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 73,
+      "word_index": 62,
+      "word_text": "a",
+      "start_sample": 1632000,
+      "end_sample": 1639200,
+      "anchor_sample": 1632000,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 1632000,
+          "end_sample": 1639200
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 74,
+      "word_index": 63,
+      "word_text": "lobby",
+      "start_sample": 1639200,
+      "end_sample": 1650720,
+      "anchor_sample": 1639200,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1639200,
+          "end_sample": 1644960
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1644960,
+          "end_sample": 1650720
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 75,
+      "word_index": 63,
+      "word_text": "lobby",
+      "start_sample": 1650720,
+      "end_sample": 1658400,
+      "anchor_sample": 1650720,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1650720,
+          "end_sample": 1653120
+        },
+        {
+          "phone": "IY0",
+          "start_sample": 1653120,
+          "end_sample": 1658400
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 76,
+      "word_index": 64,
+      "word_text": "so",
+      "start_sample": 1658400,
+      "end_sample": 1680480,
+      "anchor_sample": 1658400,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1658400,
+          "end_sample": 1666560
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 1666560,
+          "end_sample": 1680480
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 77,
+      "word_index": 65,
+      "word_text": "packed",
+      "start_sample": 1680480,
+      "end_sample": 1710720,
+      "anchor_sample": 1680480,
+      "phones": [
+        {
+          "phone": "P",
+          "start_sample": 1680480,
+          "end_sample": 1688640
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1688640,
+          "end_sample": 1696320
+        },
+        {
+          "phone": "K",
+          "start_sample": 1696320,
+          "end_sample": 1701120
+        },
+        {
+          "phone": "T",
+          "start_sample": 1701120,
+          "end_sample": 1710720
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 78,
+      "word_index": 66,
+      "word_text": "And",
+      "start_sample": 1754400,
+      "end_sample": 1767840,
+      "anchor_sample": 1754400,
+      "phones": [
+        {
+          "phone": "AE1",
+          "start_sample": 1754400,
+          "end_sample": 1762560
+        },
+        {
+          "phone": "N",
+          "start_sample": 1762560,
+          "end_sample": 1765440
+        },
+        {
+          "phone": "D",
+          "start_sample": 1765440,
+          "end_sample": 1767840
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 79,
+      "word_index": 67,
+      "word_text": "I",
+      "start_sample": 1767840,
+      "end_sample": 1776480,
+      "anchor_sample": 1767840,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 1767840,
+          "end_sample": 1776480
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 80,
+      "word_index": 68,
+      "word_text": "flinch",
+      "start_sample": 1776480,
+      "end_sample": 1795680,
+      "anchor_sample": 1776480,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 1776480,
+          "end_sample": 1783200
+        },
+        {
+          "phone": "L",
+          "start_sample": 1783200,
+          "end_sample": 1784640
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 1784640,
+          "end_sample": 1789440
+        },
+        {
+          "phone": "N",
+          "start_sample": 1789440,
+          "end_sample": 1791360
+        },
+        {
+          "phone": "CH",
+          "start_sample": 1791360,
+          "end_sample": 1795680
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 81,
+      "word_index": 69,
+      "word_text": "in",
+      "start_sample": 1795680,
+      "end_sample": 1801920,
+      "anchor_sample": 1795680,
+      "phones": [
+        {
+          "phone": "IH0",
+          "start_sample": 1795680,
+          "end_sample": 1798560
+        },
+        {
+          "phone": "N",
+          "start_sample": 1798560,
+          "end_sample": 1801920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 82,
+      "word_index": 70,
+      "word_text": "real",
+      "start_sample": 1801920,
+      "end_sample": 1813920,
+      "anchor_sample": 1801920,
+      "phones": [
+        {
+          "phone": "R",
+          "start_sample": 1801920,
+          "end_sample": 1805280
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 1805280,
+          "end_sample": 1808640
+        },
+        {
+          "phone": "L",
+          "start_sample": 1808640,
+          "end_sample": 1813920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 83,
+      "word_index": 71,
+      "word_text": "life",
+      "start_sample": 1813920,
+      "end_sample": 1830240,
+      "anchor_sample": 1813920,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1813920,
+          "end_sample": 1815360
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1815360,
+          "end_sample": 1823040
+        },
+        {
+          "phone": "F",
+          "start_sample": 1823040,
+          "end_sample": 1830240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 84,
+      "word_index": 72,
+      "word_text": "like",
+      "start_sample": 1830240,
+      "end_sample": 1840320,
+      "anchor_sample": 1830240,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 1830240,
+          "end_sample": 1831680
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 1831680,
+          "end_sample": 1835520
+        },
+        {
+          "phone": "K",
+          "start_sample": 1835520,
+          "end_sample": 1840320
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 85,
+      "word_index": 73,
+      "word_text": "I",
+      "start_sample": 1840320,
+      "end_sample": 1847040,
+      "anchor_sample": 1840320,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 1840320,
+          "end_sample": 1847040
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 86,
+      "word_index": 74,
+      "word_text": "just",
+      "start_sample": 1847040,
+      "end_sample": 1860960,
+      "anchor_sample": 1847040,
+      "phones": [
+        {
+          "phone": "JH",
+          "start_sample": 1847040,
+          "end_sample": 1852800
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1852800,
+          "end_sample": 1855200
+        },
+        {
+          "phone": "S",
+          "start_sample": 1855200,
+          "end_sample": 1858560
+        },
+        {
+          "phone": "T",
+          "start_sample": 1858560,
+          "end_sample": 1860960
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 87,
+      "word_index": 75,
+      "word_text": "got",
+      "start_sample": 1860960,
+      "end_sample": 1870080,
+      "anchor_sample": 1860960,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 1860960,
+          "end_sample": 1863360
+        },
+        {
+          "phone": "AA1",
+          "start_sample": 1863360,
+          "end_sample": 1868160
+        },
+        {
+          "phone": "T",
+          "start_sample": 1868160,
+          "end_sample": 1870080
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 88,
+      "word_index": 76,
+      "word_text": "smacked.",
+      "start_sample": 1870080,
+      "end_sample": 1905600,
+      "anchor_sample": 1870080,
+      "phones": [
+        {
+          "phone": "S",
+          "start_sample": 1870080,
+          "end_sample": 1876800
+        },
+        {
+          "phone": "M",
+          "start_sample": 1876800,
+          "end_sample": 1879200
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 1879200,
+          "end_sample": 1887840
+        },
+        {
+          "phone": "K",
+          "start_sample": 1887840,
+          "end_sample": 1890240
+        },
+        {
+          "phone": "T",
+          "start_sample": 1890240,
+          "end_sample": 1905600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 89,
+      "word_index": 77,
+      "word_text": "Avatar",
+      "start_sample": 1946400,
+      "end_sample": 1951680,
+      "anchor_sample": 1946400,
+      "phones": [
+        {
+          "phone": "AE1",
+          "start_sample": 1946400,
+          "end_sample": 1951680
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 90,
+      "word_index": 77,
+      "word_text": "Avatar",
+      "start_sample": 1951680,
+      "end_sample": 1956000,
+      "anchor_sample": 1951680,
+      "phones": [
+        {
+          "phone": "V",
+          "start_sample": 1951680,
+          "end_sample": 1953600
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 1953600,
+          "end_sample": 1956000
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 91,
+      "word_index": 77,
+      "word_text": "Avatar",
+      "start_sample": 1956000,
+      "end_sample": 1967520,
+      "anchor_sample": 1956000,
+      "phones": [
+        {
+          "phone": "T",
+          "start_sample": 1956000,
+          "end_sample": 1960800
+        },
+        {
+          "phone": "AA2",
+          "start_sample": 1960800,
+          "end_sample": 1964160
+        },
+        {
+          "phone": "R",
+          "start_sample": 1964160,
+          "end_sample": 1967520
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 92,
+      "word_index": 78,
+      "word_text": "bump",
+      "start_sample": 1967520,
+      "end_sample": 1985280,
+      "anchor_sample": 1967520,
+      "phones": [
+        {
+          "phone": "B",
+          "start_sample": 1967520,
+          "end_sample": 1973280
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 1973280,
+          "end_sample": 1978560
+        },
+        {
+          "phone": "M",
+          "start_sample": 1978560,
+          "end_sample": 1980960
+        },
+        {
+          "phone": "P",
+          "start_sample": 1980960,
+          "end_sample": 1985280
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 93,
+      "word_index": 79,
+      "word_text": "yo",
+      "start_sample": 1989600,
+      "end_sample": 2004960,
+      "anchor_sample": 1989600,
+      "phones": [
+        {
+          "phone": "Y",
+          "start_sample": 1989600,
+          "end_sample": 1996800
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 1996800,
+          "end_sample": 2004960
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 94,
+      "word_index": 80,
+      "word_text": "I",
+      "start_sample": 2004960,
+      "end_sample": 2011200,
+      "anchor_sample": 2004960,
+      "phones": [
+        {
+          "phone": "AY1",
+          "start_sample": 2004960,
+          "end_sample": 2011200
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 95,
+      "word_index": 81,
+      "word_text": "feel",
+      "start_sample": 2011200,
+      "end_sample": 2039040,
+      "anchor_sample": 2011200,
+      "phones": [
+        {
+          "phone": "F",
+          "start_sample": 2011200,
+          "end_sample": 2018400
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 2018400,
+          "end_sample": 2023680
+        },
+        {
+          "phone": "L",
+          "start_sample": 2023680,
+          "end_sample": 2039040
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 96,
+      "word_index": 82,
+      "word_text": "that",
+      "start_sample": 2040480,
+      "end_sample": 2061600,
+      "anchor_sample": 2040480,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 2040480,
+          "end_sample": 2042880
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 2042880,
+          "end_sample": 2052960
+        },
+        {
+          "phone": "T",
+          "start_sample": 2052960,
+          "end_sample": 2061600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 97,
+      "word_index": 83,
+      "word_text": "ghost,",
+      "start_sample": 2061600,
+      "end_sample": 2092800,
+      "anchor_sample": 2061600,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 2061600,
+          "end_sample": 2064960
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 2064960,
+          "end_sample": 2073600
+        },
+        {
+          "phone": "S",
+          "start_sample": 2073600,
+          "end_sample": 2086560
+        },
+        {
+          "phone": "T",
+          "start_sample": 2086560,
+          "end_sample": 2092800
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 98,
+      "word_index": 84,
+      "word_text": "Like",
+      "start_sample": 2135520,
+      "end_sample": 2149920,
+      "anchor_sample": 2135520,
+      "phones": [
+        {
+          "phone": "L",
+          "start_sample": 2135520,
+          "end_sample": 2141280
+        },
+        {
+          "phone": "AY1",
+          "start_sample": 2141280,
+          "end_sample": 2145120
+        },
+        {
+          "phone": "K",
+          "start_sample": 2145120,
+          "end_sample": 2149920
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 99,
+      "word_index": 85,
+      "word_text": "a",
+      "start_sample": 2149920,
+      "end_sample": 2156160,
+      "anchor_sample": 2149920,
+      "phones": [
+        {
+          "phone": "AH0",
+          "start_sample": 2149920,
+          "end_sample": 2156160
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 100,
+      "word_index": 86,
+      "word_text": "pixel",
+      "start_sample": 2156160,
+      "end_sample": 2166240,
+      "anchor_sample": 2156160,
+      "phones": [
+        {
+          "phone": "P",
+          "start_sample": 2156160,
+          "end_sample": 2162880
+        },
+        {
+          "phone": "IH1",
+          "start_sample": 2162880,
+          "end_sample": 2166240
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 101,
+      "word_index": 86,
+      "word_text": "pixel",
+      "start_sample": 2166240,
+      "end_sample": 2179680,
+      "anchor_sample": 2166240,
+      "phones": [
+        {
+          "phone": "K",
+          "start_sample": 2166240,
+          "end_sample": 2169120
+        },
+        {
+          "phone": "S",
+          "start_sample": 2169120,
+          "end_sample": 2173440
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 2173440,
+          "end_sample": 2175840
+        },
+        {
+          "phone": "L",
+          "start_sample": 2175840,
+          "end_sample": 2179680
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 102,
+      "word_index": 87,
+      "word_text": "just",
+      "start_sample": 2179680,
+      "end_sample": 2205600,
+      "anchor_sample": 2179680,
+      "phones": [
+        {
+          "phone": "JH",
+          "start_sample": 2179680,
+          "end_sample": 2185920
+        },
+        {
+          "phone": "AH1",
+          "start_sample": 2185920,
+          "end_sample": 2189280
+        },
+        {
+          "phone": "S",
+          "start_sample": 2189280,
+          "end_sample": 2196000
+        },
+        {
+          "phone": "T",
+          "start_sample": 2196000,
+          "end_sample": 2205600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 103,
+      "word_index": 88,
+      "word_text": "grazed",
+      "start_sample": 2205600,
+      "end_sample": 2225760,
+      "anchor_sample": 2205600,
+      "phones": [
+        {
+          "phone": "G",
+          "start_sample": 2205600,
+          "end_sample": 2208960
+        },
+        {
+          "phone": "R",
+          "start_sample": 2208960,
+          "end_sample": 2211360
+        },
+        {
+          "phone": "EY1",
+          "start_sample": 2211360,
+          "end_sample": 2218560
+        },
+        {
+          "phone": "Z",
+          "start_sample": 2218560,
+          "end_sample": 2221440
+        },
+        {
+          "phone": "D",
+          "start_sample": 2221440,
+          "end_sample": 2225760
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 104,
+      "word_index": 89,
+      "word_text": "me,",
+      "start_sample": 2225760,
+      "end_sample": 2240160,
+      "anchor_sample": 2225760,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 2225760,
+          "end_sample": 2228640
+        },
+        {
+          "phone": "IY1",
+          "start_sample": 2228640,
+          "end_sample": 2240160
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 105,
+      "word_index": 90,
+      "word_text": "man",
+      "start_sample": 2244960,
+      "end_sample": 2256960,
+      "anchor_sample": 2244960,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 2244960,
+          "end_sample": 2248800
+        },
+        {
+          "phone": "AE1",
+          "start_sample": 2248800,
+          "end_sample": 2255040
+        },
+        {
+          "phone": "N",
+          "start_sample": 2255040,
+          "end_sample": 2256960
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 106,
+      "word_index": 91,
+      "word_text": "I\u2019m",
+      "start_sample": 2256960,
+      "end_sample": 2265120,
+      "anchor_sample": 2256960,
+      "phones": [
+        {
+          "phone": "IH1",
+          "start_sample": 2256960,
+          "end_sample": 2261760
+        },
+        {
+          "phone": "M",
+          "start_sample": 2261760,
+          "end_sample": 2265120
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 107,
+      "word_index": 92,
+      "word_text": "doin\u2019",
+      "start_sample": 2265120,
+      "end_sample": 2301120,
+      "anchor_sample": 2265120,
+      "phones": [
+        {
+          "phone": "D",
+          "start_sample": 2265120,
+          "end_sample": 2268960
+        },
+        {
+          "phone": "OY1",
+          "start_sample": 2268960,
+          "end_sample": 2276160
+        },
+        {
+          "phone": "N",
+          "start_sample": 2276160,
+          "end_sample": 2301120
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 108,
+      "word_index": 93,
+      "word_text": "the",
+      "start_sample": 2466240,
+      "end_sample": 2517600,
+      "anchor_sample": 2466240,
+      "phones": [
+        {
+          "phone": "DH",
+          "start_sample": 2466240,
+          "end_sample": 2467680
+        },
+        {
+          "phone": "AH0",
+          "start_sample": 2467680,
+          "end_sample": 2517600
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "syllable_index": 109,
+      "word_index": 94,
+      "word_text": "most.",
+      "start_sample": 2705280,
+      "end_sample": 2732160,
+      "anchor_sample": 2705280,
+      "phones": [
+        {
+          "phone": "M",
+          "start_sample": 2705280,
+          "end_sample": 2706720
+        },
+        {
+          "phone": "OW1",
+          "start_sample": 2706720,
+          "end_sample": 2723520
+        },
+        {
+          "phone": "S",
+          "start_sample": 2723520,
+          "end_sample": 2729280
+        },
+        {
+          "phone": "T",
+          "start_sample": 2729280,
+          "end_sample": 2732160
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

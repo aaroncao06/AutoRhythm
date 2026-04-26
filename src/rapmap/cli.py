@@ -96,16 +96,25 @@ def generate_guide(project: Path, model: str, out: Path | None, caption: str, se
     if model == "acestep":
         from rapmap.guide.acestep import generate_guide_vocal
 
-        click.echo(f"Generating guide with ACE-Step (duration={duration:.1f}s, bpm={bpm}, time_sig={time_signature or 'auto'}, seed={seed})")
+        backing_path = project / "audio" / "backing.wav"
+        task_type = config.guide_generation.task_type
+        if task_type == "lego" and backing_path.exists():
+            click.echo(f"Generating guide with ACE-Step lego (backing-conditioned, seed={seed})")
+        else:
+            if task_type == "lego":
+                click.echo("  Backing track not found, falling back to text2music")
+            click.echo(f"Generating guide with ACE-Step (duration={duration:.1f}s, bpm={bpm}, time_sig={time_signature or 'auto'}, seed={seed})")
         result = generate_guide_vocal(
             lyrics_text=lyrics_text,
             project_dir=project,
             config=config.project,
+            guide_config=config.guide_generation,
             duration=duration,
             bpm=bpm,
             time_signature=time_signature,
             caption=caption,
             seed=seed,
+            backing_path=backing_path if backing_path.exists() else None,
         )
     else:
         raise NotImplementedError(f"Model '{model}' not yet implemented. Use --model acestep.")

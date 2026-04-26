@@ -20,6 +20,7 @@ class ProjectConfig:
 class GuideGenerationConfig:
     mode: str = "manual"
     model: str = "songgeneration"
+    task_type: str = "lego"
     allow_full_mix: bool = True
     source_separate_if_needed: bool = True
     fallback_manual_guide: bool = True

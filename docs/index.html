@@ -3,208 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutoRapper — Syllable-Level Rhythm Correction for Rap Vocals</title>
+  <title>AutoRapper</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --green: #3fb950;
-      --purple: #bc8cff;
-      --orange: #d29922;
-      --red: #da3633;
+      --bg: #000000;
+      --text: #f5f5f7;
+      --muted: #86868b;
+      --accent: #2997ff;
+      --green: #30d158;
+      --purple: #bf5af2;
+      --orange: #ff9f0a;
+      --red: #ff453a;
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.1);
+      --glass-hover: rgba(255,255,255,0.1);
+      --radius: 16px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
-    header { text-align: center; padding: 3rem 0 2rem; }
-    header h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
-    header h1 span { color: var(--accent); }
-    header p { color: var(--muted); font-size: 1.15rem; margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .badge-row { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
-    .badge {
-      display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px;
-      font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border);
-    }
-    .badge.green { color: var(--green); border-color: var(--green); }
-    .badge.purple { color: var(--purple); border-color: var(--purple); }
-    .badge.orange { color: var(--orange); border-color: var(--orange); }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem; }
 
-    section { margin: 2.5rem 0; }
+    /* Header */
+    header { text-align: center; padding: 4rem 0 3rem; }
+    header h1 {
+      font-size: 3.5rem; font-weight: 700; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #f5f5f7 0%, #86868b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header h1 span {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header .subtitle {
+      color: var(--muted); font-size: 1.2rem; margin-top: 0.75rem;
+      max-width: 520px; margin-left: auto; margin-right: auto; font-weight: 400;
+    }
+    .pill-row { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.25rem; flex-wrap: wrap; }
+    .pill {
+      padding: 0.3rem 0.85rem; border-radius: 999px; font-size: 0.75rem; font-weight: 500;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .pill.g { color: var(--green); border-color: rgba(48,209,88,0.3); }
+    .pill.p { color: var(--purple); border-color: rgba(191,90,242,0.3); }
+    .pill.o { color: var(--orange); border-color: rgba(255,159,10,0.3); }
+
+    /* Sections */
+    section { margin: 3rem 0; }
     h2 {
-      font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;
-      padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+      font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em;
+      margin-bottom: 1.25rem; color: var(--text);
     }
 
-    /* Audio cards */
-    .audio-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem;
+    /* Glass card */
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.75rem;
+      transition: background 0.2s;
     }
-    .audio-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
-    .audio-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.75rem; }
-    .audio-card audio { width: 100%; height: 40px; }
-    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
-    .compare .audio-card { margin-bottom: 0; }
-    .compare-label {
-      display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; padding: 0.15rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem;
+    .card:hover { background: var(--glass-hover); }
+    .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .card .desc { color: var(--muted); font-size: 0.82rem; margin-bottom: 0.75rem; }
+    .card audio {
+      width: 100%; height: 36px; border-radius: 8px;
+      filter: invert(1) hue-rotate(180deg) brightness(0.85);
     }
-    .compare-label.before { background: var(--red); color: #fff; }
-    .compare-label.after { background: var(--green); color: #0d1117; }
+    .card .step-num {
+      display: inline-block; width: 22px; height: 22px; line-height: 22px;
+      text-align: center; border-radius: 50%;
+      background: rgba(255,255,255,0.08); font-size: 0.7rem; font-weight: 600;
+      margin-right: 0.5rem; color: var(--muted); vertical-align: middle;
+    }
 
-    /* Editor section */
-    #editor-section {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
+    /* Lyrics card */
+    .lyrics-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      padding: 1.5rem 2rem;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.88rem; line-height: 2; color: rgba(245,245,247,0.85);
+      white-space: pre-wrap;
     }
-    #editor-toolbar {
+
+    /* Editor */
+    .editor-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      overflow: hidden;
+    }
+    .editor-bar {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 16px; background: #1c2333; border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--glass-border);
     }
-    .toolbar-group { display: flex; align-items: center; gap: 8px; }
-    .toolbar-btn {
-      padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px;
-      background: var(--bg); color: var(--text); cursor: pointer; font-size: 12px;
+    .editor-bar .info { color: var(--muted); font-size: 0.78rem; }
+    .btn {
+      padding: 5px 14px; border: 1px solid var(--glass-border); border-radius: 8px;
+      background: rgba(255,255,255,0.06); color: var(--text); cursor: pointer;
+      font-size: 0.78rem; font-weight: 500; transition: background 0.15s;
+      backdrop-filter: blur(10px);
     }
-    .toolbar-btn:hover { background: #2a2a4e; }
-    .toolbar-btn.accent { background: #1a3a5c; border-color: var(--accent); color: var(--accent); }
-    .toolbar-btn.accent:hover { background: #1a4a7c; }
-    #editor-info { color: var(--muted); font-size: 0.8rem; }
+    .btn:hover { background: rgba(255,255,255,0.12); }
+    .btn.accent { border-color: rgba(41,151,255,0.4); color: var(--accent); }
+    .btn-group { display: flex; gap: 6px; }
 
-    #editor-tracks { padding: 12px 16px; }
-    .track-row { margin-bottom: 12px; }
-    .track-header {
-      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--muted); margin-bottom: 4px;
+    .editor-body { padding: 16px 20px; }
+    .track-label {
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 4px; font-weight: 500;
     }
-    .waveform-wrap { position: relative; border-radius: 6px; overflow: hidden; }
-    .waveform-wrap canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    .track-wrap { margin-bottom: 14px; }
+    .waveform-wrap { position: relative; border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.02); }
     #syllable-layer {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 3; overflow: hidden; pointer-events: none;
     }
     .syllable-block {
-      position: absolute; top: 58%; height: 38%;
-      background: rgba(76, 175, 80, 0.3); border: 1px solid rgba(76, 175, 80, 0.6);
-      border-radius: 2px; display: flex; align-items: center; justify-content: center;
-      font-size: 9px; color: #c8e6c9; white-space: nowrap; overflow: hidden;
-      text-overflow: ellipsis; padding: 0 2px; min-width: 4px;
+      position: absolute; top: 55%; height: 40%;
+      background: rgba(48, 209, 88, 0.2);
+      border: 1px solid rgba(48, 209, 88, 0.4);
+      border-radius: 4px; min-width: 3px;
+      transition: background 0.15s;
     }
-    .syllable-block.selected {
-      background: rgba(33, 150, 243, 0.45); border-color: rgba(33, 150, 243, 0.9); color: #bbdefb;
-    }
-    .anchor-line {
-      position: absolute; top: 0; height: 100%; width: 1px; z-index: 4; pointer-events: none;
-    }
-    .anchor-line.human { background: rgba(218, 54, 51, 0.7); }
-    .anchor-line.guide { background: rgba(63, 185, 80, 0.7); }
-    .anchor-arrow {
-      position: absolute; top: 45%; height: 2px; z-index: 4; pointer-events: none; opacity: 0.5;
+    .editor-footer {
+      display: flex; gap: 24px; padding: 8px 20px;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid var(--glass-border);
+      font-size: 0.72rem; color: var(--muted);
     }
 
-    #editor-status {
-      display: flex; gap: 24px; padding: 6px 16px;
-      background: #1c2333; border-top: 1px solid var(--border);
-      font-size: 0.75rem; color: var(--muted);
-    }
+    .legend { display: flex; gap: 1.25rem; margin-top: 8px; font-size: 0.72rem; color: var(--muted); }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
 
-    /* Syllable table */
-    #syllable-table-wrap {
-      max-height: 400px; overflow-y: auto; margin-top: 1rem;
-      border: 1px solid var(--border); border-radius: 8px;
+    /* Table */
+    .table-wrap {
+      max-height: 380px; overflow-y: auto; margin-top: 1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
     }
-    #syllable-table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    #syllable-table-wrap th {
-      position: sticky; top: 0; background: #1c2333;
-      padding: 6px 10px; text-align: left; font-weight: 600;
-      border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.7rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
+    .table-wrap::-webkit-scrollbar { width: 6px; }
+    .table-wrap::-webkit-scrollbar-track { background: transparent; }
+    .table-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+    .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .table-wrap th {
+      position: sticky; top: 0; z-index: 2;
+      background: rgba(28,28,30,0.95); backdrop-filter: blur(20px);
+      padding: 8px 12px; text-align: left; font-weight: 500;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--muted); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em;
     }
-    #syllable-table-wrap td {
-      padding: 4px 10px; border-bottom: 1px solid #1e2530;
-    }
-    #syllable-table-wrap tr:hover td { background: rgba(88, 166, 255, 0.05); }
+    .table-wrap td { padding: 5px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .table-wrap tr:hover td { background: rgba(255,255,255,0.03); }
     .delta-pos { color: var(--red); }
     .delta-neg { color: var(--green); }
     .delta-zero { color: var(--muted); }
     .conf-high { color: var(--green); }
     .conf-med { color: var(--orange); }
     .conf-low { color: var(--red); }
-    td.mono { font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.75rem; }
+    td.mono, th.mono {
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.72rem;
+    }
 
     /* Pipeline */
     .pipeline { display: flex; flex-direction: column; }
     .phase { display: flex; align-items: stretch; gap: 1rem; }
-    .phase-line { display: flex; flex-direction: column; align-items: center; width: 24px; flex-shrink: 0; }
-    .phase-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.3rem; }
-    .phase-dot.det { background: var(--green); }
-    .phase-connector { width: 2px; flex: 1; background: var(--border); }
-    .phase-content {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.5rem; flex: 1;
+    .phase-line { display: flex; flex-direction: column; align-items: center; width: 20px; flex-shrink: 0; }
+    .phase-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 0.5rem;
+      box-shadow: 0 0 8px rgba(41,151,255,0.3);
     }
-    .phase-content strong { font-size: 0.9rem; }
-    .phase-content span { color: var(--muted); font-size: 0.85rem; }
+    .phase-dot.det { background: var(--green); box-shadow: 0 0 8px rgba(48,209,88,0.3); }
+    .phase-connector { width: 1px; flex: 1; background: rgba(255,255,255,0.08); }
+    .phase-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.5rem; flex: 1;
+      backdrop-filter: blur(20px);
+    }
+    .phase-card strong { font-size: 0.85rem; font-weight: 600; }
+    .phase-card .phase-desc { color: var(--muted); font-size: 0.8rem; }
     .phase-tag {
-      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-      padding: 0.1rem 0.4rem; border-radius: 3px; margin-left: 0.5rem;
+      font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+      padding: 0.1rem 0.45rem; border-radius: 4px; margin-left: 0.5rem;
     }
-    .phase-tag.ai { background: var(--purple); color: #0d1117; }
-    .phase-tag.det { background: var(--green); color: #0d1117; }
+    .phase-tag.ai { background: rgba(191,90,242,0.2); color: var(--purple); }
+    .phase-tag.det { background: rgba(48,209,88,0.15); color: var(--green); }
 
-    /* Features */
-    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* Features grid */
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
     .feature {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.25rem;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(40px); transition: background 0.2s;
     }
-    .feature h3 { font-size: 0.95rem; margin-bottom: 0.35rem; }
-    .feature p { color: var(--muted); font-size: 0.85rem; }
+    .feature:hover { background: var(--glass-hover); }
+    .feature h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .feature p { color: var(--muted); font-size: 0.82rem; }
 
-    .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+    /* Tech list */
+    .tech-list { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; }
     .tech-list li {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.85rem;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      padding: 0.3rem 0.75rem; border-radius: 8px; font-size: 0.8rem;
+      backdrop-filter: blur(20px); color: rgba(245,245,247,0.8);
     }
 
     footer {
-      text-align: center; padding: 2rem 0; color: var(--muted); font-size: 0.85rem;
-      border-top: 1px solid var(--border); margin-top: 2rem;
+      text-align: center; padding: 2.5rem 0; color: var(--muted); font-size: 0.82rem;
+      border-top: 1px solid var(--glass-border); margin-top: 3rem;
     }
-    footer a { color: var(--accent); text-decoration: none; }
+    footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
     footer a:hover { text-decoration: underline; }
-
-    .legend { display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.75rem; color: var(--muted); }
-    .legend-item { display: flex; align-items: center; gap: 4px; }
-    .legend-swatch { width: 12px; height: 3px; border-radius: 1px; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>Auto<span>Rapper</span></h1>
-      <p>Syllable-level rhythm correction for rap vocals. Every syllable on beat. Your voice, untouched.</p>
-      <div class="badge-row">
-        <span class="badge green">Zero-Sample Anchor Error</span>
-        <span class="badge purple">AI Guide Generation</span>
-        <span class="badge orange">Audacity Integration</span>
+      <p class="subtitle">Syllable-level rhythm correction for rap vocals. Every syllable on beat. Your voice, untouched.</p>
+      <div class="pill-row">
+        <span class="pill g">Zero-Sample Error</span>
+        <span class="pill p">AI Guide Generation</span>
+        <span class="pill o">Audacity Integration</span>
       </div>
     </header>
 
     <section>
       <h2>Lyrics</h2>
-      <div class="audio-card" style="font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap;">Yeah
+      <div class="lyrics-card">Yeah
 Load up Roblox, headset sittin' on my dome,
 Full dive mindset, now the block world home.
 And I swear it gets weird, yeah I'm tellin' no lies—
@@ -219,92 +266,82 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
 
     <section>
       <h2>Audio Pipeline</h2>
-
-      <div class="audio-card">
-        <h3>1. Backing Beat</h3>
-        <p>The instrumental track everything syncs to</p>
+      <div class="card">
+        <h3><span class="step-num">1</span>Backing Beat</h3>
+        <p class="desc">The instrumental track everything syncs to</p>
         <audio controls preload="metadata" src="audio/backing.wav"></audio>
       </div>
-
-      <div class="audio-card">
-        <h3>2. Human Vocal (Raw)</h3>
-        <p>Original rap vocal — off-beat timing, unprocessed</p>
+      <div class="card">
+        <h3><span class="step-num">2</span>Human Vocal (Raw)</h3>
+        <p class="desc">Original rap vocal &mdash; off-beat timing, unprocessed</p>
         <audio controls preload="metadata" src="audio/original.wav"></audio>
       </div>
-
-      <div class="audio-card">
-        <h3>3. AI Guide (Full Mix)</h3>
-        <p>ACE-Step 1.5 generates a rap vocal from the lyrics over a backing track</p>
+      <div class="card">
+        <h3><span class="step-num">3</span>AI Guide (Full Mix)</h3>
+        <p class="desc">ACE-Step 1.5 generates a rap vocal from the lyrics over a backing track</p>
         <audio controls preload="metadata" src="audio/ai_full.wav"></audio>
       </div>
-
-      <div class="audio-card">
-        <h3>4. AI Guide (Vocals Stripped)</h3>
-        <p>Demucs isolates just the vocal — this becomes the timing reference</p>
+      <div class="card">
+        <h3><span class="step-num">4</span>AI Guide (Vocals Stripped)</h3>
+        <p class="desc">Demucs isolates just the vocal &mdash; this becomes the timing reference</p>
         <audio controls preload="metadata" src="audio/ai_stripped.wav"></audio>
       </div>
-
-      <div class="audio-card">
-        <h3>5. Corrected Human Vocal</h3>
-        <p>Every syllable time-warped to match the AI guide's rhythm — zero-sample anchor error</p>
+      <div class="card">
+        <h3><span class="step-num">5</span>Corrected Human Vocal</h3>
+        <p class="desc">Every syllable time-warped to match the AI guide's rhythm &mdash; zero-sample anchor error</p>
         <audio controls preload="metadata" src="audio/corrected.wav"></audio>
       </div>
-
-      <div class="audio-card">
-        <h3>6. Final Mix (Corrected Vocal + Beat)</h3>
-        <p>The corrected human vocal layered over the backing track — ready to ship</p>
+      <div class="card">
+        <h3><span class="step-num">6</span>Final Mix</h3>
+        <p class="desc">Corrected human vocal layered over the backing track</p>
         <audio controls preload="metadata" src="audio/mixed.wav"></audio>
       </div>
     </section>
 
     <section>
       <h2>Syllable Alignment Viewer</h2>
-      <p style="color: var(--muted); margin-bottom: 0.75rem;">Interactive waveform with syllable anchor overlay from a real pipeline run. 110 syllables aligned between human vocal and AI guide.</p>
+      <p style="color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem;">110 syllables aligned between human vocal and AI guide. Each block is one syllable region.</p>
 
-      <div id="editor-section">
-        <div id="editor-toolbar">
-          <div class="toolbar-group">
-            <button class="toolbar-btn accent" id="btn-play">Play</button>
-            <button class="toolbar-btn" id="btn-stop">Stop</button>
+      <div class="editor-card">
+        <div class="editor-bar">
+          <div class="btn-group">
+            <button class="btn accent" id="btn-play">Play</button>
+            <button class="btn" id="btn-stop">Stop</button>
           </div>
-          <div id="editor-info">110 syllables &middot; 48kHz &middot; onset anchors</div>
+          <div class="info">110 syllables &middot; 48 kHz &middot; onset anchors</div>
         </div>
-        <div id="editor-tracks">
-          <div class="track-row">
-            <div class="track-header">Backing Track</div>
-            <div class="waveform-wrap" id="waveform-backing" style="height:80px;"></div>
+        <div class="editor-body">
+          <div class="track-wrap">
+            <div class="track-label">Backing</div>
+            <div class="waveform-wrap" id="waveform-backing" style="height:70px;"></div>
           </div>
-          <div class="track-row">
-            <div class="track-header">Human Vocal + Syllable Anchors</div>
-            <div class="waveform-wrap" id="waveform-human-wrap" style="height:160px;">
+          <div class="track-wrap">
+            <div class="track-label">Human Vocal + Anchors</div>
+            <div class="waveform-wrap" id="waveform-human-wrap" style="height:140px;">
               <div id="waveform-human" style="width:100%;height:100%;"></div>
               <div id="syllable-layer"></div>
             </div>
             <div class="legend">
-              <div class="legend-item"><div class="legend-swatch" style="background:rgba(76,175,80,0.7);"></div> Guide anchor</div>
-              <div class="legend-item"><div class="legend-swatch" style="background:rgba(218,54,51,0.7);"></div> Human anchor</div>
-              <div class="legend-item"><div class="legend-swatch" style="background:rgba(76,175,80,0.3); width:24px; height:12px; border:1px solid rgba(76,175,80,0.6); border-radius:2px;"></div> Syllable region</div>
+              <div class="legend-item"><div class="legend-dot" style="background:rgba(48,209,88,0.5); border:1px solid rgba(48,209,88,0.6);"></div> Syllable region</div>
             </div>
           </div>
         </div>
-        <div id="editor-status">
+        <div class="editor-footer">
           <span id="syl-count">Syllables: 110</span>
           <span id="cursor-time">Time: 0.000s</span>
-          <span id="syl-hover">Hover a syllable for details</span>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Anchor Map Detail</h2>
-      <p style="color: var(--muted); margin-bottom: 0.75rem;">Every syllable's human timing vs. guide timing. Delta shows how far each syllable was shifted. Zero-sample error on render.</p>
-      <div id="syllable-table-wrap">
+      <h2>Anchor Map</h2>
+      <p style="color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem;">Every syllable's human timing vs. guide timing. Delta shows how far each syllable was shifted.</p>
+      <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>#</th>
               <th>Syllable</th>
-              <th>Word</th>
               <th>Human Onset</th>
               <th>Guide Onset</th>
               <th>Delta</th>
@@ -318,43 +355,43 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
 
     <section>
       <h2>How It Works</h2>
-      <p style="color: var(--muted); margin-bottom: 1.25rem;">9-phase pipeline. AI handles guide generation and alignment. Everything after that is fully deterministic &mdash; no neural model touches the human voice.</p>
+      <p style="color: var(--muted); margin-bottom: 1.25rem; font-size: 0.9rem;">9-phase pipeline. AI handles guide generation and alignment. Everything after that is fully deterministic.</p>
       <div class="pipeline">
         <div class="phase">
-          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 0: Normalize</strong><span class="phase-tag det">Deterministic</span><br><span>Resample to 48kHz, mono for analysis</span></div>
-        </div>
-        <div class="phase">
-          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 1: Guide Generation</strong><span class="phase-tag ai">AI</span><br><span>ACE-Step 1.5 generates a rap vocal from lyrics, Demucs isolates vocals</span></div>
+          <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
+          <div class="phase-card"><strong>Normalize</strong><span class="phase-tag det">Deterministic</span><br><span class="phase-desc">Resample to 48 kHz, mono for analysis</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 2: Syllabify</strong><span class="phase-tag ai">AI</span><br><span>CMUdict + G2P maps lyrics to canonical syllables</span></div>
+          <div class="phase-card"><strong>Guide Generation</strong><span class="phase-tag ai">AI</span><br><span class="phase-desc">ACE-Step generates a vocal from lyrics, Demucs isolates it</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 3: Forced Alignment</strong><span class="phase-tag ai">AI</span><br><span>Montreal Forced Aligner extracts phone-level timestamps from both vocals</span></div>
+          <div class="phase-card"><strong>Syllabify</strong><span class="phase-tag ai">AI</span><br><span class="phase-desc">CMUdict + G2P maps lyrics to canonical syllables</span></div>
+        </div>
+        <div class="phase">
+          <div class="phase-line"><div class="phase-dot"></div><div class="phase-connector"></div></div>
+          <div class="phase-card"><strong>Forced Alignment</strong><span class="phase-tag ai">AI</span><br><span class="phase-desc">Montreal Forced Aligner extracts phone-level timestamps</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 4: Anchor Mapping</strong><span class="phase-tag det">Deterministic</span><br><span>Map each human syllable anchor to the guide's timing</span></div>
+          <div class="phase-card"><strong>Anchor Mapping</strong><span class="phase-tag det">Deterministic</span><br><span class="phase-desc">Map each human syllable to the guide's timing</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 5: Clip Grouping</strong><span class="phase-tag det">Deterministic</span><br><span>Safe-boundary scoring finds acoustically clean split points</span></div>
+          <div class="phase-card"><strong>Clip Grouping</strong><span class="phase-tag det">Deterministic</span><br><span class="phase-desc">Safe-boundary scoring finds clean split points</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 6: Edit Plan</strong><span class="phase-tag det">Deterministic</span><br><span>Piecewise time-warp specification for every segment</span></div>
+          <div class="phase-card"><strong>Edit Plan</strong><span class="phase-tag det">Deterministic</span><br><span class="phase-desc">Piecewise time-warp specification for every segment</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot det"></div><div class="phase-connector"></div></div>
-          <div class="phase-content"><strong>Phase 7: Render</strong><span class="phase-tag det">Deterministic</span><br><span>Rubber Band pitch-preserving time-stretch produces the corrected vocal</span></div>
+          <div class="phase-card"><strong>Render</strong><span class="phase-tag det">Deterministic</span><br><span class="phase-desc">Rubber Band pitch-preserving time-stretch</span></div>
         </div>
         <div class="phase">
           <div class="phase-line"><div class="phase-dot det"></div></div>
-          <div class="phase-content"><strong>Phase 8: Audacity Session</strong><span class="phase-tag det">Deterministic</span><br><span>Builds a full session with clips, labels, and tracks via mod-script-pipe</span></div>
+          <div class="phase-card"><strong>Audacity Session</strong><span class="phase-tag det">Deterministic</span><br><span class="phase-desc">Clips, labels, and tracks via mod-script-pipe</span></div>
         </div>
       </div>
     </section>
@@ -364,19 +401,19 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
       <div class="features">
         <div class="feature">
           <h3>Zero-Sample Precision</h3>
-          <p>Every rendered syllable anchor lands exactly on the guide anchor at the integer sample index. Not "close enough" &mdash; mathematically exact.</p>
+          <p>Every rendered anchor lands exactly on the guide anchor at the integer sample index. Mathematically exact.</p>
         </div>
         <div class="feature">
           <h3>Voice Preservation</h3>
-          <p>AI generates a timing reference and extracts timestamps. The human voice is only cut and time-stretched &mdash; never regenerated or transformed.</p>
+          <p>The human voice is only cut and time-stretched. Never regenerated or transformed by AI.</p>
         </div>
         <div class="feature">
           <h3>Transparent Editing</h3>
-          <p>Output is a full Audacity session with visible clips, label tracks, and waveforms. Every edit is inspectable and overridable.</p>
+          <p>Full Audacity session with visible clips, labels, and waveforms. Every edit is inspectable.</p>
         </div>
         <div class="feature">
           <h3>Two Modes</h3>
-          <p><strong>Guide mode</strong> uses an AI vocal as timing reference. <strong>Beat-only mode</strong> snaps syllables to the detected beat grid.</p>
+          <p>Guide mode uses an AI vocal as reference. Beat-only mode snaps to the detected beat grid.</p>
         </div>
       </div>
     </section>
@@ -402,7 +439,7 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
     </section>
 
     <footer>
-      <p><a href="https://github.com/aaroncao06/AutoRapper">View on GitHub</a></p>
+      <a href="https://github.com/aaroncao06/AutoRapper">View on GitHub</a>
     </footer>
   </div>
 
@@ -434,34 +471,32 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
       wsBacking = WaveSurfer.create({
         container: "#waveform-backing",
         url: "audio/backing.wav",
-        waveColor: "#444",
-        progressColor: "#666",
-        height: 80,
+        waveColor: "rgba(255,255,255,0.25)",
+        progressColor: "rgba(255,255,255,0.4)",
+        height: 70,
         interact: false,
         normalize: true,
         barWidth: 2,
         barGap: 1,
+        barRadius: 2,
       });
 
       wsHuman = WaveSurfer.create({
         container: "#waveform-human",
         url: "audio/original.wav",
-        waveColor: "#2563eb",
-        progressColor: "#60a5fa",
-        height: 160,
+        waveColor: "rgba(41,151,255,0.5)",
+        progressColor: "rgba(41,151,255,0.75)",
+        height: 140,
         normalize: true,
         barWidth: 2,
         barGap: 1,
+        barRadius: 2,
       });
 
-      wsHuman.on("ready", function() {
-        renderSyllableOverlay();
+      wsHuman.on("ready", renderSyllableOverlay);
+      wsHuman.on("timeupdate", function(t) {
+        document.getElementById("cursor-time").textContent = "Time: " + t.toFixed(3) + "s";
       });
-
-      wsHuman.on("timeupdate", function(time) {
-        document.getElementById("cursor-time").textContent = "Time: " + time.toFixed(3) + "s";
-      });
-
       wsHuman.on("scroll", repositionBlocks);
       wsHuman.on("zoom", repositionBlocks);
 
@@ -470,41 +505,33 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
         if (wsBacking) wsBacking.play();
       });
       document.getElementById("btn-stop").addEventListener("click", function() {
-        if (wsHuman) { wsHuman.stop(); }
-        if (wsBacking) { wsBacking.stop(); }
+        if (wsHuman) wsHuman.stop();
+        if (wsBacking) wsBacking.stop();
       });
     }
 
     function getPixelsPerSecond() {
       if (!wsHuman) return 50;
-      var wrapper = wsHuman.getWrapper();
-      if (!wrapper) return 50;
-      var scrollWidth = wrapper.scrollWidth || wrapper.clientWidth;
-      var dur = wsHuman.getDuration();
-      return dur > 0 ? scrollWidth / dur : 50;
+      var w = wsHuman.getWrapper();
+      if (!w) return 50;
+      var sw = w.scrollWidth || w.clientWidth;
+      var d = wsHuman.getDuration();
+      return d > 0 ? sw / d : 50;
     }
 
     function getScrollLeft() {
       if (!wsHuman) return 0;
-      var wrapper = wsHuman.getWrapper();
-      return wrapper ? wrapper.scrollLeft : 0;
+      var w = wsHuman.getWrapper();
+      return w ? w.scrollLeft : 0;
     }
 
-    function sampleToPixel(sample) {
-      return (sample / SR) * getPixelsPerSecond() - getScrollLeft();
+    function sampleToPixel(s) {
+      return (s / SR) * getPixelsPerSecond() - getScrollLeft();
     }
 
     function getSylText(i) {
-      if (canonical && canonical.syllables && i < canonical.syllables.length) {
-        return canonical.syllables[i].syllable_text || canonical.syllables[i].text || "";
-      }
-      return "";
-    }
-
-    function getWordText(i) {
-      if (canonical && canonical.syllables && i < canonical.syllables.length) {
-        return canonical.syllables[i].word_text || "";
-      }
+      if (canonical && canonical.syllables && i < canonical.syllables.length)
+        return canonical.syllables[i].syllable_text || "";
       return "";
     }
 
@@ -513,33 +540,26 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
       layer.innerHTML = "";
       if (!anchorMap || !anchorMap.anchors) return;
 
-      anchorMap.anchors.forEach(function(anchor, i) {
+      anchorMap.anchors.forEach(function(a, i) {
         var div = document.createElement("div");
         div.className = "syllable-block";
         div.dataset.index = i;
-        div.textContent = getSylText(i);
-        div.title = getSylText(i) + " (" + getWordText(i) + ")\n"
-          + "Human: " + fmtTime(samplesToSec(anchor.human_anchor_sample)) + "\n"
-          + "Guide: " + fmtTime(samplesToSec(anchor.guide_anchor_sample)) + "\n"
-          + "Delta: " + fmtMs(samplesToSec(anchor.delta_samples));
-        positionBlock(div, anchor);
+        positionBlock(div, a);
         layer.appendChild(div);
       });
     }
 
-    function positionBlock(div, anchor) {
-      var x = sampleToPixel(anchor.guide_start_sample);
-      var w = sampleToPixel(anchor.guide_end_sample) - x;
+    function positionBlock(div, a) {
+      var x = sampleToPixel(a.guide_start_sample);
+      var w = sampleToPixel(a.guide_end_sample) - x;
       div.style.transform = "translateX(" + x + "px)";
-      div.style.width = Math.max(4, w) + "px";
+      div.style.width = Math.max(3, w) + "px";
     }
 
     function repositionBlocks() {
       if (!anchorMap || !anchorMap.anchors) return;
-      var blocks = document.querySelectorAll(".syllable-block");
-      blocks.forEach(function(div) {
-        var i = parseInt(div.dataset.index);
-        positionBlock(div, anchorMap.anchors[i]);
+      document.querySelectorAll(".syllable-block").forEach(function(div) {
+        positionBlock(div, anchorMap.anchors[parseInt(div.dataset.index)]);
       });
     }
 
@@ -547,34 +567,27 @@ Like a pixel just grazed me, man I'm doin' the most.</div>
       var tbody = document.getElementById("syllable-tbody");
       if (!anchorMap || !anchorMap.anchors) return;
 
-      anchorMap.anchors.forEach(function(anchor, i) {
+      anchorMap.anchors.forEach(function(a, i) {
         var tr = document.createElement("tr");
-        var sylText = getSylText(i);
-        var wordText = getWordText(i);
-        var humanSec = samplesToSec(anchor.human_anchor_sample);
-        var guideSec = samplesToSec(anchor.guide_anchor_sample);
-        var deltaSec = samplesToSec(anchor.delta_samples);
-        var conf = anchor.confidence;
-
-        var deltaClass = anchor.delta_samples > 0 ? "delta-pos" : anchor.delta_samples < 0 ? "delta-neg" : "delta-zero";
-        var confClass = conf >= 0.8 ? "conf-high" : conf >= 0.5 ? "conf-med" : "conf-low";
+        var syl = getSylText(i);
+        var hSec = samplesToSec(a.human_anchor_sample);
+        var gSec = samplesToSec(a.guide_anchor_sample);
+        var dSec = samplesToSec(a.delta_samples);
+        var c = a.confidence;
+        var dc = a.delta_samples > 0 ? "delta-pos" : a.delta_samples < 0 ? "delta-neg" : "delta-zero";
+        var cc = c >= 0.8 ? "conf-high" : c >= 0.5 ? "conf-med" : "conf-low";
 
         tr.innerHTML = '<td class="mono">' + i + '</td>'
-          + '<td><strong>' + escHtml(sylText) + '</strong></td>'
-          + '<td style="color:var(--muted);">' + escHtml(wordText) + '</td>'
-          + '<td class="mono">' + fmtTime(humanSec) + '</td>'
-          + '<td class="mono">' + fmtTime(guideSec) + '</td>'
-          + '<td class="mono ' + deltaClass + '">' + (anchor.delta_samples > 0 ? "+" : "") + fmtMs(deltaSec) + '</td>'
-          + '<td class="mono ' + confClass + '">' + (conf * 100).toFixed(0) + '%</td>';
+          + '<td>' + esc(syl) + '</td>'
+          + '<td class="mono">' + fmtTime(hSec) + '</td>'
+          + '<td class="mono">' + fmtTime(gSec) + '</td>'
+          + '<td class="mono ' + dc + '">' + (a.delta_samples > 0 ? "+" : "") + fmtMs(dSec) + '</td>'
+          + '<td class="mono ' + cc + '">' + (c * 100).toFixed(0) + '%</td>';
         tbody.appendChild(tr);
       });
     }
 
-    function escHtml(s) {
-      var d = document.createElement("div");
-      d.textContent = s;
-      return d.innerHTML;
-    }
+    function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
 
     async function init() {
       await loadData();

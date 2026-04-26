@@ -33,8 +33,13 @@ def generate_guide_vocal(
     time_signature: str = "",
     caption: str = "rap, hip-hop, aggressive flow, male rapper, trap beat",
     seed: int = 42,
+    backing_path: Path | None = None,
 ) -> GuideVocalResult:
     python_bin = _find_acestep_python()
+
+    task_type = "text2music"
+    if guide_config and guide_config.task_type == "lego" and backing_path is not None:
+        task_type = "lego"
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_output = Path(tmpdir) / "guide_raw.wav"
@@ -46,10 +51,12 @@ def generate_guide_vocal(
             "--output", str(tmp_output),
             "--caption", caption,
             "--seed", str(seed),
-            "--steps", "8",
             "--project-root", str(ACESTEP_PROJECT_ROOT),
             "--offload",
+            "--task-type", task_type,
         ]
+        if task_type == "lego":
+            cmd.extend(["--src-audio", str(backing_path)])
         if duration is not None:
             cmd.extend(["--duration", str(duration)])
         if bpm is not None:
@@ -78,12 +85,14 @@ def generate_guide_vocal(
         if not raw_path.exists():
             raise RuntimeError("ACE-Step produced no output file")
 
-        from rapmap.audio.source_separation import separate_vocals
+        if task_type == "lego":
+            data, sr = read_audio(raw_path, mono=True)
+        else:
+            from rapmap.audio.source_separation import separate_vocals
 
-        vocals_path = Path(tmpdir) / "guide_vocals.wav"
-        separate_vocals(raw_path, vocals_path)
-
-        data, sr = read_audio(vocals_path, mono=True)
+            vocals_path = Path(tmpdir) / "guide_vocals.wav"
+            separate_vocals(raw_path, vocals_path)
+            data, sr = read_audio(vocals_path, mono=True)
 
     data = resample(data, sr, config.sample_rate)
     assert data.ndim == 1, f"Guide vocal must be mono, got {data.ndim}D"
@@ -92,9 +101,10 @@ def generate_guide_vocal(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     write_audio(output_path, data, config.sample_rate)
 
+    source = "acestep-lego" if task_type == "lego" else "acestep+demucs"
     return GuideVocalResult(
         path=output_path,
         duration_samples=len(data),
         sample_rate=config.sample_rate,
-        source="acestep+demucs",
+        source=source,
     )

@@ -24,11 +24,16 @@ def main():
     parser.add_argument("--duration", type=float, default=30.0)
     parser.add_argument("--bpm", type=int, default=None)
     parser.add_argument("--time-signature", default="", help="Time signature: 2, 3, 4, or 6")
-    parser.add_argument("--caption", default="rap, hip-hop, aggressive flow, male rapper, trap beat")
+    parser.add_argument(
+        "--caption", default="rap, hip-hop, aggressive flow, male rapper, trap beat",
+    )
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--steps", type=int, default=8)
+    parser.add_argument("--steps", type=int, default=None)
     parser.add_argument("--project-root", default=None)
     parser.add_argument("--offload", action="store_true")
+    parser.add_argument("--task-type", default="text2music", choices=["text2music", "lego"])
+    parser.add_argument("--src-audio", default=None, help="Backing track path (required for lego)")
+    parser.add_argument("--global-caption", default="")
     args = parser.parse_args()
 
     project_root = args.project_root or os.environ.get(
@@ -38,13 +43,16 @@ def main():
     sys.path.insert(0, project_root)
 
     from acestep.handler import AceStepHandler
+    from acestep.inference import GenerationConfig, GenerationParams, generate_music
     from acestep.llm_inference import LLMHandler
-    from acestep.inference import GenerationParams, GenerationConfig, generate_music
+
+    is_lego = args.task_type == "lego"
+    config_path = "acestep-v15-base" if is_lego else "acestep-v15-turbo"
 
     dit_handler = AceStepHandler()
     dit_handler.initialize_service(
         project_root=project_root,
-        config_path="acestep-v15-turbo",
+        config_path=config_path,
         device="auto",
         offload_to_cpu=args.offload,
     )
@@ -72,18 +80,45 @@ def main():
     if not lyrics_formatted.startswith("["):
         lyrics_formatted = "[Verse]\n" + lyrics_formatted
 
-    params = GenerationParams(
-        task_type="text2music",
-        caption=args.caption,
-        lyrics=lyrics_formatted,
-        vocal_language="en",
-        bpm=args.bpm,
-        timesignature=args.time_signature or "",
-        duration=args.duration,
-        inference_steps=args.steps,
-        seed=args.seed,
-        thinking=True,
-    )
+    default_steps = 50 if is_lego else 8
+    steps = args.steps if args.steps is not None else default_steps
+
+    if is_lego:
+        assert args.src_audio and Path(args.src_audio).exists(), (
+            f"--src-audio required for lego task, got: {args.src_audio}"
+        )
+        params = GenerationParams(
+            task_type="lego",
+            src_audio=args.src_audio,
+            instruction="Generate the vocals track based on the audio context:",
+            caption=args.caption,
+            global_caption=args.global_caption,
+            lyrics=lyrics_formatted,
+            vocal_language="en",
+            bpm=args.bpm,
+            timesignature=args.time_signature or "",
+            repainting_start=0.0,
+            repainting_end=-1,
+            inference_steps=steps,
+            guidance_scale=7.0,
+            shift=3.0,
+            seed=args.seed,
+            thinking=True,
+        )
+    else:
+        params = GenerationParams(
+            task_type="text2music",
+            caption=args.caption,
+            lyrics=lyrics_formatted,
+            vocal_language="en",
+            bpm=args.bpm,
+            timesignature=args.time_signature or "",
+            duration=args.duration,
+            inference_steps=steps,
+            seed=args.seed,
+            thinking=True,
+        )
+
     config = GenerationConfig(
         batch_size=1,
         audio_format="wav",

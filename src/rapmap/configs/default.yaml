@@ -6,6 +6,7 @@ project:
 guide_generation:
   mode: manual
   model: songgeneration
+  task_type: lego
   allow_full_mix: true
   source_separate_if_needed: true
   fallback_manual_guide: true

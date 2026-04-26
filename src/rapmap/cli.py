@@ -377,12 +377,134 @@ def audacity_session(project: Path, open_after: bool, config_path: Path | None):
     click.echo("Phase 8 complete.")
 
 
+@main.command("detect-beats")
+@click.option("--project", type=click.Path(exists=True, path_type=Path), required=True)
+@click.option(
+    "--subdivision",
+    type=click.Choice(["quarter", "eighth", "sixteenth", "triplet"]),
+    default="eighth",
+)
+@click.option("--strength", type=float, default=1.0)
+@click.option("--config", "config_path", type=click.Path(exists=True, path_type=Path), default=None)
+def detect_beats_cmd(
+    project: Path, subdivision: str, strength: float, config_path: Path | None
+):
+    """Detect beats in backing track and quantize syllable anchors to beat grid."""
+    from rapmap.audio.io import read_audio
+    from rapmap.beat.detect import detect_beats
+    from rapmap.beat.grid import build_beat_grid
+    from rapmap.beat.quantize import quantize_anchors
+
+    config = load_config(config_path or _bundled_config("default.yaml"))
+    config.beat_detection.quantize_strength = strength
+
+    backing_path = project / "audio" / "backing.wav"
+    assert backing_path.exists(), f"Missing {backing_path}"
+    audio, sr = read_audio(backing_path, mono=True)
+
+    click.echo(f"Detecting beats (subdivision={subdivision}, strength={strength})")
+    beat_info = detect_beats(audio, sr, config.beat_detection)
+
+    timing_dir = project / "timing"
+    timing_dir.mkdir(parents=True, exist_ok=True)
+    with open(timing_dir / "beat_info.json", "w") as f:
+        json.dump(beat_info, f, indent=2)
+
+    beat_grid = build_beat_grid(beat_info, subdivision, len(audio))
+    with open(timing_dir / "beat_grid.json", "w") as f:
+        json.dump(beat_grid, f, indent=2)
+
+    click.echo(f"  BPM: {beat_info['bpm']:.1f}")
+    click.echo(f"  Beats: {beat_info['total_beats']}")
+    click.echo(f"  Grid points: {beat_grid['total_grid_points']}")
+
+    human_alignment_path = project / "alignment" / "human_alignment.json"
+    if human_alignment_path.exists():
+        from rapmap.align.base import alignment_from_dict
+
+        with open(human_alignment_path) as f:
+            human_al = alignment_from_dict(json.load(f))
+        anchor_map = quantize_anchors(human_al, beat_grid, config.beat_detection)
+        with open(timing_dir / "anchor_map.json", "w") as f:
+            json.dump(anchor_map, f, indent=2)
+        click.echo(f"  Syllables quantized: {anchor_map['syllable_count']}")
+    else:
+        click.echo("  Run `align` first to quantize syllables.")
+
+    click.echo("Beat detection complete.")
+
+
+@main.command("grab-audio")
+@click.option("--project", type=click.Path(exists=True, path_type=Path), required=True)
+@click.option("--backing-track", type=int, default=0, help="Audacity track index for backing")
+@click.option("--vocal-track", type=int, default=1, help="Audacity track index for vocal")
+def grab_audio(project: Path, backing_track: int, vocal_track: int):
+    """Export backing and vocal tracks from Audacity into project dir."""
+    from rapmap.audacity.script_pipe import AudacityPipe
+
+    pipe = AudacityPipe()
+    if not pipe.connect():
+        click.echo("Error: Could not connect to Audacity via mod-script-pipe")
+        click.echo("Ensure Audacity is running and mod-script-pipe is enabled")
+        raise SystemExit(1)
+
+    audio_dir = project / "audio"
+    audio_dir.mkdir(parents=True, exist_ok=True)
+
+    tracks = [
+        (backing_track, "backing.wav"),
+        (vocal_track, "human_rap.wav"),
+    ]
+    exported = 0
+    try:
+        for track_idx, filename in tracks:
+            pipe.solo_track(track_idx, True)
+            pipe.select_all()
+            out_path = audio_dir / filename
+            if pipe.export_audio(out_path):
+                click.echo(f"  Exported track {track_idx} → {out_path}")
+                exported += 1
+            else:
+                click.echo(f"  Failed to export track {track_idx}")
+            pipe.solo_track(track_idx, False)
+    finally:
+        for track_idx, _ in tracks:
+            pipe.solo_track(track_idx, False)
+        pipe.close()
+
+    click.echo(f"Exported {exported} tracks from Audacity.")
+
+
+@main.command()
+@click.option("--project", type=click.Path(exists=True, path_type=Path), required=True)
+@click.option("--port", type=int, default=8765)
+@click.option("--browser", is_flag=True, help="Open in browser instead of native window")
+def editor(project: Path, port: int, browser: bool):
+    """Launch interactive syllable timing editor."""
+    from rapmap.editor.server import launch_editor
+
+    click.echo(f"Launching editor for {project}")
+    launch_editor(project, port=port, use_webview=not browser)
+
+
+@main.command()
+@click.option("--project", type=click.Path(exists=True, path_type=Path), required=True)
+@click.option("--port", type=int, default=8765)
+def studio(project: Path, port: int):
+    """Launch RapMap Studio — opens Audacity + editor side by side."""
+    from rapmap.studio.launcher import launch_studio
+
+    click.echo(f"Launching RapMap Studio for {project}")
+    launch_studio(project, port=port)
+
+
 @main.command("run")
 @click.option("--backing", type=click.Path(exists=True, path_type=Path), required=True)
 @click.option("--human", type=click.Path(exists=True, path_type=Path), required=True)
 @click.option("--lyrics", type=click.Path(exists=True, path_type=Path), required=True)
-@click.option("--guide", type=click.Path(exists=True, path_type=Path), required=True)
+@click.option("--guide", type=click.Path(exists=True, path_type=Path), default=None)
 @click.option("--out", type=click.Path(path_type=Path), required=True)
+@click.option("--mode", type=click.Choice(["guide", "beat-only"]), default="guide")
 @click.option(
     "--grouping",
     type=click.Choice(
@@ -395,18 +517,34 @@ def audacity_session(project: Path, open_after: bool, config_path: Path | None):
     type=click.Choice(["onset", "vowel_nucleus", "end"]),
     default="onset",
 )
+@click.option(
+    "--subdivision",
+    type=click.Choice(["quarter", "eighth", "sixteenth", "triplet"]),
+    default="eighth",
+)
+@click.option("--strength", type=float, default=1.0)
 @click.option("--config", "config_path", type=click.Path(exists=True, path_type=Path), default=None)
 def run(
     backing: Path,
     human: Path,
     lyrics: Path,
-    guide: Path,
+    guide: Path | None,
     out: Path,
+    mode: str,
     grouping: str,
     anchor: str,
+    subdivision: str,
+    strength: float,
     config_path: Path | None,
 ):
-    """Run the full pipeline (Phases 0-8)."""
+    """Run the full pipeline (Phases 0-8).
+
+    Use --mode guide (default) for AI guide-based rhythm correction.
+    Use --mode beat-only to snap syllables to the beat grid without a guide vocal.
+    """
+    if mode == "guide" and guide is None:
+        raise click.UsageError("--guide is required when --mode is 'guide'")
+
     from rapmap.align.base import alignment_from_dict, alignment_to_dict
     from rapmap.align.derive_syllables import derive_syllable_timestamps
     from rapmap.align.mfa import align_with_mfa
@@ -415,35 +553,38 @@ def run(
     from rapmap.audio.io import read_audio
     from rapmap.audio.normalize import normalize_project
     from rapmap.audio.render import render_clips
-    from rapmap.config import AnchorStrategyConfig
     from rapmap.edit.grouping import group_syllables
     from rapmap.edit.operations import edit_plan_to_dict
     from rapmap.edit.planner import create_edit_plan
-    from rapmap.guide.manual import load_manual_guide
     from rapmap.lyrics.overrides import load_overrides
     from rapmap.lyrics.parser import parse_lyrics
     from rapmap.lyrics.syllabify import build_canonical_syllables
-    from rapmap.timing.anchor_map import build_anchor_map
 
     config = load_config(config_path or _bundled_config("default.yaml"))
-    click.echo(f"Running full pipeline: grouping={grouping}, anchor={anchor}")
+    click.echo(f"Running full pipeline: mode={mode}, grouping={grouping}, anchor={anchor}")
 
     # Phase 0
     click.echo("Phase 0: Normalizing assets")
     metadata = normalize_project(backing, human, lyrics, out, config.project)
     sr = metadata["sample_rate"]
 
-    # Phase 1
-    click.echo("Phase 1: Setting guide vocal")
-    guide_result = load_manual_guide(guide, out, config.project)
     proj_json = out / "project.json"
     with open(proj_json) as f:
         proj_meta = json.load(f)
-    proj_meta["guide_path"] = f"audio/{guide_result.path.name}"
-    proj_meta["guide_duration_samples"] = guide_result.duration_samples
-    proj_meta["guide_source"] = guide_result.source
-    with open(proj_json, "w") as f:
-        json.dump(proj_meta, f, indent=2)
+
+    # Phase 1 (guide mode only)
+    if mode == "guide":
+        from rapmap.guide.manual import load_manual_guide
+
+        click.echo("Phase 1: Setting guide vocal")
+        guide_result = load_manual_guide(guide, out, config.project)
+        proj_meta["guide_path"] = f"audio/{guide_result.path.name}"
+        proj_meta["guide_duration_samples"] = guide_result.duration_samples
+        proj_meta["guide_source"] = guide_result.source
+        with open(proj_json, "w") as f:
+            json.dump(proj_meta, f, indent=2)
+    else:
+        click.echo("Phase 1: Skipped (beat-only mode)")
 
     # Phase 2
     click.echo("Phase 2: Detecting syllables")
@@ -464,7 +605,12 @@ def run(
     alignment_dir = out / "alignment"
     alignment_dir.mkdir(parents=True, exist_ok=True)
 
-    for role_name, audio_key in [("guide", "guide_path"), ("human", "human_analysis_path")]:
+    if mode == "guide":
+        roles = [("guide", "guide_path"), ("human", "human_analysis_path")]
+    else:
+        roles = [("human", "human_analysis_path")]
+
+    for role_name, audio_key in roles:
         audio_path = out / proj_meta.get(audio_key, proj_meta.get("human_path", ""))
         if not audio_path.exists() and role_name == "human":
             audio_path = out / proj_meta["human_path"]
@@ -476,20 +622,50 @@ def run(
         click.echo(f"  {role_name}: {len(al.syllables)} syllables")
 
     # Phase 4
-    click.echo("Phase 4: Building anchor map")
-    with open(alignment_dir / "guide_alignment.json") as f:
-        guide_al = alignment_from_dict(json.load(f))
-    with open(alignment_dir / "human_alignment.json") as f:
-        human_al = alignment_from_dict(json.load(f))
-    strategy_config = AnchorStrategyConfig(default=anchor)
-    anchor_map = build_anchor_map(guide_al, human_al, strategy_config)
     timing_dir = out / "timing"
     timing_dir.mkdir(parents=True, exist_ok=True)
+
+    if mode == "guide":
+        from rapmap.config import AnchorStrategyConfig
+        from rapmap.timing.anchor_map import build_anchor_map
+
+        click.echo("Phase 4: Building anchor map")
+        with open(alignment_dir / "guide_alignment.json") as f:
+            guide_al = alignment_from_dict(json.load(f))
+        with open(alignment_dir / "human_alignment.json") as f:
+            human_al = alignment_from_dict(json.load(f))
+        strategy_config = AnchorStrategyConfig(default=anchor)
+        anchor_map = build_anchor_map(guide_al, human_al, strategy_config)
+    else:
+        from rapmap.beat.detect import detect_beats
+        from rapmap.beat.grid import build_beat_grid
+        from rapmap.beat.quantize import quantize_anchors
+
+        click.echo("Phase 4: Beat detection + quantize")
+        config.beat_detection.quantize_strength = strength
+        backing_audio, _ = read_audio(out / "audio" / "backing.wav", mono=True)
+        beat_info = detect_beats(backing_audio, sr, config.beat_detection)
+        with open(timing_dir / "beat_info.json", "w") as f:
+            json.dump(beat_info, f, indent=2)
+
+        beat_grid = build_beat_grid(beat_info, subdivision, len(backing_audio))
+        with open(timing_dir / "beat_grid.json", "w") as f:
+            json.dump(beat_grid, f, indent=2)
+
+        click.echo(f"  BPM: {beat_info['bpm']:.1f}, Grid points: {beat_grid['total_grid_points']}")
+
+        with open(alignment_dir / "human_alignment.json") as f:
+            human_al = alignment_from_dict(json.load(f))
+        anchor_map = quantize_anchors(human_al, beat_grid, config.beat_detection)
+
     with open(timing_dir / "anchor_map.json", "w") as f:
         json.dump(anchor_map, f, indent=2)
 
     # Phases 5-6
     click.echo("Phases 5-6: Grouping and planning")
+    if mode == "guide":
+        with open(alignment_dir / "human_alignment.json") as f:
+            human_al = alignment_from_dict(json.load(f))
     human_alignment_for_grouping = human_al if grouping == "safe_boundary" else None
     audio_data = None
     if grouping == "safe_boundary":

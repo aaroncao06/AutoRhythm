@@ -25,6 +25,9 @@ RapMap is a rap vocal rhythm correction pipeline. It takes a beat, dry human rap
 | Demucs | Source separation (only if guide is full-mix) |
 | soundfile / scipy | Audio I/O |
 | Audacity mod-script-pipe | DAW integration via named pipes |
+| librosa | Beat detection (BPM extraction, beat tracking) |
+| Flask + pywebview | Interactive syllable editor (native window) |
+| wavesurfer.js | Waveform display in editor (CDN) |
 | SongGeneration / YuE / ACE-Step | AI guide vocal generation (model-adapter pattern) |
 
 ## Commands
@@ -43,6 +46,18 @@ uv run rapmap anchors --project workdir --anchor onset
 uv run rapmap plan --project workdir --grouping safe_boundary
 uv run rapmap render --project workdir --edit-plan workdir/edit/edit_plan.json
 uv run rapmap audacity --project workdir --open
+
+# Beat-only mode (no AI guide)
+uv run rapmap run --backing inputs/backing.wav --human inputs/human_rap.wav --lyrics inputs/lyrics.txt --out workdir --mode beat-only
+uv run rapmap detect-beats --project workdir --subdivision eighth --strength 1.0
+
+# Audacity round-trip
+uv run rapmap grab-audio --project workdir
+
+# Interactive editor
+uv run rapmap editor --project workdir
+uv run rapmap editor --project workdir --browser  # fallback: open in browser
+uv run rapmap studio --project workdir            # launches Audacity + editor
 
 # Lint and format
 ruff check src/ tests/
@@ -65,6 +80,10 @@ src/rapmap/
 │   ├── stretch.py         # Rubber Band wrapper
 │   ├── render.py          # Clip rendering from edit plan
 │   └── source_separation.py  # Demucs wrapper (guide fallback)
+├── beat/                  # Beat detection and syllable quantization
+│   ├── detect.py          # BPM + beat frame extraction (librosa)
+│   ├── grid.py            # Beat grid subdivision generation
+│   └── quantize.py        # Snap syllable anchors to beat grid → anchor_map
 ├── guide/                 # AI guide vocal generation (model-adapter pattern)
 │   ├── base.py            # GuideVocalGenerator interface
 │   ├── manual.py          # Manual guide fallback
@@ -100,6 +119,12 @@ src/rapmap/
 │   ├── script_pipe.py     # mod-script-pipe controller
 │   ├── import_project.py  # Session builder
 │   └── export_mix.py
+├── editor/                # Interactive syllable timing editor (pywebview + Flask)
+│   ├── server.py          # Flask app: serves static files + JSON API
+│   └── static/            # HTML/CSS/JS frontend (wavesurfer.js waveform)
+├── studio/                # Studio launcher (Audacity + editor side-by-side)
+│   ├── launcher.py        # Launches Audacity + editor, arranges windows
+│   └── window_manager.py  # OS-level window focus toggling
 └── schemas/               # JSON schemas for validation
     ├── lyrics.schema.json
     ├── alignment.schema.json
@@ -126,13 +151,16 @@ inputs/                    # User-provided inputs (backing, vocal, lyrics)
 |-------|------|--------|-----------|
 | 0 | Normalize project assets | `audio/` | No |
 | 1 | Generate or load AI guide | `guide/` | Yes |
+| 1b | (beat-only) Detect beats + build grid | `beat/` | No |
 | 2 | Detect canonical syllables | `lyrics/` | Yes (G2P) |
 | 3 | Align vocals to lyrics | `align/` | Yes (MFA) |
-| 4 | Build syllable anchor map | `timing/` | No |
+| 4 | Build syllable anchor map | `timing/` or `beat/quantize` | No |
 | 5 | Group syllables into clips | `edit/` | No |
 | 6 | Create deterministic edit plan | `edit/` | No |
 | 7 | Render corrected human vocal | `audio/`, `edit/` | No |
 | 8 | Build Audacity session | `audacity/` | No |
+
+In beat-only mode (`--mode beat-only`), Phase 1 is skipped and Phase 4 uses `beat/quantize` to snap syllable anchors to the beat grid instead of an AI guide. Beat detection requires `uv sync --extra beat`. The editor requires `uv sync --extra editor`.
 
 ## Code Patterns
 
@@ -268,6 +296,10 @@ Additional validation:
 | `src/rapmap/align/mfa.py` | Montreal Forced Aligner integration |
 | `src/rapmap/lyrics/syllabify.py` | Automated syllable detection |
 | `src/rapmap/audacity/import_project.py` | Audacity session builder |
+| `src/rapmap/beat/detect.py` | Beat detection (librosa BPM extraction) |
+| `src/rapmap/beat/quantize.py` | Snap syllable anchors to beat grid |
+| `src/rapmap/editor/server.py` | Interactive editor Flask app + pywebview launcher |
+| `src/rapmap/studio/launcher.py` | Studio launcher (Audacity + editor) |
 
 ## On-Demand Context
 

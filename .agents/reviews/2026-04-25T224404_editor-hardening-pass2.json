@@ -1,0 +1,50 @@
+{
+  "verdict": "needs-attention",
+  "summary": "The first review's anchor_map validation fix only covers POST /api/anchor_map (the Save button). The editor's primary flow — drag then Render+Apply — writes the anchor_map to disk via /api/render-apply with zero validation, bypassing all the schema checks added in the first fix. Combined with the editor allowing negative sample indices on drag (no lower bound for the first syllable) and an incomplete rollback when no prior anchor_map exists, the validation layer has a coverage gap at the most-used code path.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "title": "render-apply writes anchor_map to disk without any validation — bypasses all first-review fixes",
+      "file": "src/rapmap/editor/server.py",
+      "line_start": 166,
+      "line_end": 170,
+      "confidence": 0.95,
+      "body": "POST /api/render-apply accepts body['anchor_map'] and writes it directly to timing/anchor_map.json (lines 167-170) without checking required fields, monotonicity, syllable_count consistency, or non-negative sample values. All of the validation logic added after the first review lives exclusively in the POST /api/anchor_map handler (lines 69-105). The editor's Render+Apply button (editor.js line 356-359) sends the in-memory anchorMap to /api/render-apply, not to /api/anchor_map. So the primary editing flow — drag syllables, click Render+Apply — never hits the validation. A JS drag bug producing negative samples, non-monotonic anchors, or missing fields gets persisted to disk and fed into the render pipeline, where it produces either a confusing 500 error or a silently wrong render.",
+      "recommendation": "Extract the anchor_map validation from save_anchor_map into a shared function (e.g. _validate_anchor_map(data)) and call it at the top of render_apply when body['anchor_map'] is present. Return 400 with the same error format on failure, before writing anything to disk."
+    },
+    {
+      "id": "F2",
+      "severity": "high",
+      "title": "Editor drag allows negative guide_start_sample for the first syllable — violates project invariant",
+      "file": "src/rapmap/editor/static/editor.js",
+      "line_start": 229,
+      "line_end": 249,
+      "confidence": 0.9,
+      "body": "When dragging syllable index 0, the lower bound is set to -Infinity (line 232). The monotonicity clamp (lines 238-243) only prevents newAnchor <= prev, which is -Infinity — effectively no lower bound. newStart is computed as origStart + dSamples + snapDelta, which can be negative when the user drags the first syllable far left or when beat-grid snap pulls it leftward. The server-side validation (save_anchor_map) checks monotonicity and field presence but not non-negative values. CLAUDE.md explicitly requires 'start_sample >= 0' and 'anchor_sample inside [start_sample, end_sample]'. Negative guide_start_sample reaches render_clips as segment.source_start_sample, causing out-of-bounds numpy slicing that silently returns a truncated or empty array.",
+      "recommendation": "In onMouseMove, after the monotonicity clamp, add: if (newStart < 0) { const shift = -newStart; newAnchor += shift; newStart = 0; newEnd += shift; }. Also add a non-negative check to the server-side anchor_map validation."
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "title": "Incomplete rollback when no prior anchor_map exists — broken file persists after failed render",
+      "file": "src/rapmap/editor/server.py",
+      "line_start": 160,
+      "line_end": 225,
+      "confidence": 0.85,
+      "body": "Lines 161-164 set previous_anchor_map to None if anchor_map_path doesn't exist. Lines 167-170 write the incoming anchor_map to disk. If the render pipeline then raises an exception (line 221), the except block only restores if previous_anchor_map is not None (line 222). When it's None, the broken anchor_map stays on disk. This means: user starts a fresh project, clicks Render+Apply with a bad anchor_map, render fails, but the bad anchor_map.json now exists on disk. Subsequent CLI commands (rapmap plan, rapmap render) will pick up this broken file and fail with confusing errors unrelated to the editor.",
+      "recommendation": "When previous_anchor_map is None in the except block, delete anchor_map_path if it exists: anchor_map_path.unlink(missing_ok=True). This restores the original state (no file) rather than leaving a corrupt artifact."
+    },
+    {
+      "id": "F4",
+      "severity": "low",
+      "title": "AudacityPipe.send() has no total timeout — can block Flask thread if Audacity trickles data",
+      "file": "src/rapmap/audacity/script_pipe.py",
+      "line_start": 57,
+      "line_end": 64,
+      "confidence": 0.7,
+      "body": "The while-loop in send() uses a per-iteration 10s select timeout. If Audacity responds with data chunks but never sends 'BatchCommand finished:', each iteration succeeds (ready is truthy), and the loop runs indefinitely. In the editor's Flask daemon thread, this blocks the request handler permanently — the webview UI becomes unresponsive with no feedback. The /api/grab-audio and /api/render-apply endpoints both call into AudacityPipe. Since Flask runs single-threaded by default, one stuck request blocks all subsequent API calls.",
+      "recommendation": "Add a total elapsed-time check: record start time before the loop, and break with a TimeoutError if elapsed > max_total_seconds (e.g. 120s). This prevents permanent thread blocking while still allowing large exports to complete."
+    }
+  ]
+}

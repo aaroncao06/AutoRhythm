@@ -50,6 +50,15 @@ class AnchorStrategyConfig:
 
 
 @dataclass
+class BeatDetectionConfig:
+    subdivision: str = "eighth"
+    quantize_strength: float = 1.0
+    min_bpm: int = 60
+    max_bpm: int = 200
+    hop_length: int = 512
+
+
+@dataclass
 class SafeBoundaryConfig:
     min_silence_ms: float = 20
     low_energy_window_ms: float = 12
@@ -108,6 +117,7 @@ class RapMapConfig:
     syllable_detection: SyllableDetectionConfig = field(default_factory=SyllableDetectionConfig)
     alignment: AlignmentConfig = field(default_factory=AlignmentConfig)
     anchor_strategy: AnchorStrategyConfig = field(default_factory=AnchorStrategyConfig)
+    beat_detection: BeatDetectionConfig = field(default_factory=BeatDetectionConfig)
     clip_grouping: ClipGroupingConfig = field(default_factory=ClipGroupingConfig)
     rendering: RenderingConfig = field(default_factory=RenderingConfig)
     audacity: AudacityConfig = field(default_factory=AudacityConfig)

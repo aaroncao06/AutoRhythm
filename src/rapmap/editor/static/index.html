@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RapMap Editor</title>
+    <link rel="stylesheet" href="/static/editor.css">
+</head>
+<body>
+    <div id="toolbar">
+        <div class="toolbar-group">
+            <button id="btn-audacity" class="toolbar-accent">Switch to Audacity</button>
+            <button id="btn-grab-audio">Grab Audio</button>
+            <span class="toolbar-sep"></span>
+            <button id="btn-play">Play</button>
+            <button id="btn-stop">Stop</button>
+        </div>
+        <div class="toolbar-group">
+            <label class="toolbar-label">Snap <input type="checkbox" id="snap-toggle" checked></label>
+            <label class="toolbar-label">Strength
+                <input type="range" id="strength-slider" min="0" max="100" value="100">
+                <span id="strength-value">100%</span>
+            </label>
+            <span id="bpm-display">BPM: ---</span>
+        </div>
+        <div class="toolbar-group">
+            <button id="btn-save">Save</button>
+            <button id="btn-render-apply" class="toolbar-accent">Render + Apply</button>
+            <span id="save-status"></span>
+        </div>
+    </div>
+
+    <div id="editor-area">
+        <div class="track-label">Backing</div>
+        <div id="waveform-backing" class="waveform-container"></div>
+
+        <div class="track-label">Human Vocal</div>
+        <div id="waveform-human-wrapper">
+            <div id="waveform-human" class="waveform-container"></div>
+            <canvas id="grid-canvas"></canvas>
+            <div id="syllable-layer"></div>
+        </div>
+    </div>
+
+    <div id="status-bar">
+        <span id="syl-count">Syllables: ---</span>
+        <span id="syl-selected">Selected: none</span>
+        <span id="cursor-time">Time: 0.000s</span>
+    </div>
+
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+    <script src="/static/editor.js"></script>
+</body>
+</html>

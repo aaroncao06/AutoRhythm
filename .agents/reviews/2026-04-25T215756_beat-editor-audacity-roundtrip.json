@@ -1,0 +1,60 @@
+{
+  "verdict": "needs-attention",
+  "summary": "The editor's render-apply endpoint hard-codes fail_on_anchor_error=False, directly violating the project's core invariant (zero-sample anchor error). Combined with pre-validation writes that destroy the previous anchor_map, grab-audio flows that leave Audacity in corrupted solo state on failure, and save_anchor_map accepting malformed JSON, the interactive path — where users are most likely to create edge-case anchors — is the least validated path in the pipeline. Ship the beat detection and CLI commands; the editor endpoints need hardening before real use.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "title": "render-apply bypasses core zero-sample-error invariant",
+      "file": "src/rapmap/editor/server.py",
+      "line_start": 167,
+      "line_end": 169,
+      "confidence": 0.95,
+      "body": "render_clips is called with fail_on_anchor_error=False. CLAUDE.md states: 'Zero-sample error. No tolerance. If this cannot be proven, the render must fail.' The CLI run command respects config.validation.require_zero_sample_anchor_error, but the editor endpoint silently accepts anchor errors. Since the editor is the path where users manually drag syllables to arbitrary positions, it is the MOST likely to produce invalid anchors and the LEAST validated. The user sees 'Rendered + applied' and trusts the output is correct.",
+      "recommendation": "Use config.validation.require_zero_sample_anchor_error (default True) instead of hard-coding False. Return the validation failure to the UI so the user knows the render didn't land correctly."
+    },
+    {
+      "id": "F2",
+      "severity": "high",
+      "title": "render-apply writes anchor_map to disk before render — no rollback on failure",
+      "file": "src/rapmap/editor/server.py",
+      "line_start": 125,
+      "line_end": 131,
+      "confidence": 0.9,
+      "body": "Lines 125-130 write the incoming anchor_map to timing/anchor_map.json BEFORE running the render pipeline (lines 132-181). If the render fails (caught by the except on line 180), the previous anchor_map is already overwritten and lost. The user's 'last known good' state is destroyed by an operation that didn't succeed. Subsequent CLI commands (rapmap plan, rapmap render) will use the broken anchor_map. This is a partial-failure data loss pattern: the write commits but the operation it supports does not.",
+      "recommendation": "Write to a temp file or write after successful render. Or: read the existing anchor_map into memory first so it can be restored on failure. The save-then-try pattern is backwards for an operation that is supposed to be atomic from the user's perspective."
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "title": "grab-audio leaves Audacity tracks permanently solo'd on export failure or exception",
+      "file": "src/rapmap/cli.py",
+      "line_start": 454,
+      "line_end": 467,
+      "confidence": 0.85,
+      "body": "The loop solos a track, exports, then un-solos. If export_audio() returns False, the code prints a warning but continues to the next track — the first track stays solo'd AND the second track gets solo'd. If any exception occurs mid-loop (broken pipe, OS error), solo_track(track_idx, False) never runs. pipe.close() only closes the file descriptors; it does not reset Audacity state. The user is left with tracks silently solo'd in Audacity. They hit Play, hear only one track, and don't know why. The same pattern exists in server.py lines 110-117.",
+      "recommendation": "Wrap the export loop in try/finally that un-solos all tracks. Or use select_tracks() instead of solo, which doesn't mutate persistent track state. At minimum, un-solo each track in a finally block regardless of export success."
+    },
+    {
+      "id": "F4",
+      "severity": "medium",
+      "title": "save_anchor_map accepts malformed JSON — only checks monotonicity, not schema",
+      "file": "src/rapmap/editor/server.py",
+      "line_start": 69,
+      "line_end": 90,
+      "confidence": 0.8,
+      "body": "The POST /api/anchor_map endpoint validates that anchors are monotonic by guide_anchor_sample, but does not validate: (1) presence of sample_rate (required by create_edit_plan line 12), (2) presence of anchor_strategy (required by EditPlan constructor at planner.py line 80), (3) that each anchor has all required fields (human_start_sample, human_end_sample, guide_start_sample, guide_end_sample, delta_samples, confidence), (4) that syllable_count matches len(anchors). A client-side JS bug or partial drag state could write a structurally valid JSON that crashes the next rapmap render or rapmap plan invocation with a confusing KeyError. Since editor.js mutates the anchor object in-place on every mousemove (editor.js lines 251-255), a JS exception during drag leaves partially-modified state that the user can then persist.",
+      "recommendation": "Validate at least the fields that create_edit_plan and group_syllables read: sample_rate, anchor_strategy, syllable_count, and per-anchor guide_anchor_sample, human_anchor_sample, guide_start_sample, guide_end_sample, human_start_sample, human_end_sample. Reject saves that are missing required fields."
+    },
+    {
+      "id": "F5",
+      "severity": "medium",
+      "title": "Editor grab-audio hardcodes track indices 0 and 1 — silent wrong-track export",
+      "file": "src/rapmap/editor/server.py",
+      "line_start": 111,
+      "line_end": 111,
+      "confidence": 0.75,
+      "body": "The /api/grab-audio endpoint hardcodes track 0 as backing and track 1 as vocal. The CLI grab-audio command correctly exposes --backing-track and --vocal-track options. If the user's Audacity session has a different track order (e.g., label tracks inserted before audio, or backing and vocal swapped), the editor exports wrong audio to wrong filenames — overwriting backing.wav with vocal audio or vice versa. This is silent data corruption: no error is raised, the export 'succeeds', and the user doesn't know until they hear wrong output after rendering."
+    }
+  ]
+}
